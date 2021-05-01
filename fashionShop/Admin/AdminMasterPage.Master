@@ -1,0 +1,463 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMasterPage.master.cs" Inherits="fashionShop.Admin.AdminMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>OLIVE</title>
+    <link rel="stylesheet" href="/fa/css/all.css">
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Wallpoet&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    
+    <style>
+        
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        a{
+            text-decoration: none;
+        }
+        * {
+            color: #333333;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+                content: '';
+                content: none;
+            }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+         /*End: Reset css*/
+         body {
+            line-height: 1;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+                content: '';
+                content: none;
+            }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        .header {
+            position: fixed;
+            width: 100%;
+            background-color: #e77f67;
+            height: 50px;
+            z-index: 999;
+            padding-right: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .logo {
+            position: relative;
+            width: 200px;
+            height: 100%;
+            margin-left: 0px;
+            background-color: #f19066;
+        }
+
+        a.text {
+            width: 100%;
+            font-weight: 500;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            color: white;
+            text-align: center;
+            padding-top: 15px;
+            display:block;
+        }
+        .text b {
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            color: white;
+        }
+        .notification {
+            height: 100%;
+            height: 100%;
+            position: relative;
+            
+            overflow: hidden;
+            
+        }
+
+            .notification ul {
+                height: 100%;
+                display: flex;
+                list-style: none;
+            }
+
+                .notification ul li {
+                    height: 100%;
+                    
+                    
+                }
+                .notification ul li:last-child a{
+                    
+                    padding: 16px 20px;
+                }
+
+                    .notification ul li a {
+                        height: 100%;
+                        display: block;
+                        color: white;
+                        text-decoration: none;
+                        padding: 16px;
+                    }
+                     .notification ul li i {
+                         color: white;
+                     }
+                    .notification ul li:hover {
+                        background-color: #f19066;
+                    }
+        #admin-name a {
+            display: flex;
+        }
+        #admin-name a i {
+            margin-right: 7px;
+        }
+        #admin-name a span {
+            color: white;
+            font-weight: 500;
+            font-family:Arial, sans-serif;
+        }
+        .body-content {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .left {
+            position: fixed;
+            width: 200px;
+            height: 1000px;
+            background-color: #2f3542;
+            margin-left: 0;
+            top: 50px;
+        }
+
+        .user {
+            position: relative;
+            width: 200px;
+            height: 70px;
+            margin: 10px 0 0px 20px;
+        }
+
+        .avatar {
+            position: absolute;
+            margin-left: 5px;
+            margin-top: 10px;
+        }
+
+            .avatar img {
+                width: 50px;
+                border-radius: 25px;
+            }
+
+        .info {
+            position: absolute;
+            margin-left: 65px;
+            margin-top: 20px;
+        }
+
+            .info span
+            {
+                display: block;
+                color: white;
+                font-weight: 600;
+            }
+
+            .info a {
+                text-decoration: none;
+                color: white;
+                font-size: 10px;
+                font-weight: 100;
+            }
+
+                .info a i {
+                    color: green;
+                    margin-right: 2px;
+                    font-size: 10px;
+                }
+
+        .search-box {
+            position: relative;
+            margin-top: 10px;
+            border: none;
+            width: 180px;
+            background-color: #95afc0;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+
+        input[type=search]:focus {
+            background-color: white;
+        }
+
+        .search-text {
+            padding-left: 5px;
+            position: absolute;
+            border: none;
+            background-color: #95afc0;
+            outline: none;
+            height: 30px;
+            width: 180px;
+            border-radius: 5px;
+        }
+
+        .search-icon {
+            position: absolute;
+            border: none;
+            margin-left: 160px;
+            margin-top: 7px;
+        }
+
+            .search-icon a {
+                text-decoration: none;
+                color: #2f3542;
+            }
+
+        .manager-menu {
+            margin-top: 10px;
+            width: 180px;
+        }
+        .manager-menu i {
+            color: #f19066;
+        }
+            .manager-menu h4 {
+                font-weight: 300;
+                width: 180px;
+                height: 25px;
+                color: #7f8fa6;
+                padding-left: 20px;
+                background-color: #353b48;
+            }
+
+        .sub {
+            width: 200px;
+            overflow: hidden;
+            list-style: none;
+            margin-top: 0px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        .sub i {
+            float: right;
+        }
+
+            .sub a {
+                text-decoration: none;
+                color: #f19066;
+            }
+            .sub:last-child {
+                margin-top: 50px;
+               
+            }
+            .sub:last-child a {
+                margin-left: 15px;
+            }
+                .sub:last-child i {
+                    margin-right: 15px;
+                }
+             
+        .btn {
+            display: block;
+            padding: 15px;
+        }
+
+            .btn:hover {
+                border-left: 2px solid #f19066;
+            }
+
+        .smenu {
+            background-color: #95afc0;
+            opacity: 0;
+            max-height: 0;
+            transition: 0.7s;
+        }
+
+            .smenu a {
+                color: white;
+                width: 180px;
+                display: block;
+                padding: 10px;
+            }
+
+                .smenu a:hover {
+                    border-left: 2px solid #f19066;
+                }
+
+        .sub:target .smenu {
+            max-height: 10em;
+            opacity: 1;
+        }
+
+        .right {
+            position: absolute;
+            margin-left: 200px;
+        }
+        .content {
+            padding: 50px 0 0 200px;
+        }
+        </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="header">
+            <div class="logo">
+                <a href="ADHome.aspx" class="text">
+                    <b>Admin</b> OLIVE
+                </a>
+            </div>
+            <div class="notification">
+                <ul>
+                    <li><a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><i class="far fa-envelope"></i></a></li>
+                    <li><a href="#"><i class="far fa-bell"></i></a></li>
+                    <li><a href="#"><i class="far fa-flag"></i></a></li>
+                    <li id="admin-name">
+                        <a href="#">
+                            <i class="far fa-user-circle"></i>
+                            <asp:Label ID="lbADName" runat="server" Text="Admin"></asp:Label>
+                        </a>
+
+                    </li>
+                    <li><a href="#"><i class="fas fa-cog"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="body-content">
+            <div class="left">
+                <div class="user">
+                    <div class="avatar">
+                        <img src="../images/avatar.png" alt="">
+                    </div>
+                    <div class="info">
+                        <asp:Label ID="lbADName1" runat="server" Text="Admin"></asp:Label>
+                        <a href="#">
+                            <i class="fas fa-circle"></i>
+                            Online
+                        </a>
+                    </div>
+                </div>
+                <div class="search-box">
+                    <input type="search" name="" id="" placeholder="Tìm kiếm..." class="search-text">
+                    <div class="search-icon"><a href="#"><i class="fas fa-search"></i></a></div>
+                </div>
+                <div class="manager-menu">
+                    <h4>Manager Menu</h4>
+                    <ul>
+                        <li class="sub" id="trangChuKH">
+                            <a href="../Customer/CustomerHome.aspx" class="btn">Customer Home <i class="fas fa-mouse-pointer"></i></a>
+                       </li>
+
+                        <li class="sub" id="sp">
+                            <a href="#sp" class="btn">Product Management <i class="fas fa-caret-down"></i></a>
+                            <div class="smenu">
+                                <a href="ADMNProduct.aspx">Thêm, xóa Sản Phẩm</a>
+                                <a href="ADMNProduct.aspx">Cập nhật Sản phẩm</a>
+                            </div>
+                        </li>
+                        <li class="sub" id="account">
+                            <a href="#account" class="btn">Customer Management <i class="fas fa-caret-down"></i></i></a>
+                            <div class="smenu">
+                                <a href="ADMNCustomerAccount.aspx">Thêm, xóa Khách hàng</a>
+                                <a href="ADMNCustomerAccount.aspx">Cập nhật Khách hàng</a>
+                            </div>
+                        </li>
+                        <li class="sub" id="admin">
+                            <a href="#admin" class="btn">Admin Management <i class="fas fa-caret-down"></i></i></a>
+                            <div class="smenu">
+                                <a href="ADMNAdminAccount.aspx">Thêm, xóa Admin</a>
+                                <a href="ADMNAdminAccount.aspx">Cập nhật Admin</a>
+                                
+                            </div>
+                        </li>
+                        <li class="sub" id="donhang">
+                            <a href="#donhang" class="btn">Orders Management <i class="fas fa-caret-down"></i></i></a>
+                            <div class="smenu">
+                                <a href="ADPendingOrders.aspx">Pending Orders</a>
+                                <a href="ADCanceledOrders.aspx">Canceled Orders</a>
+                                <a href="ADSuccessedOrders.aspx">Successed Orders</a>
+                            </div>
+                        </li>
+                        <li class="sub" id="doanhthu">
+                            <a href="#doanhthu" class="btn">Doanh Thu <i class="fas fa-caret-down"></i></i></a>
+                            <div class="smenu">
+                                <a href="#">Tổng thu</a>
+                                <a href="#">Tổng chi</a>
+                            </div>
+                        </li>
+                        <li class="sub">
+                            <a href="#" class="btn"><i class="far fa-envelope"></i>Mailbox</a>
+                        </li>
+                        <li class="sub">
+                            <asp:LinkButton ID="btnDangXuat" runat="server" OnClick="btnDangXuat_Click">Đăng xuất <i class="fas fa-sign-in-alt"></i></asp:LinkButton>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            
+            </div>
+    </form>
+</body>
+</html>

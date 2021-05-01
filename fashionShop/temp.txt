@@ -1,0 +1,191 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace fashionShop.Admin
+{
+    public partial class AddNewProduct : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            ////check xem nguoi dung co dang trong phien dang nhap
+            //if (Session["id"] == null)
+            //{
+            //    Response.Redirect("ADLogin.aspx");
+            //}
+            
+            if (!IsPostBack)
+            {
+                if (Request.QueryString.Get("idGender") != null)
+                {
+                    string idGender = Request.QueryString.Get("idGender");
+
+                    if(int.Parse(idGender) == 1)
+                    {
+                        lblGender.Text = "Woman";
+                    }
+                    else if (int.Parse(idGender) == 2)
+                    {
+                        lblGender.Text = "Man";
+                    }
+                    else if (int.Parse(idGender) == 3)
+                    {
+                        lblGender.Text = "Unisex";
+                    }
+
+                    DataAccess dataAccess = new DataAccess();
+                    dataAccess.MoKetNoiCSDL();
+
+                    //Fill data vao dropdownlist
+                    string sqlCategory = "SELECT * FROM CATEGORY WHERE ID_GENDER ="+idGender;
+                    //string sqlSize = "SELECT * FROM SIZE";
+
+                    SqlCommand cmdCategory = new SqlCommand(sqlCategory, dataAccess.getConnection());
+                    //SqlCommand cmdSize = new SqlCommand(sqlSize, dataAccess.getConnection());
+
+                    //Bind dl tu dtb vao dropdownlist
+                    ddlCategories.DataSource = cmdCategory.ExecuteReader();
+                    ddlCategories.DataTextField = "CATEGORY_NAME";
+                    ddlCategories.DataValueField = "ID_CATEGORY";
+                    ddlCategories.DataBind();
+
+                    ddlCategories.Items.Insert(0, new ListItem("---Pick a category---", "-1"));
+
+                    dataAccess.DongKetNoiCSDL();
+                }
+            }
+        }
+
+        protected void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            //check if at least one quantity was declared
+            bool isDeclareQuantity = false;
+
+            if (!String.IsNullOrEmpty(txtS.Text.Trim()))
+            {
+                this.InsertProduct_Size(txtS);
+                isDeclareQuantity = true;
+            }
+            if (!String.IsNullOrEmpty(txtM.Text.Trim()))
+            {
+                this.InsertProduct_Size(txtM);
+                isDeclareQuantity = true;
+            }
+            if (!String.IsNullOrEmpty(txtL.Text.Trim()))
+            {
+                this.InsertProduct_Size(txtL);
+                isDeclareQuantity = true;
+            }
+            if (!String.IsNullOrEmpty(txtXL.Text.Trim()))
+            {
+                this.InsertProduct_Size(txtXL);
+                isDeclareQuantity = true;
+            }
+            if (!String.IsNullOrEmpty(txtXXL.Text.Trim()))
+            {
+                this.InsertProduct_Size(txtXXL);
+                isDeclareQuantity = true;
+            }
+            if (!String.IsNullOrEmpty(txtOversize.Text.Trim()))
+            {
+                this.InsertProduct_Size(txtOversize);
+                isDeclareQuantity = true;
+            }
+            
+            if(!isDeclareQuantity)
+            {
+                Response.Write("<script>alert(\"You must add at least one size\")</script>");
+            }
+            else
+            {
+                Response.Redirect("ADMNProduct.aspx");
+            }
+            
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ADMNProduct.aspx");
+        }
+
+        protected void InsertProduct_Size(TextBox txtSize)
+        {
+            DataAccess dataAccess = new DataAccess();
+            dataAccess.MoKetNoiCSDL();
+
+            //set size id (base on database value)
+            int idSize = 0;
+
+            if (txtSize.ID == "txtS")
+            {
+                idSize = 1;
+            }
+            else if (txtSize.ID == "txtM")
+            {
+                idSize = 2;
+            }
+            else if (txtSize.ID == "txtL")
+            {
+                idSize = 3;
+            }
+            else if (txtSize.ID == "txtXL")
+            {
+                idSize = 4;
+            }
+            else if (txtSize.ID == "txtXXL")
+            {
+                idSize = 5;
+            }
+            else if (txtSize.ID == "txtOversize")
+            {
+                idSize = 8;
+            }
+
+            //khai bao path va file name de luu hinh uploaded
+            string path = Server.MapPath("~/Uploads");
+            string fileNamesToDtb = "";
+
+            if (FileUploadImg.PostedFiles != null)
+            {
+                foreach (var file in FileUploadImg.PostedFiles)
+                {
+                    //save each image user's upload to /Uploads file
+                    string fileName = "";
+                    fileName = Path.GetFileName(file.FileName).Trim();
+
+                    file.SaveAs(string.Format("{0}/{1}", path, fileName));
+
+                    //add filename to string fileNameToDtb
+                    fileNamesToDtb += (fileName + "|");
+                }
+                fileNamesToDtb.Trim().TrimEnd('|');
+            }
+            else
+            {
+                Response.Write("<script>alert(\"You must add at least one image\")</script>");
+            }
+
+            SqlCommand cmd = new SqlCommand("INSERT_PRODUCT", dataAccess.getConnection());
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@PRODUCT_NAME", txtTenSP.Text);
+            cmd.Parameters.AddWithValue("@INFORMATION", txtInfo.Text);
+            cmd.Parameters.AddWithValue("@IMAGES", fileNamesToDtb.Trim().TrimEnd('|'));
+            cmd.Parameters.AddWithValue("@QUANTITY", int.Parse(txtSize.Text));
+            cmd.Parameters.AddWithValue("@PRICE", int.Parse(txtGia.Text));
+            cmd.Parameters.AddWithValue("@SOLD_QUANTITY", int.Parse(txtSLDaBan.Text));
+            cmd.Parameters.AddWithValue("@PRODUCT_STATUS", int.Parse(rblTinhTrang.SelectedValue));
+            cmd.Parameters.AddWithValue("@ID_SIZE", idSize);
+            cmd.Parameters.AddWithValue("@ID_CATEGORY", int.Parse(ddlCategories.SelectedValue));
+
+            cmd.ExecuteNonQuery();
+
+            dataAccess.DongKetNoiCSDL();
+        }
+
+    }
+}

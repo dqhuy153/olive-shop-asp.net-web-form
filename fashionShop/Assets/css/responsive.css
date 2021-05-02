@@ -1,0 +1,87 @@
+ /* PC */
+ 
+ @media(min-width:64em) {}
+ /* Tablet */
+ 
+ @media(min-width:46.25em) and (max-width: 63.9375em) {}
+ /* tabtablet & mobile */
+ 
+ @media(min-width:63.9375em) {
+     .btn {
+         padding: 15px 16px;
+     }
+     #nav .subnav a {
+         padding: 5px 12px;
+     }
+     .contact-form .from-control {
+         padding: 15px;
+     }
+     .contact-info {
+         line-height: 2;
+     }
+     .social-list {
+         font-size: 48px;
+     }
+     #footer .social-list a {
+         margin: 0 8px;
+     }
+     #footer .copyright a {
+         padding: 12px 0;
+         display: inline-block;
+     }
+ }
+ /* Mobile */
+ 
+ @media (max-width:46.187em) {
+     /* Cái này là sự dụng cho điên thoại vì bản chất nó ăn theo chiều vertical */
+     .s-full-width,
+     .s-col-full {
+         width: 100% !important;
+     }
+     .s-mt-8 {
+         margin-top: 8px;
+     }
+     #header {
+         overflow: hidden;
+     }
+     #header .mobile-menu-btn {
+         display: block;
+     }
+     #header .search-btn {
+         display: none;
+     }
+     #nav {
+         display: block;
+     }
+     #nav>li {
+         display: block;
+     }
+     #nav li a {
+         padding: 1px 24px;
+     }
+     #nav>li:first-child {
+         display: inline-block;
+     }
+     #nav .subnav {
+         position: initial;
+         background-color: #FAD961;
+         background-image: linear-gradient(90deg, #FAD961 0%, #F76B1C 100%);
+     }
+     #nav .subnav a {
+         color: #fff;
+         padding: 5px 41px;
+     }
+     #content .member-item {
+         margin-top: 30px;
+         width: 100%;
+     }
+     /* Sử dụng width để dễ dàng thay đổi kích thước theo tỉ lệ màng hình */
+     #content .member-img {
+         width: 80%;
+     }
+     .contact-form {
+         margin-top: 32px;
+     }
+ }
+ 
+ 4

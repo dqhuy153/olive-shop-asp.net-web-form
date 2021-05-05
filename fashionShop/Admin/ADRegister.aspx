@@ -187,8 +187,16 @@
                     <div class="content-item content-txt">
                         <i class="fas fa-user-circle"></i>
                         <div>
-                            <asp:TextBox ID="txtHoTen" runat="server" placeholder="Fullname (*)"></asp:TextBox>
-                              <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Fullname is required" ControlToValidate="txtHoTen" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="txtFirstName" runat="server" placeholder="First name (*)"></asp:TextBox>
+                              <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="First name is required" ControlToValidate="txtFirstName" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
+
+                        </div>
+                    </div>
+                    <div class="content-item content-txt">
+                        <i class="fas fa-user-circle"></i>
+                        <div>
+                            <asp:TextBox ID="txtLastName" runat="server" placeholder="Last name (*)"></asp:TextBox>
+                              <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Last name is required" ControlToValidate="txtLastName" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
 
                         </div>
                     </div>
@@ -198,7 +206,7 @@
                             <asp:TextBox ID="txtEmail" runat="server" placeholder="Email (*)" TextMode="Email"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Email is required" ControlToValidate="txtEmail" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
 
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email không hợp lệ" ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" CssClass="txterror" Display="Dynamic"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email is invalid" ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" CssClass="txterror" Display="Dynamic"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="content-item content-txt">

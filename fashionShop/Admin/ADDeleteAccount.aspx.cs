@@ -13,11 +13,7 @@ namespace fashionShop.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //check xem nguoi dung co dang trong phien dang nhap
-            if (Session["usernameAD"] == null)
-            {
-                Response.Redirect("~/Admin/ADLogin.aspx");
-            }
+            CheckAuth.CheckAdmin();
 
             string idAcc = Request.QueryString.Get("idAcc");
             if (!IsPostBack)
@@ -34,10 +30,11 @@ namespace fashionShop.Admin
                 {
                     lbTenDangNhap.Text = dt.Rows[0]["USERNAME"].ToString();
                     lbLoaiTK.Text = dt.Rows[0]["ACCOUNT_TYPE"].ToString();
-                    txtTen.Text = dt.Rows[0]["FULLNAME"].ToString();
+                    txtFirstName.Text = dt.Rows[0]["FIRST_NAME"].ToString();
+                    txtLastName.Text = dt.Rows[0]["LAST_NAME"].ToString();
                     txtEmail.Text = dt.Rows[0]["EMAIL"].ToString();
-                    txtDiaChi.Text = dt.Rows[0]["ADDRESS"].ToString();
-                    txtSDT.Text = dt.Rows[0]["PHONE"].ToString();
+                    txtAccountType.Text = dt.Rows[0]["ACCOUNT_TYPE"].ToString();
+                    txtPhoneNumber.Text = dt.Rows[0]["PHONE"].ToString();
                 }
             }
         }

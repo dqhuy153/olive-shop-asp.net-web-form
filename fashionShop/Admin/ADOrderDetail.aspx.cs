@@ -13,10 +13,8 @@ namespace fashionShop.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usernameAD"] == null)
-            {
-                Response.Redirect("~/Admin/ADLogin.aspx");
-            }
+            CheckAuth.CheckAdmin();
+
             if (!IsPostBack)
             {
 

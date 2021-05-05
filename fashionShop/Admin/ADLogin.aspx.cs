@@ -48,27 +48,36 @@ namespace fashionShop.Admin
             //lay ket qua trong dt de doi chieu
             if (dt.Rows.Count > 0)
             {
-                //Ghi nho dang nhap
-                if (cbGhiNho.Checked)
+                //neu tai khoan bi khoa
+                if(int.Parse(dt.Rows[0]["STATUS"].ToString()) == 0)
                 {
-                    //Dung cookies
-                    Response.Cookies["usernameAD"].Value = txtTenDangNhap.Text;
-                    Response.Cookies["passwordAD"].Value = txtMatKhau.Text;
-
-                    //Thoi gian ghi nho
-                    Response.Cookies["usernameAD"].Expires = DateTime.Now.AddMinutes(60);
-                    Response.Cookies["passwordAD"].Expires = DateTime.Now.AddMinutes(60);
-
+                    lbThongBao.Text = "This account has been closed by Admin. If there is any mistake, please contact us via email OliveAdmin@gmail.com";
                 }
                 else
                 {
-                    Response.Cookies["usernameAD"].Expires = DateTime.Now;
-                    Response.Cookies["passwordAD"].Expires = DateTime.Now;
-                }
+                    //Ghi nho dang nhap
+                    if (cbGhiNho.Checked)
+                    {
+                        //Dung cookies
+                        Response.Cookies["usernameAD"].Value = txtTenDangNhap.Text;
+                        Response.Cookies["passwordAD"].Value = txtMatKhau.Text;
 
-                Session["usernameAD"] = txtTenDangNhap.Text;
-                Response.Redirect("ADHome.aspx");
-                Session.RemoveAll();
+                        //Thoi gian ghi nho
+                        Response.Cookies["usernameAD"].Expires = DateTime.Now.AddMinutes(60);
+                        Response.Cookies["passwordAD"].Expires = DateTime.Now.AddMinutes(60);
+
+                    }
+                    else
+                    {
+                        Response.Cookies["usernameAD"].Expires = DateTime.Now;
+                        Response.Cookies["passwordAD"].Expires = DateTime.Now;
+                    }
+
+                    Session["usernameAD"] = txtTenDangNhap.Text;
+                    Response.Redirect("ADHome.aspx");
+                    Session.RemoveAll();
+                }
+               
             }
             else
             {

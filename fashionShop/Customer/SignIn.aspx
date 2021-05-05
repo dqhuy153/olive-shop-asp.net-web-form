@@ -6,9 +6,12 @@
         a,
         p,
         span,
-        input{
+        input,
+        li,
+        button{
             font-family: "Ubuntu", sans-serif;
             color: #333;
+            font-weight: 400;
         }
         .txt__error[style*="inline"] {
             font-size: 1.3rem;
@@ -79,6 +82,7 @@
             font-size: 1.3rem;
             cursor: pointer;
             font-family: "Ubuntu", sans-serif;
+            font-weight: 400;
         }
 
             .section__btn:hover {

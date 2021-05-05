@@ -13,11 +13,7 @@ namespace fashionShop.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //check xem nguoi dung co dang trong phien dang nhap
-            if (Session["usernameAD"] == null)
-            {
-                Response.Redirect("~/Admin/ADLogin.aspx");
-            }
+            CheckAuth.CheckAdmin();
 
             //Tao connection
             DataAccess dataAccess = new DataAccess();

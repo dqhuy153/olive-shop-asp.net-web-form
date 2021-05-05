@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -14,10 +15,28 @@ namespace fashionShop.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             //check xem nguoi dung co dang trong phien dang nhap
-            if (Session["usernameAD"] == null)
-            {
-                Response.Redirect("~/Admin/ADLogin.aspx");
-            }
+            //if (Session["usernameAD"] == null)
+            //{
+            //    Response.Redirect("~/Admin/ADLogin.aspx");
+            //}
+            ////kiem tra tai khoan co bi khoa hay khong
+            //#region kiem tra tai khoan bi khoa
+            //string username = Session["usernameAD"].ToString();
+            //DataAccess dataAccess = new DataAccess();
+            //dataAccess.MoKetNoiCSDL();
+
+            //string sqlAccount = "SELECT * FROM ACCOUNT WHERE USERNAME = N'" + username + "'";
+            //DataTable dtAccount = dataAccess.LayBangDuLieu(sqlAccount);
+
+            //dataAccess.DongKetNoiCSDL();
+
+            //if (dtAccount.Rows[0]["STATUS"].ToString() == "0")
+            //{
+            //    Response.Redirect("ADLogin.aspx");
+            //}
+            //#endregion
+
+            CheckAuth.CheckAdmin();
 
             if (!IsPostBack)
             {

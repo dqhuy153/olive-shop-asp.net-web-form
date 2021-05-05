@@ -109,6 +109,7 @@
         }
         
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="qltk-container">
@@ -128,8 +129,8 @@
                 <th class="table-th">Password</th>
                 <th class="table-th">Fullname</th>
                 <th class="table-th">Email</th>
-                <th class="table-th">Address</th>
                 <th class="table-th">Phone number</th>
+                <th class="table-th">Address</th>
                 <th class="table-th">Status</th>
                 <th class="table-th">Edit</th>
                 <th class="table-th">Delete</th>

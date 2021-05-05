@@ -179,14 +179,21 @@
         <div class="cntk-table-container">
             <asp:Table ID="Table1" runat="server" CssClass="cntk-table">
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Fullname</asp:TableCell>
+                    <asp:TableCell runat="server">First Name <span class="dauSao">(*)</span></asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:TextBox ID="txtTen" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Fullname is required" ControlToValidate="txtTen" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="First name is required" ControlToValidate="txtFirstName" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Email</asp:TableCell>
+                    <asp:TableCell runat="server">Last Name <span class="dauSao">(*)</span></asp:TableCell>
+                    <asp:TableCell runat="server">
+                        <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Last name is required" ControlToValidate="txtLastName" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow runat="server">
+                    <asp:TableCell runat="server">Email <span class="dauSao">(*)</span></asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
 
@@ -196,7 +203,7 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Phone number<span class="dauSao">(*)</span></asp:TableCell>
+                    <asp:TableCell runat="server">Phone number <span class="dauSao">(*)</span></asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:TextBox ID="txtSDT" runat="server"></asp:TextBox>
 
@@ -204,15 +211,27 @@
 
                     </asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Address<span class="dauSao">(*)</span></asp:TableCell>
+                <asp:TableRow runat="server" ID="rowDiaChi">
+                    <asp:TableCell runat="server">Address <span class="dauSao">(*)</span></asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:TextBox ID="txtDiaChi" runat="server"></asp:TextBox>
 
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Address is required" ControlToValidate="txtDiaChi" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorDiaChi" runat="server" ErrorMessage="Address is required" ControlToValidate="txtDiaChi" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
 
                     </asp:TableCell>
                 </asp:TableRow>
+                <asp:TableRow runat="server">
+                    <asp:TableCell runat="server">
+                    Status
+                    </asp:TableCell>
+                    <asp:TableCell runat="server">
+                        <asp:RadioButtonList ID="rblStatus" runat="server" RepeatDirection="Horizontal" CssClass="cntk-rblTrangThai">
+                            <asp:ListItem Value="1" Selected="True">Open</asp:ListItem>
+                            <asp:ListItem Value="0">Close</asp:ListItem>
+                        </asp:RadioButtonList>
+                    </asp:TableCell>
+                </asp:TableRow>
+
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server" ColumnSpan="2" HorizontalAlign="Center" CssClass="doiMatKhauText">Change Password</asp:TableCell>
                 </asp:TableRow>
@@ -231,15 +250,12 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Repeat new password</asp:TableCell>
+                    <asp:TableCell runat="server">Confirm password</asp:TableCell>
                     <asp:TableCell runat="server">
                         <asp:TextBox ID="txtNhapLai" runat="server" TextMode="Password"></asp:TextBox>
-
                         <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Repeat password doesn't not match new password" ControlToValidate="txtNhapLai" ControlToCompare="txtMatKhauMoi" Type="String" CssClass="txterror" Display="Dynamic"></asp:CompareValidator>
-
                     </asp:TableCell>
                 </asp:TableRow>
-
             </asp:Table>
 
         <asp:Label ID="lbThongBao" runat="server" Text="" CssClass="txterror"></asp:Label>

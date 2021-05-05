@@ -11,12 +11,7 @@ namespace fashionShop.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usernameAD"] != null)
-            {
-                lbADName.Text = Session["usernameAD"].ToString();
-                lbADName1.Text = Session["usernameAD"].ToString();
-
-            }
+            CheckAuth.CheckAdmin();
         }
         public string ADName
         {

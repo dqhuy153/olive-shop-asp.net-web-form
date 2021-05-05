@@ -22,8 +22,6 @@ namespace fashionShop.Customer
                 string sqlCountry = "SELECT * FROM COUNTRY";
                 SqlCommand cmd = new SqlCommand(sqlCountry, dataAccess.getConnection());
 
-                DataTable dt = dataAccess.LayBangDuLieu(sqlCountry);
-
                 ddlCountry.DataSource = cmd.ExecuteReader();
                 ddlCountry.DataTextField = "NAME_CAP";
                 ddlCountry.DataValueField = "ID_COUNTRY";
@@ -44,15 +42,15 @@ namespace fashionShop.Customer
 
             int b = int.Parse(ddlCountry.SelectedValue);
 
-            cmd.Parameters.AddWithValue("@USERNAME", txtUsername.Text);
+            cmd.Parameters.AddWithValue("@USERNAME", txtUsername.Text.Trim());
             cmd.Parameters.AddWithValue("@PASSWORD", txtPassword.Text);
-            cmd.Parameters.AddWithValue("@FIRST_NAME", txtFirstName.Text);
-            cmd.Parameters.AddWithValue("@LAST_NAME", txtLastName.Text);
-            cmd.Parameters.AddWithValue("@EMAIL", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@PHONE", txtPhoneNumber.Text);
-            cmd.Parameters.AddWithValue("@STREET", txtAddress.Text);
-            cmd.Parameters.AddWithValue("@CITY", txtCity.Text);
-            cmd.Parameters.AddWithValue("@ZIP_CODE", txtZipCode.Text);
+            cmd.Parameters.AddWithValue("@FIRST_NAME", txtFirstName.Text.Trim());
+            cmd.Parameters.AddWithValue("@LAST_NAME", txtLastName.Text.Trim());
+            cmd.Parameters.AddWithValue("@EMAIL", txtEmail.Text.Trim());
+            cmd.Parameters.AddWithValue("@PHONE", txtPhoneNumber.Text.Trim());
+            cmd.Parameters.AddWithValue("@STREET", txtAddress.Text.Trim());
+            cmd.Parameters.AddWithValue("@CITY", txtCity.Text.Trim());
+            cmd.Parameters.AddWithValue("@ZIP_CODE", txtZipCode.Text.Trim());
             cmd.Parameters.AddWithValue("@ID_COUNTRY", int.Parse(ddlCountry.SelectedValue));
             cmd.Parameters.Add("@ERROR", SqlDbType.NVarChar, 500);
             cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;

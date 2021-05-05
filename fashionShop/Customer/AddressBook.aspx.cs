@@ -14,17 +14,13 @@ namespace fashionShop.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["username"] == null)
+            CheckAuth.CheckCustomer("AddressBook");
+
+            if (!IsPostBack)
             {
-                Response.Redirect("SignIn.aspx?pp=AddressBook");
+                ShowAddressList();
             }
-            else
-            {
-                if(!IsPostBack)
-                {
-                    ShowAddressList();
-                }
-            }
+
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
@@ -60,21 +56,37 @@ namespace fashionShop.Customer
         protected void ShowAddressList()
         {
             string username = Session["username"].ToString();
-            string sql = "SELECT ID_ADDRESS, AD.FIRST_NAME, AD.LAST_NAME, STREET, CITY, AD.PHONE, ZIP_CODE, NAME_CAP FROM ADDRESSES AD, ACCOUNT AC, COUNTRY C WHERE AD.ID_COUNTRY = C.ID_COUNTRY AND AD.ID_ACCOUNT = AC.ID_ACCOUNT AND USERNAME = N'" + username + "'";
+            string sql = "SELECT ID_ADDRESS, AD.FIRST_NAME, AD.LAST_NAME, STREET, CITY, AD.PHONE, ZIP_CODE, NAME_CAP, AC.ID_ACCOUNT FROM ADDRESSES AD, ACCOUNT AC, COUNTRY C WHERE AD.ID_COUNTRY = C.ID_COUNTRY AND AD.ID_ACCOUNT = AC.ID_ACCOUNT AND USERNAME = N'" + username + "'";
 
             DataAccess dataAccess = new DataAccess();
             dataAccess.MoKetNoiCSDL();
 
             DataTable dt = dataAccess.LayBangDuLieu(sql);
-            rptAddress.DataSource = dt;
-            rptAddress.DataBind();
 
-            foreach(RepeaterItem ritem in rptAddress.Items)
+            //lay thong tin address
+            if (dt.Rows.Count > 0)
             {
-                Button btnDelete = ritem.FindControl("btnDelete") as Button;
-                btnDelete.Enabled = false;
-                btnDelete.CssClass = "address__item--btn-first";
-                break;
+                rptAddress.DataSource = dt;
+                rptAddress.DataBind();
+
+                if (rptAddress.Items.Count == 1)
+                {
+                    RepeaterItem ritem = rptAddress.Items[0];
+
+                    Button btnDelete = ritem.FindControl("btnDelete") as Button;
+                    btnDelete.Enabled = false;
+                    btnDelete.CssClass = "address__item--btn-first";
+                }       
+                
+                hplNewAddress.NavigateUrl = "AddNewAddress.aspx?idAcc=" + dt.Rows[0]["ID_ACCOUNT"].ToString();
+            }
+            //neu chua co address nao
+            else
+            {
+                string sqlAccount = "SELECT * FROM ACCOUNT WHERE USERNAME = N'" + username + "'";
+                DataTable dtAccount = dataAccess.LayBangDuLieu(sqlAccount);
+
+                hplNewAddress.NavigateUrl = "AddNewAddress.aspx?idAcc=" + dtAccount.Rows[0]["ID_ACCOUNT"].ToString();
             }
 
             dataAccess.DongKetNoiCSDL();

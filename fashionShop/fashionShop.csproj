@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\ADAddNewProduct.aspx" />
+    <Content Include="Admin\ADAddressDetail.aspx" />
     <Content Include="Admin\ADCanceledOrders.aspx" />
     <Content Include="Admin\ADDeleteAccount.aspx" />
     <Content Include="Admin\ADDeleteProduct.aspx" />
@@ -2120,6 +2121,13 @@
     <Compile Include="Admin\ADAddNewProduct.aspx.designer.cs">
       <DependentUpon>ADAddNewProduct.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ADAddressDetail.aspx.cs">
+      <DependentUpon>ADAddressDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ADAddressDetail.aspx.designer.cs">
+      <DependentUpon>ADAddressDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ADCanceledOrders.aspx.cs">
       <DependentUpon>ADCanceledOrders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2225,6 +2233,7 @@
     <Compile Include="Admin\ADUpdateProduct.aspx.designer.cs">
       <DependentUpon>ADUpdateProduct.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CheckAuth.cs" />
     <Compile Include="Customer\AccountSetting.aspx.cs">
       <DependentUpon>AccountSetting.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

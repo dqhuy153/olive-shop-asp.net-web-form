@@ -47,36 +47,45 @@ namespace fashionShop.Customer
             //lay ket qua trong dt de doi chieu
             if (dt.Rows.Count > 0)
             {
-                //Ghi nho dang nhap
-                if (cbRemember.Checked)
+                //neu tai khoan bi khoa
+                if (int.Parse(dt.Rows[0]["STATUS"].ToString()) == 0)
                 {
-                    //Dung cookies
-                    Response.Cookies["username"].Value = txtUsername.Text;
-                    Response.Cookies["password"].Value = txtPassword.Text;
-
-                    //Thoi gian ghi nho
-                    Response.Cookies["username"].Expires = DateTime.Now.AddMinutes(60);
-                    Response.Cookies["password"].Expires = DateTime.Now.AddMinutes(60);
-
+                    lbWarning.Text = "This account has been closed by Admin. If there is any mistake, please contact us via email OliveAdmin@gmail.com";
                 }
                 else
                 {
-                    Response.Cookies["username"].Expires = DateTime.Now;
-                    Response.Cookies["password"].Expires = DateTime.Now;
-                }
+                    //Ghi nho dang nhap
+                    if (cbRemember.Checked)
+                    {
+                        //Dung cookies
+                        Response.Cookies["username"].Value = txtUsername.Text;
+                        Response.Cookies["password"].Value = txtPassword.Text;
 
-                Session["username"] = txtUsername.Text;
+                        //Thoi gian ghi nho
+                        Response.Cookies["username"].Expires = DateTime.Now.AddMinutes(60);
+                        Response.Cookies["password"].Expires = DateTime.Now.AddMinutes(60);
 
-                if(Request.QueryString.Get("pp") != null)
-                {
-                    Response.Redirect(Request.QueryString.Get("pp") + ".aspx");
-                }
-                else
-                {
-                    Response.Redirect("Home.aspx");
-                    Session.RemoveAll();
+                    }
+                    else
+                    {
+                        Response.Cookies["username"].Expires = DateTime.Now;
+                        Response.Cookies["password"].Expires = DateTime.Now;
+                    }
 
+                    Session["username"] = txtUsername.Text;
+
+                    if (Request.QueryString.Get("pp") != null)
+                    {
+                        Response.Redirect(Request.QueryString.Get("pp") + ".aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("Home.aspx");
+                        Session.RemoveAll();
+
+                    }
                 }
+                
             }
             else
             {

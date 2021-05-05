@@ -296,11 +296,11 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-
-                <a href="#" class="address__item address__addNew">
+                <asp:HyperLink ID="hplNewAddress" runat="server" class="address__item address__addNew">
                     <i class="fas fa-plus"></i>
                     <p>New Address</p>
-                </a>
+                </asp:HyperLink>
+                
             </div>
         </div>
         <div class="account__footer">

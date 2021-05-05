@@ -13,10 +13,7 @@ namespace fashionShop.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usernameAD"] == null)
-            {
-                Response.Redirect("~/Admin/ADLogin.aspx");
-            }
+            CheckAuth.CheckAdmin();
         }
         protected void btnDangKi_Click(object sender, EventArgs e)
         {
@@ -28,9 +25,10 @@ namespace fashionShop.Admin
 
             cmd.Parameters.AddWithValue("@USERNAME", txtTenDangNhap.Text);
             cmd.Parameters.AddWithValue("@PASSWORD", txtMatKhau.Text);
-            cmd.Parameters.AddWithValue("@FULLNAME", txtHoTen.Text);
+            cmd.Parameters.AddWithValue("@FIRST_NAME", txtFirstName.Text);
+            cmd.Parameters.AddWithValue("@LAST_NAME", txtLastName.Text);
             cmd.Parameters.AddWithValue("@EMAIL", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@ADDRESS", txtDiaChi.Text);
+            cmd.Parameters.AddWithValue("@AD_ADDRESS", txtDiaChi.Text);
             cmd.Parameters.AddWithValue("@PHONE", txtSDT.Text);
             cmd.Parameters.Add("@ERROR", SqlDbType.NVarChar, 500);
             cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;

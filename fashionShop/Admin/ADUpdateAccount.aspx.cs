@@ -13,11 +13,7 @@ namespace fashionShop.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //check xem nguoi dung co dang trong phien dang nhap
-            if (Session["usernameAD"] == null)
-            {
-                Response.Redirect("~/Admin/ADLogin.aspx");
-            }
+            CheckAuth.CheckAdmin();
 
             if (!IsPostBack)
             {
@@ -32,18 +28,27 @@ namespace fashionShop.Admin
 
                 DataTable dt = data.LayBangDuLieu(sql);
 
+                int idAccountType = int.Parse(dt.Rows[0]["ID_ACCOUNT_TYPE"].ToString());
+                if(idAccountType == 2)
+                {
+                    rowDiaChi.Style.Add("display", "none");
+                    RequiredFieldValidatorDiaChi.Enabled = false;
+                }
+
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     lbTenDangNhap.Text = dt.Rows[0]["USERNAME"].ToString();
                     lbLoaiTK.Text = dt.Rows[0]["ACCOUNT_TYPE"].ToString();
-                    txtTen.Text = dt.Rows[0]["FULLNAME"].ToString();
+                    txtFirstName.Text = dt.Rows[0]["FIRST_NAME"].ToString();
+                    txtLastName.Text = dt.Rows[0]["LAST_NAME"].ToString();
                     txtEmail.Text = dt.Rows[0]["EMAIL"].ToString();
-                    txtDiaChi.Text = dt.Rows[0]["ADDRESS"].ToString();
+                    txtDiaChi.Text = dt.Rows[0]["AD_ADDRESS"].ToString();
                     txtSDT.Text = dt.Rows[0]["PHONE"].ToString();
+
+                    rblStatus.Items.FindByValue(dt.Rows[0]["STATUS"].ToString()).Selected = true;
                 }
 
                 data.DongKetNoiCSDL();
-
             }
         }
         protected void btncapnhat_Click(object sender, EventArgs e)
@@ -54,33 +59,33 @@ namespace fashionShop.Admin
 
             dataAccess.MoKetNoiCSDL();
 
-            string strTen = txtTen.Text;
-            string stremail = txtEmail.Text;
-            string strsdt = txtSDT.Text;
-            string strdiachi = txtDiaChi.Text;
-            string strPassCu = txtMatKhauCu.Text;
-            string strPassMoi = txtMatKhauMoi.Text;
-            string strNhapLai = txtNhapLai.Text;
+            string firstName = txtFirstName.Text;
+            string lastName = txtLastName.Text;
+            string email = txtEmail.Text;
+            string phoneNumber = txtSDT.Text;
+            string address = txtDiaChi.Text;
+            string oldPassword = txtMatKhauCu.Text;
+            string newPassword = txtMatKhauMoi.Text;
 
             string sql = "SELECT * FROM ACCOUNT WHERE ID_ACCOUNT =" + idAcc;
             DataTable dt = dataAccess.LayBangDuLieu(sql);
 
             string loaiTK = dt.Rows[0]["ID_ACCOUNT_TYPE"].ToString();
 
-            //Khởi tạo 1 đối tượng command để thực thi lệnh Insert
             SqlCommand cmd;
 
-            if (strPassCu == "" || strPassCu == null)
+            if (String.IsNullOrEmpty(oldPassword) && String.IsNullOrEmpty(newPassword))
             {
                 cmd = new SqlCommand();
                 cmd.CommandText = "UPDATE ACCOUNT " +
-                    "SET FULLNAME=N'" + strTen + "'," +
-                    "EMAIL= N'" + stremail + "'," +
-                    "ADDRESS = N'" + txtDiaChi.Text + "'," +
-                    "PHONE = '" + txtSDT.Text + "' " +
+                    "SET FIRST_NAME=N'" + firstName + "'," +
+                    "LAST_NAME=N'" + lastName + "'," +
+                    "EMAIL= N'" + email + "'," +
+                    "AD_ADDRESS = N'" + address + "'," +
+                    "PHONE = '" + phoneNumber + "', " +
+                    "STATUS = '" + rblStatus.SelectedValue + "' " +
                     "WHERE ID_ACCOUNT =" + idAcc;
-
-                cmd.Connection = dataAccess.getConnection();//Gán connection cho command
+                cmd.Connection = dataAccess.getConnection();
 
                 cmd.ExecuteNonQuery();
                 lbThongBao.Text = "Successfully updated";
@@ -96,46 +101,96 @@ namespace fashionShop.Admin
                 }
 
             }
-            else if (strPassCu != "" && strPassMoi == "")
+            else if (oldPassword != "" && newPassword == "")
             {
-                lbThongBao.Text = "New password is required";
-            }
-            else
-            {
-                cmd = new SqlCommand("UPDATE_ACCOUNT_CHANGE_PASSWORD", dataAccess.getConnection());
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@OLD_PASSWORD", strPassCu);
-                cmd.Parameters.AddWithValue("@FULLNAME", strTen);
-                cmd.Parameters.AddWithValue("@EMAIL", stremail);
-                cmd.Parameters.AddWithValue("@ADDRESS", strdiachi);
-                cmd.Parameters.AddWithValue("@PHONE", strsdt);
-                cmd.Parameters.AddWithValue("@NEW_PASSWORD", strPassMoi);
-                cmd.Parameters.AddWithValue("@ID_ACCOUNT", idAcc);
-
-                cmd.Parameters.Add("@ERROR", SqlDbType.NVarChar, 500);
-                cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
-                int a = cmd.ExecuteNonQuery();
-
-                if (a > 0)
+                if (oldPassword.Length < 3)
                 {
-                    lbThongBao.Text = "Successfully updated";
-
-                    dataAccess.DongKetNoiCSDL();
-                    if (int.Parse(loaiTK) == 1)
-                    {
-                        Response.Redirect("ADMNAdminAccount.aspx");
-                    }
-                    if (int.Parse(loaiTK) == 2)
-                    {
-                        Response.Redirect("ADMNCustomerAccount.aspx");
-                    }
+                    lbThongBao.Text = "Current password is invalid";
+                    Response.Write("<script>alert(\"Current password is invalid\")</script>");
                 }
                 else
                 {
-                    lbThongBao.Text = cmd.Parameters["@ERROR"].Value.ToString();
+                    lbThongBao.Text = "New password is required";
+                    Response.Write("<script>alert(\"New password is required\")</script>");
                 }
+            }
+            else if (oldPassword == "" && newPassword != "")
+            {
+                if (newPassword.Length < 3)
+                {
+                    lbThongBao.Text = "New password is invalid";
+                    Response.Write("<script>alert(\"New password is invalid\")</script>");
+                }
+                else
+                {
+                    lbThongBao.Text = "Current password is required";
+                    Response.Write("<script>alert(\"Current password is required\")</script>");
+                }
+            }
+            else if (oldPassword.Length < 3)
+            {
+                lbThongBao.Text = "Current password is invalid";
+                Response.Write("<script>alert(\"Current password is invalid\")</script>");
+            }
+            else
+            {
+                if (newPassword.Length < 3)
+                {
+                    lbThongBao.Text = "Minimum password length is 3";
+                    Response.Write("<script>alert(\"Minimum password length is 3\")</script>");
+                }
+                else
+                {
+                    cmd = new SqlCommand("UPDATE_ACCOUNT_CHANGE_PASSWORD", dataAccess.getConnection());
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
+                    cmd.Parameters.AddWithValue("@OLD_PASSWORD", oldPassword);
+                    cmd.Parameters.AddWithValue("@FIRST_NAME", firstName);
+                    cmd.Parameters.AddWithValue("@LAST_NAME", lastName);
+                    cmd.Parameters.AddWithValue("@EMAIL", email);
+                    cmd.Parameters.AddWithValue("@PHONE", phoneNumber);
+                    cmd.Parameters.AddWithValue("@NEW_PASSWORD", newPassword);
+                    cmd.Parameters.AddWithValue("@AD_ADDRESS", address);
+                    cmd.Parameters.AddWithValue("@STATUS", rblStatus.SelectedValue);
+                    cmd.Parameters.AddWithValue("@ID_ACCOUNT", idAcc);
+
+                    cmd.Parameters.Add("@ERROR", SqlDbType.NVarChar, 500);
+                    cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
+
+                    dataAccess.DongKetNoiCSDL();
+
+                    int a = cmd.ExecuteNonQuery();
+
+                    if (a > 0)
+                    {
+                        lbThongBao.Text = "Successfully updated";
+                      
+                        if (int.Parse(loaiTK) == 1)
+                        {
+                            Response.Redirect("ADMNAdminAccount.aspx");
+                        }
+                        if (int.Parse(loaiTK) == 2)
+                        {
+                            Response.Redirect("ADMNCustomerAccount.aspx");
+                        }
+
+                    }
+                    else
+                    {
+                        lbThongBao.Text = cmd.Parameters["@ERROR"].Value.ToString();
+                        Response.Write("<script>alert(\"" + cmd.Parameters["@ERROR"].Value.ToString() + "\")</script>");
+                    }
+
+                    if (a > 0)
+                    {
+
+                    }
+                    else
+                    {
+                        lbThongBao.Text = cmd.Parameters["@ERROR"].Value.ToString();
+                    }
+
+                }
             }
         }
         protected void btnHuy_Click(object sender, EventArgs e)

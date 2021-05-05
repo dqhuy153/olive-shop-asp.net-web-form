@@ -14,10 +14,7 @@ namespace fashionShop.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usernameAD"] == null)
-            {
-                Response.Redirect("~/Admin/ADLogin.aspx");
-            }
+            CheckAuth.CheckAdmin();
 
             if (!IsPostBack)
             {
@@ -84,7 +81,6 @@ namespace fashionShop.Admin
                     txtTenSP.Text = dtSP.Rows[0]["PRODUCT_NAME"].ToString();
                     txtInfo.Text = dtSP.Rows[0]["INFORMATION"].ToString();
                     txtGia.Text = price;
-                    //txtGia.Text = ((decimal)dtSP.Rows[0]["PRICE"].ToString()).Tostring();
                     txtS.Text = dtSP.Rows[0]["S"].ToString();
                     txtM.Text = dtSP.Rows[0]["M"].ToString();
                     txtL.Text = dtSP.Rows[0]["L"].ToString();
@@ -99,7 +95,7 @@ namespace fashionShop.Admin
                         FileUploadImg.ToolTip = "Ảnh đã lưu trước đó: " + dtSP.Rows[0]["IMAGES"].ToString();
                     }
 
-                    //radioList checked
+                    //status
                     rblTinhTrang.Items.FindByValue((dtSP.Rows[0]["PRODUCT_STATUS"].Equals(true)) ? 1 + "" : 0 + "").Selected = true;
                 }
 

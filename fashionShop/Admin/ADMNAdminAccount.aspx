@@ -7,8 +7,7 @@
             min-width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-           
+            justify-content: center;          
         }
         .qltk-container h4 {
             margin: 0 auto;
@@ -127,8 +126,8 @@
                 <th class="table-th">Password</th>
                 <th class="table-th">Fullname</th>
                 <th class="table-th">Email</th>
-                <th class="table-th">Address</th>
                 <th class="table-th">Phone number</th>
+                <th class="table-th">Address</th>
                 <th class="table-th">Status</th>
                 <th class="table-th">Edit</th>
                 <th class="table-th">Delete</th>

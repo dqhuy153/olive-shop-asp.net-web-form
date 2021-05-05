@@ -208,7 +208,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="xoatk-container">
-        <h3>Xóa tài khoản
+        <h3>Delete Account
             <asp:Label ID="lbLoaiTK" runat="server" Text=""></asp:Label></h3>
         <div class="xoatk-username">
             <i class="fas fa-user-circle img"></i>
@@ -217,38 +217,33 @@
         <div class="xoatk-table-container">
             <asp:Table ID="Table1" runat="server" CssClass="xoatk-table">
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Họ tên</asp:TableCell>
+                    <asp:TableCell runat="server">First name</asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:TextBox ID="txtTen" runat="server"></asp:TextBox>
-
+                        <asp:TextBox ID="txtFirstName" runat="server" Enabled="false"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow runat="server">
+                    <asp:TableCell runat="server">Last name</asp:TableCell>
+                    <asp:TableCell runat="server">
+                        <asp:TextBox ID="txtLastName" runat="server" Enabled="false"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
                     <asp:TableCell runat="server">Email</asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email không hợp lệ" ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$" CssClass="txterror" Display="Dynamic"></asp:RegularExpressionValidator>
-
-
+                        <asp:TextBox ID="txtEmail" runat="server" Enabled="false"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Số điện thoại</asp:TableCell>
+                    <asp:TableCell runat="server">Phone number</asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:TextBox ID="txtSDT" runat="server"></asp:TextBox>
-
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Số điện thoại không được bỏ trống" ControlToValidate="txtSDT" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
-
+                        <asp:TextBox ID="txtPhoneNumber" runat="server" Enabled="false"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">Địa chỉ</asp:TableCell>
+                    <asp:TableCell runat="server">Account type</asp:TableCell>
                     <asp:TableCell runat="server">
-                        <asp:TextBox ID="txtDiaChi" runat="server"></asp:TextBox>
-
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Địa chỉ không được bỏ trống" ControlToValidate="txtDiaChi" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
-
+                        <asp:TextBox ID="txtAccountType" runat="server" Enabled="false"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
 
@@ -256,8 +251,8 @@
 
             <asp:Label ID="lbThongBao" runat="server" Text="" CssClass="txterror"></asp:Label>
             <div class="cnsp-btns">
-                <asp:Button ID="btnXoa" runat="server" Text="Xóa" OnClick="btnXoa_Click" CssClass="xoatk-btn xoatk-btn-CapNhat" />
-                <asp:Button ID="btnHuy" CssClass="xoatk-btn xoatk-btn-Huy" runat="server" Text="Hủy" OnClick="btnHuy_Click" />
+                <asp:Button ID="btnXoa" runat="server" Text="Delete" OnClick="btnXoa_Click" CssClass="xoatk-btn xoatk-btn-CapNhat" />
+                <asp:Button ID="btnHuy" CssClass="xoatk-btn xoatk-btn-Huy" runat="server" Text="Cancel" OnClick="btnHuy_Click" />
             </div>
         </div>
     </div>

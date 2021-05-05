@@ -13,6 +13,8 @@ namespace fashionShop.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CheckAuth.CheckCustomer("AddressBook");
+
             if (!IsPostBack)
             {
                 DataAccess dataAccess = new DataAccess();
@@ -32,30 +34,26 @@ namespace fashionShop.Customer
 
                 dataAccess.DongKetNoiCSDL();
             }
-        }
-        protected void btnRegister_Click(object sender, EventArgs e)
+        }    
+        protected void btnAdd_Click(object sender, EventArgs e)
         {
+            string idAccount = Request.QueryString.Get("idAcc");
+
             DataAccess dataAccess = new DataAccess();
             dataAccess.MoKetNoiCSDL();
 
-            SqlCommand cmd = new SqlCommand("INSERT_CUSTOMER", dataAccess.getConnection());
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-            int b = int.Parse(ddlCountry.SelectedValue);
-
-            cmd.Parameters.AddWithValue("@USERNAME", txtUsername.Text);
-            cmd.Parameters.AddWithValue("@PASSWORD", txtPassword.Text);
+            SqlCommand cmd = new SqlCommand("INSERT_ADDRESS", dataAccess.getConnection());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ID_ACCOUNT", idAccount);
             cmd.Parameters.AddWithValue("@FIRST_NAME", txtFirstName.Text);
             cmd.Parameters.AddWithValue("@LAST_NAME", txtLastName.Text);
-            cmd.Parameters.AddWithValue("@EMAIL", txtEmail.Text);
-            cmd.Parameters.AddWithValue("@PHONE", txtPhoneNumber.Text);
             cmd.Parameters.AddWithValue("@STREET", txtAddress.Text);
             cmd.Parameters.AddWithValue("@CITY", txtCity.Text);
+            cmd.Parameters.AddWithValue("@PHONE", txtPhoneNumber.Text);
             cmd.Parameters.AddWithValue("@ZIP_CODE", txtZipCode.Text);
-            cmd.Parameters.AddWithValue("@ID_COUNTRY", int.Parse(ddlCountry.SelectedValue));
-            cmd.Parameters.Add("@ERROR", SqlDbType.NVarChar, 500);
-            cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
-            int a = cmd.ExecuteNonQuery();
+            cmd.Parameters.AddWithValue("@ID_COUNTRY", ddlCountry.SelectedValue);
+
+            cmd.ExecuteNonQuery();
 
             dataAccess.DongKetNoiCSDL();
 

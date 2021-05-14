@@ -62,8 +62,8 @@ namespace fashionShop.Customer
                         Response.Cookies["password"].Value = txtPassword.Text;
 
                         //Thoi gian ghi nho
-                        Response.Cookies["username"].Expires = DateTime.Now.AddMinutes(60);
-                        Response.Cookies["password"].Expires = DateTime.Now.AddMinutes(60);
+                        Response.Cookies["username"].Expires = DateTime.Now.AddDays(30);
+                        Response.Cookies["password"].Expires = DateTime.Now.AddDays(30);
 
                     }
                     else
@@ -74,6 +74,39 @@ namespace fashionShop.Customer
 
                     Session["username"] = txtUsername.Text;
 
+                    //get cart from database, then update
+                    //if has product in cart session, add all into database cart_detail
+                    if(Session["cart"] != null)
+                    {
+                        DataTable cart = Session["cart"] as DataTable;
+                        string selectedSize = "";
+
+                        foreach(DataRow dataRow in cart.Rows)
+                        {
+                            dataAccess.MoKetNoiCSDL();
+                            SqlCommand cmdCart = new SqlCommand("INSERT_CART_DETAIL", dataAccess.getConnection());
+                            cmdCart.CommandType = CommandType.StoredProcedure;
+
+                            cmdCart.Parameters.AddWithValue("@USERNAME", txtUsername.Text);
+                            cmdCart.Parameters.AddWithValue("@ID_PRODUCT", int.Parse(dataRow["ID_PRODUCT"].ToString()));
+                            cmdCart.Parameters.AddWithValue("@CART_PRICE", decimal.Parse(dataRow["PRICE"].ToString()));
+
+                            //check size name of item
+                            if (int.Parse(dataRow["S"].ToString()) > 0) selectedSize = "S";
+                            if (int.Parse(dataRow["M"].ToString()) > 0) selectedSize = "M";
+                            if (int.Parse(dataRow["L"].ToString()) > 0) selectedSize = "L";
+                            if (int.Parse(dataRow["XL"].ToString()) > 0) selectedSize = "XL";
+                            if (int.Parse(dataRow["XXL"].ToString()) > 0) selectedSize = "XXL";
+                            if (int.Parse(dataRow["OVERSIZE"].ToString()) > 0) selectedSize = "OVERSIZE";
+                            
+                            cmdCart.Parameters.AddWithValue($"@CART_{selectedSize}", int.Parse(dataRow[selectedSize].ToString()));
+
+                            cmdCart.ExecuteNonQuery();
+                            dataAccess.DongKetNoiCSDL();
+                        }                  
+                    }
+
+                    //back to page where click login
                     if (Request.QueryString.Get("pp") != null)
                     {
                         Response.Redirect(Request.QueryString.Get("pp") + ".aspx");
@@ -82,10 +115,8 @@ namespace fashionShop.Customer
                     {
                         Response.Redirect("Home.aspx");
                         Session.RemoveAll();
-
                     }
-                }
-                
+                }           
             }
             else
             {

@@ -91,6 +91,8 @@
     <Content Include="Assets\css\reset.css" />
     <Content Include="Assets\css\responsive.css" />
     <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\css\TrangChu.css" />
+    <Content Include="Assets\css\TrangSanPham.css" />
     <Content Include="Assets\fonts\fontawesome-free-5.15.3-web\attribution.js" />
     <Content Include="Assets\fonts\fontawesome-free-5.15.3-web\css\all.css" />
     <Content Include="Assets\fonts\fontawesome-free-5.15.3-web\css\all.min.css" />
@@ -2101,8 +2103,10 @@
     <Content Include="Customer\AccountSetting.aspx" />
     <Content Include="Customer\AddNewAddress.aspx" />
     <Content Include="Customer\AddressBook.aspx" />
+    <Content Include="Customer\Cart.aspx" />
     <Content Include="Customer\OrderLists.aspx" />
     <Content Include="Customer\ProductDetail.aspx" />
+    <Content Include="Customer\Products.aspx" />
     <Content Include="Customer\RecentlyViewed.aspx" />
     <Content Include="Customer\Register.aspx" />
     <Content Include="Customer\SignIn.aspx" />
@@ -2110,6 +2114,7 @@
     <Content Include="Customer\UpdateAddress.aspx" />
     <Content Include="Customer\WishLists.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\homeBackground.jpeg" />
     <Content Include="temp.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -2255,6 +2260,13 @@
     <Compile Include="Customer\AddressBook.aspx.designer.cs">
       <DependentUpon>AddressBook.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\OrderLists.aspx.cs">
       <DependentUpon>OrderLists.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2268,6 +2280,13 @@
     </Compile>
     <Compile Include="Customer\ProductDetail.aspx.designer.cs">
       <DependentUpon>ProductDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\RecentlyViewed.aspx.cs">
       <DependentUpon>RecentlyViewed.aspx</DependentUpon>
@@ -2315,6 +2334,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Customer\CustomerMasterPage.Master.cs">
       <DependentUpon>CustomerMasterPage.Master</DependentUpon>
@@ -2411,7 +2431,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

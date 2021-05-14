@@ -40,14 +40,14 @@ html {
 }
 
 
-/* nếu sử dụng thằng này thì không cần sử dụng class clear nữa, nó sẽ tự thêm element giả */
+    /* nếu sử dụng thằng này thì không cần sử dụng class clear nữa, nó sẽ tự thêm element giả */
 
-.row::after {
-    content: "";
-    display: block;
-    /* display bắt buộc phải có thì clear mới hoạt động */
-    clear: both;
-}
+    .row::after {
+        content: "";
+        display: block;
+        /* display bắt buộc phải có thì clear mới hoạt động */
+        clear: both;
+    }
 
 .column {
     float: left;

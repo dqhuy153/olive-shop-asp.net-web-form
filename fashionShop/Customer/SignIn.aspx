@@ -28,7 +28,7 @@
             align-items: flex-start;
             display: flex;
             justify-content: space-between;
-            margin: 18rem auto;
+            margin: 10rem auto;
             width: 68%;
             min-width: 80rem;
         }

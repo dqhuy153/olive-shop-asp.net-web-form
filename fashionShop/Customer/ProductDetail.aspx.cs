@@ -18,6 +18,7 @@ namespace fashionShop.Customer
             {
                 string idProduct = Request.QueryString["id"].ToString();
 
+                DataAccess dataAccess = new DataAccess();
                 DataTable dtProduct = GetProductFromId(idProduct);
 
                 Server.HtmlDecode("&nbsp;");
@@ -25,7 +26,6 @@ namespace fashionShop.Customer
                 if (dtProduct != null && dtProduct.Rows.Count > 0)
                 {
                     string[] arrImages = dtProduct.Rows[0]["IMAGES"].ToString().Split('|');
-
 
                     //show images
                     foreach (var img in arrImages)
@@ -45,10 +45,15 @@ namespace fashionShop.Customer
 
                     lbNameRoute.Text = dtProduct.Rows[0]["PRODUCT_NAME"].ToString();
 
+                    //show product information
+                    lbProductName.Text = dtProduct.Rows[0]["PRODUCT_NAME"].ToString();
+                    lbPrice.Text = dtProduct.Rows[0]["PRICE"].ToString();
+                    lbProductInfo.Text = dtProduct.Rows[0]["INFORMATION"].ToString();
+
+
                     if (!IsPostBack)
                     {
                         //show size available
-                        DataAccess dataAccess = new DataAccess();
                         dataAccess.MoKetNoiCSDL();
 
                         string sqlSize = "SELECT S, M, L ,XL, XXL, OVERSIZE FROM PRODUCT WHERE ID_PRODUCT = " + idProduct;
@@ -73,7 +78,38 @@ namespace fashionShop.Customer
                         }
                         
                         dataAccess.DongKetNoiCSDL();
-                   }
+                    }
+
+                    //show info modal add to cart successful
+                    imgModalAdd.ImageUrl = "~/Uploads/" + arrImages[0];
+                    lbProductNameModalAdd.Text = dtProduct.Rows[0]["PRODUCT_NAME"].ToString();
+                    if(ddlSize.SelectedValue == "OVERSIZE")
+                    {
+                        lbSizeModalAdd.Text = "No size";
+                    }
+                    else
+                    {
+                        lbSizeModalAdd.Text = ddlSize.SelectedValue;
+                    }
+                    lbQuantityModalAdd.Text = "1";
+                    lbPriceModalAdd.Text = dtProduct.Rows[0]["PRICE"].ToString();
+
+                    //prevent save to wish list with visitor
+                    if (Session["username"] == null)
+                    {
+                        btnAddToWishList.OnClientClick = null;
+                    }
+
+                    //show related items slide
+                    dataAccess.MoKetNoiCSDL();
+
+                    string sqlRelatedItems = "SELECT TOP 6 * FROM PRODUCT P, CATEGORY C WHERE P.ID_CATEGORY = C.ID_CATEGORY AND ID_GENDER = " + dtProduct.Rows[0]["ID_GENDER"] + " AND (P.ID_CATEGORY = "+ dtProduct.Rows[0]["ID_CATEGORY"] + " OR ID_MAIN_CATEGORY = " + dtProduct.Rows[0]["ID_MAIN_CATEGORY"] + ")";
+                    DataTable dtRelatedItems = dataAccess.LayBangDuLieu(sqlRelatedItems);
+
+                    rptRelatedProduct.DataSource = dtRelatedItems;
+                    rptRelatedProduct.DataBind();
+
+                    dataAccess.DongKetNoiCSDL();
                 }           
             }              
         }
@@ -90,82 +126,78 @@ namespace fashionShop.Customer
             string selectedSize = ddlSize.SelectedValue;
             int orderQuantity = 1;
 
-            //if user doesn't logging in
-            //add product to session[cart]
-            if (Session["username"] == null)
+            //********
+            DataTable cart = CartStorage.getCurrentCart();
+            //********
+
+            //add product to session cart
+            int selectedSizeInStock = int.Parse(dtProduct.Rows[0][ddlSize.SelectedValue].ToString());
+
+            if (orderQuantity > selectedSizeInStock)
             {
-                #region user doesn't logging in 
-
-                DataTable cart = CreateOrGetSessionCart();
-
-                //add product to session cart
-                int selectedSizeInStock = int.Parse(dtProduct.Rows[0][ddlSize.SelectedValue].ToString());
-                
-
-
-                if (orderQuantity > selectedSizeInStock)
+                Response.Write($"<script>alert(\"The available products you choose is {selectedSizeInStock}\")</script>");
+            }
+            else
+            {
+                //check if product exists in session cart
+                bool isExisted = false;
+                foreach (DataRow dataRow in cart.Rows)
                 {
-                    Response.Write($"<script>alert(\"The available products you choose is {selectedSizeInStock}\")</script>");
+                    if (dataRow["ID_PRODUCT"].ToString() == idProduct)
+                    {
+                        dataRow[selectedSize] = int.Parse(dataRow[selectedSize].ToString()) + orderQuantity;
+                        isExisted = true;
+                        break;
+                    }
+                }
+
+                //if product not exists in session cart
+                //add product to sesstion cart
+                if (!isExisted)
+                {
+                    DataRow dataRow = cart.NewRow();
+                    dataRow["ID_PRODUCT"] = dtProduct.Rows[0]["ID_PRODUCT"];
+                    dataRow["IMAGE"] = firstImage;
+                    dataRow["PRODUCT_NAME"] = dtProduct.Rows[0]["PRODUCT_NAME"];
+                    dataRow["PRICE"] = dtProduct.Rows[0]["PRICE"];
+                    dataRow[selectedSize] = orderQuantity;
+
+                    cart.Rows.Add(dataRow);
+                }
+
+                if (Session["username"] == null)
+                {
+                    //Update session cart
+                    Session["cart"] = cart;
+                    //btnAddToCart.OnClientClick = "handleAddToCart()";
                 }
                 else
                 {
-                    //check if product exists in session cart
-                    bool isExisted = false;
-                    foreach (DataRow dataRow in cart.Rows)
-                    {
-                        if (dataRow["ID_PRODUCT"].ToString() == idProduct)
-                        {
-                            dataRow[selectedSize] = int.Parse(dataRow[selectedSize].ToString()) + orderQuantity;
-                            isExisted = true;
-                            break;
-                        }
-                    }
-                    
-                    //if product not exists in session cart
-                    //add product to sesstion cart
-                    if (!isExisted)
-                    {
-                        DataRow dataRow = cart.NewRow();
-                        dataRow["ID_PRODUCT"] = dtProduct.Rows[0]["ID_PRODUCT"];
-                        dataRow["IMAGE"] = firstImage;
-                        dataRow["NAME"] = dtProduct.Rows[0]["PRODUCT_NAME"];
-                        dataRow["PRICE"] = dtProduct.Rows[0]["PRICE"];
-                        dataRow[selectedSize] = orderQuantity;
-
-                        cart.Rows.Add(dataRow);
-                    }
-
-                    //Update session cart
-                    Session["cart"] = cart;
-
+                    Cache[$"{Session["username"]}-cart"] = cart;
                 }
-                #endregion
-            }
+
+                this.Master.CartQuantity = $"({cart.Rows.Count})";
+            }               
+        }
+
+        protected void btnAddToWishList_Click(object sender, EventArgs e)
+        {
+            string idProduct = Request.QueryString["id"].ToString();
             
-            //if user already logging in
-            //add product to database cart_detail
-            //the cart has been updated when you logging in
-            else
-            {
-                #region user logging in
+            CheckAuth.CheckCustomer($"ProductDetail.aspx?id={idProduct}");
 
-                DataTable cart = CreateOrGetSessionCart();
+            DataAccess dataAccess = new DataAccess();
+            dataAccess.MoKetNoiCSDL();
+            SqlCommand cmdSave = new SqlCommand("INSERT_SAVE_DETAIL", dataAccess.getConnection());
+            cmdSave.CommandType = CommandType.StoredProcedure;
 
-                DataAccess dataAccess = new DataAccess();
-                dataAccess.MoKetNoiCSDL();
-                SqlCommand cmdCart = new SqlCommand("INSERT_CART_DETAIL", dataAccess.getConnection());
-                cmdCart.CommandType = CommandType.StoredProcedure;
+            cmdSave.Parameters.AddWithValue("@USERNAME", Session["username"].ToString());
+            cmdSave.Parameters.AddWithValue("@ID_PRODUCT", int.Parse(idProduct));
 
-                cmdCart.Parameters.AddWithValue("@USERNAME", Session["username"].ToString());
-                cmdCart.Parameters.AddWithValue("@ID_PRODUCT", int.Parse(idProduct));
-                cmdCart.Parameters.AddWithValue("@CART_PRICE", decimal.Parse(dtProduct.Rows[0]["PRICE"].ToString()));
-                cmdCart.Parameters.AddWithValue($"@CART_{selectedSize}", orderQuantity);
+            cmdSave.ExecuteNonQuery();
 
-                cmdCart.ExecuteNonQuery();
+            dataAccess.DongKetNoiCSDL();
 
-                dataAccess.DongKetNoiCSDL();
-                #endregion
-            }
         }
 
         protected DataTable GetProductFromId(string idProduct)
@@ -180,32 +212,55 @@ namespace fashionShop.Customer
             return dataAccess.LayBangDuLieu(sqlProduct);             
         }
 
-        protected DataTable CreateOrGetSessionCart()
-        {
-            DataTable cart = new DataTable();
-            //create session cart
-            if (HttpContext.Current.Session["cart"] == null)
-            {
-                cart.Columns.Add("ID_PRODUCT");
-                cart.Columns.Add("IMAGE");
-                cart.Columns.Add("NAME");
-                cart.Columns.Add("PRICE");
-                cart.Columns.Add("S").DefaultValue = 0;
-                cart.Columns.Add("M").DefaultValue = 0;
-                cart.Columns.Add("L").DefaultValue = 0;
-                cart.Columns.Add("XL").DefaultValue = 0;
-                cart.Columns.Add("XXL").DefaultValue = 0;
-                cart.Columns.Add("OVERSIZE").DefaultValue = 0;
+        //protected void AddToCart(DataTable typeOfCart)
+        //{
+        //if (Session["username"] == null)
+        //{
+        //    AddToCart(CartStorage.CreateOrGetSessionCart());
+        //}
 
-                HttpContext.Current.Session["cart"] = cart;
-            }
-            //get session cart
-            else
-            {
-                cart = HttpContext.Current.Session["cart"] as DataTable;
-            }
+        ////if user already logging in
+        ////add product to cache cart_detail
+        ////the cart has been updated when you logging in
+        //else
+        //{
+        //    #region user logging in
+        //    string username = Session["username"].ToString();
 
-            return cart;
-        }
+        //    DataTable dt = CartStorage.CreateOrGetCacheCart(username);
+
+        //    AddToCart(dt);
+
+
+        //    //int selectedSizeInStock = int.Parse(dtProduct.Rows[0][ddlSize.SelectedValue].ToString());
+
+        //    //if (orderQuantity > selectedSizeInStock)
+        //    //{
+        //    //    Response.Write($"<script>alert(\"The available products you choose is {selectedSizeInStock}\")</script>");
+        //    //}
+        //    //else
+        //    //{
+        //    //    DataTable cart = CreateOrGetSessionCart();
+
+        //    //    DataAccess dataAccess = new DataAccess();
+        //    //    dataAccess.MoKetNoiCSDL();
+        //    //    SqlCommand cmdCart = new SqlCommand("INSERT_CART_DETAIL", dataAccess.getConnection());
+        //    //    cmdCart.CommandType = CommandType.StoredProcedure;
+
+        //    //    cmdCart.Parameters.AddWithValue("@USERNAME", Session["username"].ToString());
+        //    //    cmdCart.Parameters.AddWithValue("@ID_PRODUCT", int.Parse(idProduct));
+        //    //    cmdCart.Parameters.AddWithValue("@CART_PRICE", decimal.Parse(dtProduct.Rows[0]["PRICE"].ToString()));
+        //    //    cmdCart.Parameters.AddWithValue($"@CART_{selectedSize}", orderQuantity);
+
+        //    //    cmdCart.ExecuteNonQuery();
+
+        //    //    //btnAddToCart.OnClientClick = "handleAddToCart()";
+
+        //    //    dataAccess.DongKetNoiCSDL();
+        //    //}
+
+        //    #endregion
+        //}
+        
     }
 }

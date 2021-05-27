@@ -88,11 +88,13 @@
     </Content>
     <Content Include="Admin\ADMNProduct.aspx" />
     <Content Include="Assets\css\base.css" />
+    <Content Include="Assets\css\Customer\ChiTiet.css" />
+    <Content Include="Assets\css\Customer\GioHang.css" />
     <Content Include="Assets\css\reset.css" />
     <Content Include="Assets\css\responsive.css" />
     <Content Include="Assets\css\style.css" />
-    <Content Include="Assets\css\TrangChu.css" />
-    <Content Include="Assets\css\TrangSanPham.css" />
+    <Content Include="Assets\css\Customer\TrangChu.css" />
+    <Content Include="Assets\css\Customer\TrangSanPham.css" />
     <Content Include="Assets\fonts\fontawesome-free-5.15.3-web\attribution.js" />
     <Content Include="Assets\fonts\fontawesome-free-5.15.3-web\css\all.css" />
     <Content Include="Assets\fonts\fontawesome-free-5.15.3-web\css\all.min.css" />
@@ -2100,10 +2102,16 @@
     <Content Include="Assets\fonts\themify-icons\SVG\zoom-in.svg" />
     <Content Include="Assets\fonts\themify-icons\SVG\zoom-out.svg" />
     <Content Include="Assets\fonts\themify-icons\themify-icons.css" />
+    <Content Include="Assets\js\Customer\ChiTiet.js" />
+    <Content Include="Assets\js\Customer\GioHang.js" />
+    <Content Include="Assets\owl-carousel\owl.carousel.min.css" />
+    <Content Include="Assets\owl-carousel\owl.carousel.min.js" />
+    <Content Include="Assets\owl-carousel\owl.theme.default.min.css" />
     <Content Include="Customer\AccountSetting.aspx" />
     <Content Include="Customer\AddNewAddress.aspx" />
     <Content Include="Customer\AddressBook.aspx" />
     <Content Include="Customer\Cart.aspx" />
+    <Content Include="Customer\Checkout.aspx" />
     <Content Include="Customer\OrderLists.aspx" />
     <Content Include="Customer\ProductDetail.aspx" />
     <Content Include="Customer\Products.aspx" />
@@ -2267,6 +2275,13 @@
     <Compile Include="Customer\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\OrderLists.aspx.cs">
       <DependentUpon>OrderLists.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2334,7 +2349,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper.cs" />
+    <Compile Include="CartStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Customer\CustomerMasterPage.Master.cs">
       <DependentUpon>CustomerMasterPage.Master</DependentUpon>

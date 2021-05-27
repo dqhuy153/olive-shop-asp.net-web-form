@@ -79,6 +79,9 @@ namespace fashionShop.Customer
                 }
 
                 Session["username"] = txtUsername.Text;
+
+                CartStorage.CreateOrGetCacheCart(txtUsername.Text.Trim());
+
                 Response.Redirect("Home.aspx");
             }
             else

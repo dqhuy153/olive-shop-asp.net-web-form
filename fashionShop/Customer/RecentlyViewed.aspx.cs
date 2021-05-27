@@ -12,7 +12,7 @@ namespace fashionShop.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CheckAuth.CheckCustomer("RecentlyViewed");
+            CheckAuth.CheckCustomer("RecentlyViewed.aspx");
         }
     }
 }

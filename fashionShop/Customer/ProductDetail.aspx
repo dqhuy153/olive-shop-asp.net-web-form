@@ -1,421 +1,277 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer/CustomerMasterPage.Master" AutoEventWireup="true" CodeBehind="ProductDetail.aspx.cs" Inherits="fashionShop.Customer.CTMProductDetail" %>
+<%@ MasterType VirtualPath="~/Customer/CustomerMasterPage.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <!-- owl-carousel css-->
+    <link rel="stylesheet" href="../Assets/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="../Assets/owl-carousel/owl.theme.default.min.css">
+    <!-- base css -->
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <!-- custom style for this page -->
+    <link rel="stylesheet" href="../Assets/css/Customer/ChiTiet.css">
+    <!-- jquey 3.6 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" defer></script>
+    <!-- owl-carousel js -->
+    <script src="../Assets/owl-carousel/owl.carousel.min.js" defer></script>
+    <!-- js for this page -->
+    <script src="../Assets/js/Customer/ChiTiet.js" defer></script>
+
     <style>
-        .header {
-            height: 5rem;
-            z-index: 11;
-            background-color: #fff;
+        
+        /*Modal Add to Cart*/
+        .modalAdd__visible {
+            display: flex !important;
         }
 
-        .noti__banner {
-            height: 4.8rem;
-            background-color: #f4f4f4;
+        .modalAdd__container {
             width: 100%;
-            position: fixed;
-            top: 5rem;
+            height: 100vh;
+            top: 0;
+            right: 0;
             left: 0;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-            .noti__banner p {
-                font-size: 1.1rem !important;
-                font-weight: 500;
-                letter-spacing: 0.2rem;
-                color: #202020;
-            }
-
-        .head__title {
-            max-width: 95%;
-            margin-top: calc(2rem + 9.8rem);
-            margin-bottom: 2rem;
-        }
-
-        .head__title-list {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
-
-            .head__title-list .head__title-item {
-                padding: 1rem 1.5rem 1rem 0;
-                margin-left: 1rem;
-                border-right: 0.1rem solid #a1a1a1;
-            }
-
-                .head__title-list .head__title-item:last-child {
-                    border-right: 0;
-                }
-
-                    .head__title-list .head__title-item:last-child .head__title-link {
-                        color: #000;
-                    }
-
-                .head__title-list .head__title-item .head__title-link {
-                    font-size: 1.3rem !important;
-                    font-weight: 500;
-                    text-transform: uppercase;
-                    color: #a1a1a1;
-                }
-
-                .head__title-list .head__title-item:hover .head__title-link {
-                    color: #000;
-                }
-
-        .product__view {
-            max-width: 95%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-            .product__view .product__view-imgs {
-                width: 50%;
-                z-index: 1;
-            }
-
-                .product__view .product__view-imgs .product__view-img {
-                    width: 100%;
-                    height: auto;
-                }
-
-                    .product__view .product__view-imgs .product__view-img img {
-                        width: 100%;
-                        height: 100%;
-                    }
-
-            .product__view .product__view-details {
-                width: 50%;
-                padding-left: 3rem;
-                padding-top: 5rem;
-                position: sticky;
-                top: 10rem;
-            }
-
-                .product__view .product__view-details .product__name {
-                    font-size: 1.7rem !important;
-                    font-weight: 600;
-                    padding-bottom: 3rem;
-                    margin-bottom: 1rem;
-                    border-bottom: 1px solid #dfdedeb0;
-                }
-
-                .product__view .product__view-details .product__price {
-                    font-size: 1.5rem !important;
-                    font-weight: 500;
-                }
-
-                .product__view .product__view-details .product__size {
-                    margin: 2rem 0;
-                }
-
-                    .product__view .product__view-details .product__size > select {
-                        padding: 0.5rem;
-                        margin-right: 2rem;
-                        border: 1px solid #a1a1a1;
-                        border-radius: 0.5rem;
-                        outline: none;
-                        font-size: 1.3rem !important;
-                        font-weight: 400;
-                        color: #202020;
-                    }
-
-                    .product__view .product__view-details .product__size a {
-                        font-size: 1.5rem !important;
-                        font-weight: 500;
-                        letter-spacing: 1.3px;
-                        text-decoration: underline;
-                        transition: 0.3s all ease;
-                    }
-
-                        .product__view .product__view-details .product__size a:hover {
-                            color: #a1a1a1;
-                        }
-
-                .product__view .product__view-details .product__addCart {
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: center;
-                }
-
-                    .product__view .product__view-details .product__addCart > button {
-                        padding: 1rem 2rem;
-                        font-size: 1.4rem !important;
-                        font-weight: 500;
-                        color: #fff;
-                        background-color: #000;
-                        outline: none;
-                        border: 0.15rem solid #000;
-                        border-radius: 0.5rem;
-                        transition: all ease 0.2s;
-                        margin-right: 3rem;
-                    }
-
-                        .product__view .product__view-details .product__addCart > button:hover {
-                            background-color: #fff;
-                            color: #000;
-                        }
-
-                .product__view .product__view-details .product__more {
-                    margin-top: 4rem;
-                    border: 1px solid #dfdedeb0;
-                }
-
-                    .product__view .product__view-details .product__more .PM__select {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        background-color: #f4f4f4;
-                        margin-bottom: 0.5rem;
-                    }
-
-                        .product__view .product__view-details .product__more .PM__select > li {
-                            padding: 1.5rem 0;
-                            width: 30%;
-                            margin: 0.3rem 1rem;
-                            text-align: center;
-                            color: #000;
-                            font-size: 1.5rem !important;
-                            font-weight: 500;
-                            text-transform: uppercase;
-                            letter-spacing: 0.1rem;
-                            border-radius: 0.3rem;
-                            cursor: pointer;
-                        }
-
-                    .product__view .product__view-details .product__more .PM__content .product__more-info p,
-                    .product__view .product__view-details .product__more .PM__content .product__more-size p,
-                    .product__view .product__view-details .product__more .PM__content .product__more-ship p {
-                        font-size: 1.5rem !important;
-                        font-weight: 500;
-                        letter-spacing: 0.05rem;
-                        line-height: 1.2;
-                        margin-top: 1rem;
-                    }
-
-                    .product__view .product__view-details .product__more .PM__content .product__more-size > p {
-                        font-size: 1.3rem !important;
-                        font-weight: 600;
-                        padding: 1rem 0 2rem 1rem;
-                        border-bottom: 1px solid #dfdedeb0;
-                    }
-
-                    .product__view .product__view-details .product__more .PM__content .product__more-size .info-size h3 {
-                        width: 100%;
-                        text-align: center;
-                        margin: 1rem 0;
-                        font-size: 1.2rem !important;
-                    }
-
-                    .product__view .product__view-details .product__more .PM__content .product__more-size .info-size > ul {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
-
-                        .product__view .product__view-details .product__more .PM__content .product__more-size .info-size > ul li {
-                            padding: 0.5rem 1rem;
-                            margin: 0 1rem;
-                            text-align: center;
-                        }
-
-                            .product__view .product__view-details .product__more .PM__content .product__more-size .info-size > ul li p {
-                                font-size: 1.2rem !important;
-                            }
-
-                    .product__view .product__view-details .product__more .PM__content .product__more-size .more-info {
-                        padding-top: 2rem;
-                    }
-
-                        .product__view .product__view-details .product__more .PM__content .product__more-size .more-info h3 {
-                            font-size: 1.2rem !important;
-                            width: 100%;
-                            text-align: center;
-                            margin-bottom: 2rem;
-                        }
-
-                        .product__view .product__view-details .product__more .PM__content .product__more-size .more-info > table {
-                            width: 60%;
-                            margin: 0 auto;
-                        }
-
-                            .product__view .product__view-details .product__more .PM__content .product__more-size .more-info > table .circle-option {
-                                position: relative;
-                            }
-
-                                .product__view .product__view-details .product__more .PM__content .product__more-size .more-info > table .circle-option::before {
-                                    content: "";
-                                    position: absolute;
-                                    top: 50%;
-                                    left: 50%;
-                                    transform: translate(-50%, -50%);
-                                    width: 1rem;
-                                    height: 1rem;
-                                    border: 1px solid #000;
-                                    border-radius: 200rem;
-                                }
-
-                            .product__view .product__view-details .product__more .PM__content .product__more-size .more-info > table .option-selected::before {
-                                background-color: #000;
-                            }
-
-                            .product__view .product__view-details .product__more .PM__content .product__more-size .more-info > table .item-left {
-                                text-align: right;
-                            }
-
-                            .product__view .product__view-details .product__more .PM__content .product__more-size .more-info > table .item-right {
-                                text-align: left;
-                            }
-
-                            .product__view .product__view-details .product__more .PM__content .product__more-size .more-info > table .item-left,
-                            .product__view .product__view-details .product__more .PM__content .product__more-size .more-info > table .item-right {
-                                font-size: 1.6rem !important;
-                            }
-
-                            .product__view .product__view-details .product__more .PM__content .product__more-size .more-info > table tr td {
-                                width: 2rem;
-                                height: 2rem;
-                            }
-
-        /* owl carousel custom style*/
-        .owl-dots {
+            bottom: 0;
+            position: fixed;
+            z-index: 99;
+            transition: background-color 0.2s ease;
             display: none;
+            justify-content: center;
+            align-items: center;
         }
 
-        .owl-prev,
-        .owl-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+        #modalAdd__backdrop {
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.8);
         }
 
-            .owl-prev:hover,
-            .owl-next:hover {
-                background: none !important;
-            }
-
-        .owl-next {
-            right: -5rem;
+        .modalAdd__body {
+            background-color: white;
+            margin: 0 2rem;
+            overflow: auto;
+            display: block;
+            margin: 0 auto;
+            max-height: 100%;
+            max-width: 100vh;
+            min-height: 240px;
+            z-index: 999;
+            position: fixed;
         }
 
-        .owl-prev {
-            left: -5rem;
+        .modalAdd__header {
+            display: flex;
+            align-items: center;
+            background: #f4f4f4;
+            padding: 2.2rem 2.5rem;
+            overflow: auto;
         }
 
-            .owl-prev > span,
-            .owl-next > span {
-                font-size: 2rem !important;
-                padding: 0 1rem;
-                border-radius: 50%;
-                border: 1px solid #202020;
-            }
-
-                .owl-prev > span:hover,
-                .owl-next > span:hover {
-                    background: #202020;
-                    color: white;
-                }
-
-        /**/
-        .product__related {
-            width: 110rem;
-            max-width: 95%;
-        }
-
-            .product__related .product__related-head {
-                width: 100%;
-                height: 4rem;
+            .modalAdd__header p {
+                width: 98%;
                 text-align: center;
-                line-height: 4rem;
-                border-bottom: 1px solid #f4f4f4;
-                border-top: 1px solid #f4f4f4;
-                margin: 0.5rem 0;
-                font-size: 1.8rem !important;
-                font-weight: 500;
-                letter-spacing: 0.2rem;
-                color: #000;
+                word-spacing: 1.3px;
+                font-size: 1.35rem;
             }
 
-            .product__related .product__related-slide {
-                margin-bottom: 2rem;
+            .modalAdd__header button {
+                width: 2%;
+                font-size: 1.5rem;
+                border: none;
+                background: none;
+                outline: none;
+                cursor: pointer;
+                padding-left: 3rem;
             }
 
-                .product__related .product__related-slide .slide-box .pts-img > img:last-child {
-                    display: none;
-                    transition: all ease 0.3s;
+        .modalAdd__content {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .modalAdd__content img {
+                width: 25%;
+            }
+
+        .modalAdd__content--details {
+            width: 35%;
+        }
+
+        .modalAdd__content--btns {
+            width: 25%;
+        }
+
+            .modalAdd__content--btns .btn {
+                display: block;
+                width: 100%;
+                background: #202020;
+                border: 1px solid #333;
+                text-align: center;
+                text-transform: uppercase;
+                color: #fff;
+                letter-spacing: 1px;
+                margin-bottom: 1rem;
+                border-radius: 5px;
+                font-weight: 400;
+                font-size: 1.3rem;
+                padding: 1.8rem 0;
+            }
+
+                .modalAdd__content--btns .btn:last-of-type {
+                    background: #fff;
+                    color: #333;
+                    border: 1px solid #ccc;
                 }
 
-                .product__related .product__related-slide .slide-box .pts-img:hover > img:first-child {
-                    display: none;
+                .modalAdd__content--btns .btn:hover {
+                    background: #fff;
+                    color: #333;
+                    transition: all 0.2s ease;
                 }
 
-                .product__related .product__related-slide .slide-box .pts-img:hover > img:last-child {
-                    display: block;
+                .modalAdd__content--btns .btn:last-of-type:hover {
+                    border: 1px solid #111;
+                    transition: all 0.2s ease;
                 }
 
-                .product__related .product__related-slide .slide-box .pts-info {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: column;
-                }
+        .modalAdd__content--details .text {
+            text-align: center;
+            width: 70%;
+            padding: 1.5rem 0 1rem;
+            display: block;
+        }
 
-                    .product__related .product__related-slide .slide-box .pts-info a, .product__related .product__related-slide .slide-box .pts-info p {
-                        font-size: 1.8rem !important;
-                        color: #202020;
-                        font-weight: 500;
-                    }
+        .modalAdd__content--details .productName {
+            font-size: 1.5rem;
+            border-bottom: 1px solid #d5d5d5;
+            font-family: Spectral, Arial, sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 1.6rem;
+            line-height: 1.5;
+        }
 
-                    .product__related .product__related-slide .slide-box .pts-info a {
-                        padding: 1rem 0;
-                        font-size: 1.6rem !important;
-                    }
-
-        .txt__error {
-            font-size: 1.3rem;
-            color: #F19797;
-            word-spacing: 0.2rem;
+        .modalAdd__content--details .x {
+            margin: 0 5px;
         }
 
         @media screen and (max-width: 1240px) {
-            .owl-nav {
-                display: none;
+            .modalAdd__body {
+                width: 100%;
             }
         }
 
-        @media screen and (max-width: 800px) {
-            .product__view {
+        @media screen and (max-width: 850px) {
+
+            .modalAdd__content {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
 
-                .product__view .product__view-imgs {
-                    width: 80%;
+            .modalAdd__header p {
+                font-size: 1.2rem;
+                line-height: 1.5
+            }
+
+            .modalAdd__container img {
+                width: 70%;
+                margin-top: 5rem;
+                margin-bottom: 2rem;
+            }
+
+            .modalAdd__content--details {
+                width: 100%;
+                padding: 0 2rem;
+            }
+
+                .modalAdd__content--details .text {
+                    width: 100%;
                 }
 
-                .product__view .product__view-details {
-                    width: 80%;
-                    padding-top: 2rem;
-                }
-
-                .product__view .PM__select {
-                    flex-direction: column;
-                }
-
-                    .product__view .PM__select > li {
-                        width: 95% !important;
-                    }
+            .modalAdd__content--btns {
+                width: 90%;
+                margin: 3rem 0;
+            }
         }
     </style>
+    <script type="text/javascript" defer>
+
+        window.onload = function () {
+            const backdrop = document.getElementById("modalAdd__backdrop");
+            const modalAddToCart = document.getElementById("modalAdd");
+
+            backdrop.addEventListener("click", () => {
+                modalAddToCart.classList.remove("modalAdd__visible");
+            });
+
+            /*----------------------------------*/
+        }
+
+
+        function handleAddToCart() {
+            const ddlSize = document.getElementById("ddlSize");
+            const modalAddToCart = document.getElementById("modalAdd");
+
+            if (ddlSize.value == -1) {
+                return false;
+            }
+            else {
+                modalAddToCart.classList.add("modalAdd__visible");
+                return false;
+            }
+        }
+
+        function handleCloseModalAdd() {
+            const modalAddToCart = document.getElementById("modalAdd");
+
+            modalAddToCart.classList.remove("modalAdd__visible");
+            return false;
+        }
+
+        function handleAddToWishList() {
+            swal("Successful!", "Your product's already in your wish list!", "success");
+            return false;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="noti__banner">
         <p><i class="fas fa-truck-moving"></i>YOUR SHOPPING CART QUALIFIES FOR FREE SHIPPING WITHIN THE UK.</p>
     </div>
+    <!--Add to cart successful modal-->
+    <div class="modalAdd__container" id="modalAdd">
+        <div id="modalAdd__backdrop">
+        </div>
+        <div class="modalAdd__body" id="modalAdd__body">
+            <div class="modalAdd__header">
+                <p>ONLY BASKET TOTALS UNDER $800 ARE DELIVERED TO US ADDRESSES FREE OF TAXES AND DUTIES</p>
+                <asp:LinkButton ID="btnCloseModalAdd" runat="server" Text='<i class="fas fa-times"></i>' OnClientClick="return handleCloseModalAdd()" />
+            </div>
+            <div class="modalAdd__content">
+                <asp:Image ID="imgModalAdd" runat="server" />
+                <div class="modalAdd__content--details">
+                    <asp:Label ID="lbProductNameModalAdd" CssClass="text productName" runat="server" Text=""></asp:Label>
+                    <div class="text">
+                        <span>Size: </span>
+                        <asp:Label ID="lbSizeModalAdd" CssClass="size" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div class="text">
+                        <asp:Label ID="lbQuantityModalAdd" CssClass="quantity" runat="server" Text=""></asp:Label>
+                        <span class="x">x</span>
+                        <asp:Label ID="lbPriceModalAdd" CssClass="price" runat="server" Text=""></asp:Label>
+                    </div>
+
+                </div>
+                <div class="modalAdd__content--btns">
+                    <a href="Checkout.aspx" class="btn ModalAdd-btn">Checkout</a>
+                    <a href="Products.aspx" class="btn ModalAdd-btn">Continue Shopping</a>
+                    <a href="Cart.aspx" class="btn ModalAdd-btn">View Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end modal-->
+
     <div class="head__title grid">
         <ul class="head__title-list">
             <li class="head__title-item">
@@ -441,37 +297,37 @@
             <asp:Panel ID="PanelImage" runat="server"></asp:Panel>
         </div>
         <div class="product__view-details" id="product__view-details">
-            <h2 class="product__name">Oversized Linen Shirt, Mustard</h2>
-            <span class="product__price">$90.00</span>
+            <h2 class="product__name">
+                <asp:Label ID="lbProductName" runat="server" Text=""></asp:Label></h2>
+            <span class="product__price">$<asp:Label ID="lbPrice" runat="server" Text=""></asp:Label></span>
             <div class="product__size">
-                <%--<select name="product-size" id="">
-                    <option value="">--Please Choose an Option--</option>
-                    <option value="" title="Size S"></option>
-                    <option value="">size L</option>
-                </select>--%>
-                <asp:DropDownList ID="ddlSize" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlSize" runat="server" ClientIDMode="Static"></asp:DropDownList>
                 <asp:RequiredFieldValidator
-                        ID="RequiredFieldValidator1"
-                        runat="server"
-                        ControlToValidate="ddlSize"
-                        InitialValue="-1"
-                        ErrorMessage='<i class="fas fa-times"></i> You have to pick a size.'
-                        CssClass="txt__error"
-                        Display="Dynamic">
-                    </asp:RequiredFieldValidator>
+                    ID="RequiredFieldValidatorSize"
+                    runat="server"
+                    ControlToValidate="ddlSize"
+                    InitialValue="-1"
+                    ErrorMessage='<i class="fas fa-times"></i> You have to pick a size.'
+                    CssClass="txt__error"
+                    Display="Dynamic"
+                    ClientIDMode="Static">
+                </asp:RequiredFieldValidator>
 
                 <a href="#">Will it fit me?</a>
             </div>
 
             <div class="product__addCart">
-                <asp:Button ID="btnAddToCart" OnClick="btnAddToCart_Click" runat="server" Text="ADD TO CART" />
-                <!--<div class="add-options">
-                    <p class="btn-addOption">Add to wish list</p>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <asp:Button ID="btnAddToCart" OnClick="btnAddToCart_Click" runat="server" Text="ADD TO CART" OnClientClick="handleAddToCart()" />
+                        <asp:Button ID="btnAddToWishList" OnClick="btnAddToWishList_Click" runat="server" CausesValidation="false" Text="Add to wish list" OnClientClick="handleAddToWishList()" />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
+                <div class="add-options">
                     <div id="addOptions">
-                        <a href="">Add to wish list</a>
-                        <a href="">Create new wish list</a>
                     </div>
-                </div> -->
+                </div>
             </div>
             <div class="product__more">
                 <ul class="PM__select">
@@ -482,10 +338,7 @@
                 <div class="PM__content">
                     <div class="product__more-info tab" style="display: block;">
                         <p>
-                            Oversized linen blend shirt with a full button up front and a rounded hemline. Finished with
-                            dropped shoulder sleeves for a slouchy silhouette. Wear as a cover-up, unbuttoned and
-                            layered over a cami top with sleeves rolled or tucked into denim. A UK size 8 - 10 can
-                            expect a oversized boyfriend style fit whilst a UK size 16 will wear more tapered.
+                            <asp:Label ID="lbProductInfo" runat="server" Text=""></asp:Label>
                         </p>
                         <p>One Size: Length: 70cm, Across Width (Bust): 76cm, Sleeve: 45cm.</p>
                         <p>55% Linen, 45% Viscose.</p>
@@ -569,81 +422,26 @@
         </div>
     </div>
 
-    <div class="product__related grid">
+   <div class="product__related grid">
         <h2 class="product__related-head">Related Products</h2>
 
-        <div class="owl-carousel owl-theme product__related-slide">
-            <div class="slide-box">
-                <div class="pts-img">
-                    <img src="./assets/image/ChiTiet/1.1.webp" alt="">
-                    <img src="./assets/image/ChiTiet/slider1.1.webp" alt="">
-                </div>
-                <div class="pts-info">
-                    <a href="">Rina Pintuck Linen Short, Beige
-                    </a>
-                    <span>$65.00</span>
-                </div>
-            </div>
-
-            <div class="slide-box">
-                <div class="pts-img">
-                    <img src="./assets/image/ChiTiet/slider12.webp" alt="">
-                    <img src="./assets/image/ChiTiet/slider12.1.webp" alt="">
-                </div>
-                <div class="pts-info">
-                    <a href="">Rina Pintuck Linen Short, Beige
-                    </a>
-                    <span>$65.00</span>
-                </div>
-            </div>
-
-            <div class="slide-box">
-                <div class="pts-img">
-                    <img src="./assets/image/ChiTiet/slider2.webp" alt="">
-                    <img src="./assets/image/ChiTiet/slider2.1.webp" alt="">
-                </div>
-                <div class="pts-info">
-                    <a href="">Rina Pintuck Linen Short, Beige
-                    </a>
-                    <span>$65.00</span>
-                </div>
-            </div>
-
-            <div class="slide-box">
-                <div class="pts-img">
-                    <img src="./assets/image/ChiTiet/slider3.1.webp" alt="">
-                    <img src="./assets/image/ChiTiet/slider2.1.webp" alt="">
-                </div>
-                <div class="pts-info">
-                    <a href="">Rina Pintuck Linen Short, Beige
-                    </a>
-                    <span>$65.00</span>
-                </div>
-            </div>
-
-            <div class="slide-box">
-                <div class="pts-img">
-                    <img src="./assets/image/ChiTiet/slider12.webp" alt="">
-                    <img src="./assets/image/ChiTiet/slider12.1.webp" alt="">
-                </div>
-                <div class="pts-info">
-                    <a href="">Rina Pintuck Linen Short, Beige
-                    </a>
-                    <span>$65.00</span>
-                </div>
-            </div>
-
-            <div class="slide-box">
-                <div class="pts-img">
-                    <img src="./assets/image/ChiTiet/slider2.webp" alt="">
-                    <img src="./assets/image/ChiTiet/slider2.1.webp" alt="">
-                </div>
-                <div class="pts-info">
-                    <a href="">Rina Pintuck Linen Short, Beige
-                    </a>
-                    <span>$65.00</span>
-                </div>
-            </div>
+       <div class="owl-carousel owl-theme product__related-slide">
+           <asp:Repeater ID="rptRelatedProduct" runat="server">
+               <ItemTemplate>
+                   <a href="ProductDetail.aspx?id=<%# Eval("ID_PRODUCT") %>" class="slide-box">
+                       <div class="pts-img">
+                           <img src="../Uploads/<%# Eval("IMAGES").ToString().Split('|')[0] %>" alt="">
+                           <img src="../Uploads/<%# Eval("IMAGES").ToString().Split('|')[1] %>" alt="">
+                       </div>
+                       <div class="pts-info">
+                           <p><%# Eval("PRODUCT_NAME") %>
+                           </p>
+                           <span>$<%# Eval("PRICE") %></span>
+                       </div>
+                   </a>
+               </ItemTemplate>
+           </asp:Repeater>
         </div>
+
     </div>
 </asp:Content>

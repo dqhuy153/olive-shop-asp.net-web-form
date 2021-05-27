@@ -24,6 +24,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
     <style>
         a,
         p,
@@ -40,6 +41,7 @@
         html {
             font-size: 62.5%;
         }
+
         .body {
             min-height: 60vh;
         }
@@ -332,10 +334,10 @@
                 color: white;
             }
 
-            /* ALTER */
-            .find {
-                display: flex;
-            }
+        /* ALTER */
+        .find {
+            display: flex;
+        }
     </style>
     <script>
         //xử lí header
@@ -343,7 +345,6 @@
             if (window.scrollY > 0) {
                 document.getElementById("header").style.backgroundColor = "#fff";
             }
-
         });
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -485,7 +486,7 @@
                                         <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=men&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
                                     </li>
                                 </ItemTemplate>
-                            </asp:Repeater>   
+                            </asp:Repeater>
                         </ul>
                     </li>
                     <li class="header__menu--items">
@@ -507,7 +508,7 @@
                                                     <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&g=women&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
                                                 </li>
                                             </ItemTemplate>
-                                        </asp:Repeater>                        
+                                        </asp:Repeater>
                                     </ul>
                                 </div>
                             </li>
@@ -540,21 +541,21 @@
                                                     <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=jewellery&g=women&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
                                                 </li>
                                             </ItemTemplate>
-                                        </asp:Repeater>                              
+                                        </asp:Repeater>
                                     </ul>
                                 </div>
                             </li>
                         </ul>
-                    </li>  
-                    
+                    </li>
+
                     <li class="header__menu--items search">
                         <asp:Panel ID="panelSearch" runat="server" DefaultButton="btnSearch">
                             <asp:ScriptManager ID="ScriptManager1" runat="server">
                             </asp:ScriptManager>
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" class="find">
-                                <ContentTemplate>                     
-                                        <asp:TextBox ID="txtSearch" runat="server" placeholder="SEARCH" class="form-input"></asp:TextBox>
-                                        <asp:LinkButton runat="server" ID="btnSearch" ToolTip="Search" CssClass="find-icon" Text='<i class="fas fa-search"></i>' OnClick="btnSearch_OnClick" />                         
+                                <ContentTemplate>
+                                    <asp:TextBox ID="txtSearch" runat="server" placeholder="SEARCH" class="form-input"></asp:TextBox>
+                                    <asp:LinkButton runat="server" ID="btnSearch" ToolTip="Search" CssClass="find-icon" Text='<i class="fas fa-search"></i>' OnClick="btnSearch_OnClick" />
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </asp:Panel>
@@ -570,6 +571,7 @@
                         <asp:LinkButton ID="btnSignOut" runat="server" CausesValidation="false" OnClick="btnSignOut_Click">Sign out</asp:LinkButton>
                     </li>
                     <li class="header__menu--items ">
+
                         <a href="Cart.aspx">
                             <span class="navUser-item-cartLabel">My Cart</span>
                             <asp:Label ID="lbCartQuantity" runat="server" OnLoad="Page_Load" Text="(0)" class="cart-quantity"></asp:Label>
@@ -582,9 +584,9 @@
                 </asp:ContentPlaceHolder>
             </div>
             <div id="footer" class="footer">
-                <div class="form--support">                   
+                <div class="form--support">
                     <asp:TextBox ID="txtEmail" runat="server" placeholder="SUBSCRIBE TO OUR NEWSLETTER"></asp:TextBox>
-                    <asp:Button ID="btnSubcribe" runat="server" Text="SUBSCRIBE" OnClick="btnSubcribe_Click" />                   
+                    <asp:Button ID="btnSubcribe" runat="server" Text="SUBSCRIBE" OnClick="btnSubcribe_Click" />
                 </div>
                 <div class="social-list">
                     <a href="#"><i class="ti-facebook"></i></a>

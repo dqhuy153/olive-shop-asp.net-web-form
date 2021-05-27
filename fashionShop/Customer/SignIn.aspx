@@ -194,11 +194,11 @@
             <div class="section__content section__signIn--content">
                 <p class="singIn__p">Username:</p>
                 <asp:TextBox ID="txtUsername" runat="server" class="signIn__input"></asp:TextBox>
-                </br>
+                <br/>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage='<i class="fas fa-times"></i> You have to enter a username' ControlToValidate="txtUsername" Display="Dynamic" CssClass="txt__error"></asp:RequiredFieldValidator>
                 <p class="singIn__p">Password:</p>
                 <asp:TextBox ID="txtPassword" runat="server" class="signIn__input" TextMode="Password"></asp:TextBox>
-                </br>
+                <br/>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage='<i class="fas fa-times"></i> You havto enter a password' ControlToValidate="txtPassword" Display="Dynamic" CssClass="txt__error"></asp:RequiredFieldValidator>
                 <div class="content-checkbox">
                     <asp:CheckBox ID="cbRemember" runat="server" />

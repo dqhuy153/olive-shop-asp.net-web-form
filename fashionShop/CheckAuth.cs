@@ -17,7 +17,7 @@ namespace fashionShop
             {
                 HttpContext.Current.Response.Redirect("~/Admin/ADLogin.aspx");
             }
-            CheckAcountClosedOrBanned();
+            CheckAcountClosedOrBanned("usernameAD");
         }
 
         public static void CheckCustomer(string currentPage)
@@ -33,15 +33,17 @@ namespace fashionShop
                     HttpContext.Current.Response.Redirect("SignIn.aspx?pp=" + currentPage);
                 }
             }
-            CheckAcountClosedOrBanned();     
+            CheckAcountClosedOrBanned("username");     
         }
 
         //kiem tra tai khoan co bi khoa hay khong
         //(statusAccount = banned/closed)
-        static void CheckAcountClosedOrBanned()
+        static void CheckAcountClosedOrBanned(string sessionName)
         {
             #region kiem tra tai khoan bi khoa
-            string username = System.Web.HttpContext.Current.Session["username"].ToString();
+            
+
+            string username = System.Web.HttpContext.Current.Session[sessionName].ToString();
             DataAccess dataAccess = new DataAccess();
             dataAccess.MoKetNoiCSDL();
 

@@ -33,8 +33,8 @@ namespace fashionShop.Customer
             SqlCommand cmd = new SqlCommand("CHECK_LOGIN_CUSTOMER",dataAccess.getConnection());
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@USERNAME", txtUsername.Text);
-            cmd.Parameters.AddWithValue("@PASSWORD", txtPassword.Text);
+            cmd.Parameters.AddWithValue("@USERNAME", txtUsername.Text.Trim());
+            cmd.Parameters.AddWithValue("@PASSWORD", txtPassword.Text.Trim());
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -58,8 +58,8 @@ namespace fashionShop.Customer
                     if (cbRemember.Checked)
                     {
                         //Dung cookies
-                        Response.Cookies["username"].Value = txtUsername.Text;
-                        Response.Cookies["password"].Value = txtPassword.Text;
+                        Response.Cookies["username"].Value = txtUsername.Text.Trim();
+                        Response.Cookies["password"].Value = txtPassword.Text.Trim();
 
                         //Thoi gian ghi nho
                         Response.Cookies["username"].Expires = DateTime.Now.AddDays(30);
@@ -72,44 +72,60 @@ namespace fashionShop.Customer
                         Response.Cookies["password"].Expires = DateTime.Now;
                     }
 
-                    Session["username"] = txtUsername.Text;
+                    Session["username"] = txtUsername.Text.Trim();
+
+                    //get cart from cache, then update
+                    //if has product in cart session, add all into database cart_detail
+                    if (Session["cart"] != null)
+                    {
+                        DataTable sessionCart = Session["cart"] as DataTable;
+                        DataTable userCacheCart = CartStorage.CreateOrGetCacheCart(txtUsername.Text.Trim());
+
+                        foreach (DataRow dataRow in sessionCart.Rows)
+                        {
+                            userCacheCart.ImportRow(dataRow);
+                        }
+                    }
 
                     //get cart from database, then update
                     //if has product in cart session, add all into database cart_detail
-                    if(Session["cart"] != null)
-                    {
-                        DataTable cart = Session["cart"] as DataTable;
-                        string selectedSize = "";
 
-                        foreach(DataRow dataRow in cart.Rows)
-                        {
-                            dataAccess.MoKetNoiCSDL();
-                            SqlCommand cmdCart = new SqlCommand("INSERT_CART_DETAIL", dataAccess.getConnection());
-                            cmdCart.CommandType = CommandType.StoredProcedure;
+                    //if(Session["cart"] != null)
+                    //{
+                    //    DataTable cart = Session["cart"] as DataTable;
+                    //    string selectedSize = "";
 
-                            cmdCart.Parameters.AddWithValue("@USERNAME", txtUsername.Text);
-                            cmdCart.Parameters.AddWithValue("@ID_PRODUCT", int.Parse(dataRow["ID_PRODUCT"].ToString()));
-                            cmdCart.Parameters.AddWithValue("@CART_PRICE", decimal.Parse(dataRow["PRICE"].ToString()));
+                    //    foreach(DataRow dataRow in cart.Rows)
+                    //    {
+                    //        dataAccess.MoKetNoiCSDL();
+                    //        SqlCommand cmdCart = new SqlCommand("INSERT_CART_DETAIL", dataAccess.getConnection());
+                    //        cmdCart.CommandType = CommandType.StoredProcedure;
 
-                            //check size name of item
-                            if (int.Parse(dataRow["S"].ToString()) > 0) selectedSize = "S";
-                            if (int.Parse(dataRow["M"].ToString()) > 0) selectedSize = "M";
-                            if (int.Parse(dataRow["L"].ToString()) > 0) selectedSize = "L";
-                            if (int.Parse(dataRow["XL"].ToString()) > 0) selectedSize = "XL";
-                            if (int.Parse(dataRow["XXL"].ToString()) > 0) selectedSize = "XXL";
-                            if (int.Parse(dataRow["OVERSIZE"].ToString()) > 0) selectedSize = "OVERSIZE";
-                            
-                            cmdCart.Parameters.AddWithValue($"@CART_{selectedSize}", int.Parse(dataRow[selectedSize].ToString()));
+                    //        cmdCart.Parameters.AddWithValue("@USERNAME", txtUsername.Text.Trim());
+                    //        cmdCart.Parameters.AddWithValue("@ID_PRODUCT", int.Parse(dataRow["ID_PRODUCT"].ToString()));
+                    //        cmdCart.Parameters.AddWithValue("@CART_PRICE", decimal.Parse(dataRow["PRICE"].ToString()));
 
-                            cmdCart.ExecuteNonQuery();
-                            dataAccess.DongKetNoiCSDL();
-                        }                  
-                    }
+                    //        //check size name of item
+                    //        if (int.Parse(dataRow["S"].ToString()) > 0) selectedSize = "S";
+                    //        if (int.Parse(dataRow["M"].ToString()) > 0) selectedSize = "M";
+                    //        if (int.Parse(dataRow["L"].ToString()) > 0) selectedSize = "L";
+                    //        if (int.Parse(dataRow["XL"].ToString()) > 0) selectedSize = "XL";
+                    //        if (int.Parse(dataRow["XXL"].ToString()) > 0) selectedSize = "XXL";
+                    //        if (int.Parse(dataRow["OVERSIZE"].ToString()) > 0) selectedSize = "OVERSIZE";
+
+                    //        cmdCart.Parameters.AddWithValue($"@CART_{selectedSize}", int.Parse(dataRow[selectedSize].ToString()));
+
+                    //        cmdCart.ExecuteNonQuery();
+                    //        dataAccess.DongKetNoiCSDL();
+                    //    }                  
+                    //}
+
+
 
                     //back to page where click login
                     if (Request.QueryString.Get("pp") != null)
                     {
-                        Response.Redirect(Request.QueryString.Get("pp") + ".aspx");
+                        Response.Redirect(Request.QueryString.Get("pp"));
                     }
                     else
                     {
@@ -122,7 +138,6 @@ namespace fashionShop.Customer
             {
                 lbWarning.Text = "<i class=\"fas fa-times\"></i> The username or password is incorrect";
             }
-
         }
     }
 }

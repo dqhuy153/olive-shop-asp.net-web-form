@@ -146,7 +146,7 @@ namespace fashionShop.Customer
             dataAccess.DongKetNoiCSDL();
         }
 
-        //check filter (status + size + order by)
+        //check filter (featured + size)
         protected void CheckBoxFilter(string queryString, string value, HtmlInputCheckBox checkBox, HyperLink hyperLink)
         {
             //get current url (localhost:xxx/../..?queryStrings) & current path (/../..)

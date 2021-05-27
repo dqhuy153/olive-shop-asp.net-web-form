@@ -15,6 +15,60 @@ namespace fashionShop.Customer
     {
 
         /// <summary>
+        /// btnCloseModalAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCloseModalAdd;
+
+        /// <summary>
+        /// imgModalAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgModalAdd;
+
+        /// <summary>
+        /// lbProductNameModalAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbProductNameModalAdd;
+
+        /// <summary>
+        /// lbSizeModalAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSizeModalAdd;
+
+        /// <summary>
+        /// lbQuantityModalAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbQuantityModalAdd;
+
+        /// <summary>
+        /// lbPriceModalAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPriceModalAdd;
+
+        /// <summary>
         /// hplMainCategory control.
         /// </summary>
         /// <remarks>
@@ -60,6 +114,24 @@ namespace fashionShop.Customer
         protected global::System.Web.UI.WebControls.Panel PanelImage;
 
         /// <summary>
+        /// lbProductName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbProductName;
+
+        /// <summary>
+        /// lbPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPrice;
+
+        /// <summary>
         /// ddlSize control.
         /// </summary>
         /// <remarks>
@@ -69,13 +141,22 @@ namespace fashionShop.Customer
         protected global::System.Web.UI.WebControls.DropDownList ddlSize;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// RequiredFieldValidatorSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorSize;
+
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// btnAddToCart control.
@@ -85,5 +166,46 @@ namespace fashionShop.Customer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddToCart;
+
+        /// <summary>
+        /// btnAddToWishList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddToWishList;
+
+        /// <summary>
+        /// lbProductInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbProductInfo;
+
+        /// <summary>
+        /// rptRelatedProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptRelatedProduct;
+
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new fashionShop.Site1 Master
+        {
+            get
+            {
+                return ((fashionShop.Site1)(base.Master));
+            }
+        }
     }
 }

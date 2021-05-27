@@ -240,6 +240,7 @@
                 confirm_value.value = "Yes";
             } else {
                 confirm_value.value = "No";
+                return false;
             }
 
             //gan hiden iput vao trang
@@ -291,7 +292,7 @@
                             <p style="display: none" id="idAddress" runat="server"><%# Eval("ID_ADDRESS") %></p>
                             <div class="address__item--btns">                                
                                 <a href="UpdateAddress.aspx?idAddress=<%# Eval("ID_ADDRESS") %>" class="address__item--btn edit">Edit</a>
-                                <asp:Button ID="btnDelete" runat="server" Text="Delete" class="address__item--btn delete" OnClick="btnDelete_Click" OnClientClick = "Confirm()"/>                     
+                                <asp:Button ID="btnDelete" runat="server" Text="Delete" class="address__item--btn delete" OnClick="btnDelete_Click" OnClientClick = "return Confirm()"/>                     
                             </div>
                         </div>
                     </ItemTemplate>

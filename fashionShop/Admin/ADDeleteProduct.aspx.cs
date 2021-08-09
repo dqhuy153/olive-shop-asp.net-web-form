@@ -28,15 +28,10 @@ namespace fashionShop.Admin
             lbGender.Text = dt.Rows[0]["GENDER_NAME"].ToString();
             lbLoai.Text = dt.Rows[0]["CATEGORY_NAME"].ToString();
             lbSL.Text = dt.Rows[0]["QUANTITY"].ToString();
-            lbGia.Text = String.Format("{0:N0}", dt.Rows[0]["PRICE"]) + " EUR";
+            lbGia.Text = "$" + String.Format("{0:N0}", dt.Rows[0]["PRICE"]);
             lbSLDaBan.Text = dt.Rows[0]["SOLD_QUANTITY"].ToString();
 
             string[] arrImages = dt.Rows[0]["IMAGES"].ToString().Split('|');
-
-            //foreach (var img in arrImages)
-            //{
-            //    PanelImage.Controls.Add(new Image { ImageUrl = "~/Uploads/" + img.ToString() });
-            //}
 
             imgSP.ImageUrl = "~/Uploads/" + arrImages[0].ToString();
 

@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="ADDeleteAccount.aspx.cs" Inherits="fashionShop.Admin.ADDeleteAccount" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../Assets/css/Admin/navRoute.css" />
+
     <style>
         .xoatk-container {
             display: flex;
@@ -17,12 +19,10 @@
             align-items: center;
         }
 
-        h3 {
-            text-align: center;
-            font-size: 30px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+        
+        .account__title span {
+        font-size: 1.7rem !important;
+    }
 
         .xoatk-username {
             margin: 30px auto;
@@ -208,8 +208,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="xoatk-container">
-        <h3>Delete Account
-            <asp:Label ID="lbLoaiTK" runat="server" Text=""></asp:Label></h3>
+        <div class="account__map">
+            <a href="ADHome.aspx">Home</a>
+            <span class="account__map--separate">|</span>
+            <a href="ADMNCustomerAccount.aspx">Customers list</a>
+            <span class="account__map--separate">|</span>
+            <span>Account setting</span>
+        </div>
+        <p class="account__title">Delete Account
+            <asp:Label ID="lbLoaiTK" runat="server" Text=""></asp:Label></p>
+
         <div class="xoatk-username">
             <i class="fas fa-user-circle img"></i>
             <asp:Label ID="lbTenDangNhap" runat="server" Text=""></asp:Label>

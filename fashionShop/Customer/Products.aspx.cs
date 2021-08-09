@@ -31,17 +31,25 @@ namespace fashionShop.Customer
                 CheckBoxFilter("size","XXL", cbXXL, hplXXL);
                 CheckBoxFilter("size","OverSize", cbOverSize, hplOverSize);
 
+                //check link clear filter
+                CheckClearBtnFilter("featured", hplClearFeatured);
+                CheckClearBtnFilter("size", hlpClearSize);
+
                 //check sort              
-                SortFilter("featured", cbOrderFeatured, hplOrderFeatured);
                 SortFilter("newest", cbNewest, hplNewest);
+                SortFilter("featured", cbOrderFeatured, hplOrderFeatured);
                 SortFilter("priceAsc", cbPriceAsc, hplPriceAsc);
                 SortFilter("priceDesc", cbPriceDesc, hplPriceDesc);
 
                 SortInfo();
 
+
                 //If no filter (no query string)
                 //List all items
-                if (Request.QueryString.Count == 0)
+                if (Request.QueryString.Count == 0 &&
+                    Request.QueryString.Get("mc") == null && 
+                    Request.QueryString.Get("g") == null &&
+                    Request.QueryString.Get("c") == null)
                 {
                     FilterProduct();
                     locationMainCategory.Visible = true;
@@ -56,7 +64,7 @@ namespace fashionShop.Customer
                     FilterProduct(
                         (Request.QueryString["mc"] != null) ? Request.QueryString["mc"].ToString() : "",
                         (Request.QueryString["g"] != null) ? Request.QueryString["g"].ToString() : "",
-                        (Request.QueryString["c"] != null) ? Request.QueryString["c"].ToString() : "",
+                        (Request.QueryString["c"] != null) ? Request.QueryString["c"].ToString().Replace(" and "," & ") : "",
                         (Request.QueryString["search"] != null) ? Request.QueryString["search"].ToString() : "",
                         (Request.QueryString["featured"] != null) ? Request.QueryString["featured"].ToString() : "",
                         (Request.QueryString["size"] != null) ? Request.QueryString["size"].ToString() : "",
@@ -80,7 +88,7 @@ namespace fashionShop.Customer
                     }
                     if (Request.QueryString["c"] != null)
                     {
-                        string categoryName = Request.QueryString["c"].ToString();
+                        string categoryName = Request.QueryString["c"].ToString().Replace(" and "," & ");
                         locationCategory.Visible = true;
                         hplinkCategory.NavigateUrl = $"Products.aspx?{((Request.QueryString["mc"] != null) ? "mc=" + Request.QueryString["mc"].ToString() + "&" : "")}{((Request.QueryString["g"] != null) ? "g=" + Request.QueryString["g"].ToString() + "&" : "")}c={categoryName}";
                         hplinkCategory.Text = categoryName;
@@ -149,7 +157,7 @@ namespace fashionShop.Customer
         //check filter (featured + size)
         protected void CheckBoxFilter(string queryString, string value, HtmlInputCheckBox checkBox, HyperLink hyperLink)
         {
-            //get current url (localhost:xxx/../..?queryStrings) & current path (/../..)
+            //get current url (localhost:xxx/../..?queryStrings) & current path (/../..?..)
             //and separte url to host & queryStrings
             string currentUrl = HttpContext.Current.Request.Url.AbsoluteUri;
             string currentPath = HttpContext.Current.Request.Url.AbsolutePath;
@@ -161,6 +169,7 @@ namespace fashionShop.Customer
             {           
                 checkBox.Checked = false;
                 hyperLink.NavigateUrl = currentPath + "?" + queryString + "=" + value;
+                checkBox.Attributes.Add("onclick", $"window.location.assign('{hyperLink.NavigateUrl}')");
             }
             //already has query strings
             else
@@ -216,6 +225,38 @@ namespace fashionShop.Customer
             }
         }
 
+        //check clear button filter 
+        protected void CheckClearBtnFilter(string queryString, HyperLink hyperLink)
+        {
+            string currentUrl = HttpContext.Current.Request.Url.AbsoluteUri;
+            string currentPath = HttpContext.Current.Request.Url.AbsolutePath;
+
+            string[] separateURL = currentUrl.Split('?');
+
+            if (separateURL.Length == 1)
+            {
+                hyperLink.Style.Add("display", "none");
+            }
+            else
+            {
+                NameValueCollection queryStrings = HttpUtility.ParseQueryString(separateURL[1]);
+
+                //if no filter added (size)
+                if (Request.QueryString[queryString] == null)
+                {
+                    hyperLink.Style.Add("display", "none");
+                }
+                else
+                {
+                    hyperLink.Style.Add("display", "initial");
+                    queryStrings.Remove(queryString);
+                    hyperLink.NavigateUrl = currentPath + "?" + queryStrings.ToString();
+                    lbNotiyFilter.Text = "Filtered! Click to show your filter.";
+                    lbNotiyFilter.Style.Add("color", "#333 !important");
+                }
+            }
+        }
+
         //check sort
         protected void SortFilter(string valueQueryString, HtmlInputRadioButton radioButton, HyperLink hyperLink)
         {
@@ -224,12 +265,12 @@ namespace fashionShop.Customer
 
             string[] separateURL = currentUrl.Split('?');
 
-            if (valueQueryString == "featured")
+            if (valueQueryString == "newest")
             {
 
                 if (separateURL.Length == 1)
                 {
-                    hplOrderFeatured.NavigateUrl = currentPath;
+                    hplNewest.NavigateUrl = currentPath;
                     radioButton.Attributes.Add("onclick", $"window.location.assign('{hyperLink.NavigateUrl}')");
                     return;
                 }
@@ -237,7 +278,7 @@ namespace fashionShop.Customer
                 {
                     NameValueCollection queryStrings = HttpUtility.ParseQueryString(separateURL[1]);
                     queryStrings.Remove("sort");
-                    hplOrderFeatured.NavigateUrl = currentPath + "?" + queryStrings.ToString();
+                    hplNewest.NavigateUrl = currentPath + "?" + queryStrings.ToString();
                     radioButton.Attributes.Add("onclick", $"window.location.assign('{hyperLink.NavigateUrl}')");
                     return;
                 }
@@ -258,21 +299,23 @@ namespace fashionShop.Customer
             }   
         }
 
+        
         //check title sort & selected sort
         protected void SortInfo()
         {
             if(Request.QueryString["sort"] == null)
             {
-                cbOrderFeatured.Checked = true;
-                lbSort.Text = "Featured Items";
+                cbNewest.Checked = true;
+                lbSort.Text = "Newest Items";
             }
             else
             {
                 string sort = Request.QueryString["sort"].ToString();
-                if(sort == "newest")
+                if(sort == "featured")
                 {
-                    cbNewest.Checked = true;
-                    lbSort.Text = "Newest Items";
+                    
+                    cbOrderFeatured.Checked = true;
+                    lbSort.Text = "Featured Items";
                 }
                 if (sort == "priceAsc")
                 {

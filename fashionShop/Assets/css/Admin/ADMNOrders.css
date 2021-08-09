@@ -1,0 +1,87 @@
+﻿.qldh-container {
+    margin: 0 0px;
+    max-width: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 80px;
+    margin-top: 3rem;
+}
+
+.qldh-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6rem 0 4rem;
+}
+.account__title span{
+    font-size: 1.5rem !important;
+}
+.table {
+    width: 80%;
+}
+
+#table-item-tensp a {
+    font-weight: bold;
+    color: #031a43
+}
+
+    #table-item-tensp a:hover {
+        color: #0654a9;
+        transition: all 0.1s ease-in;
+    }
+
+.qldh-btnCapNhat {
+    color: #0654a9;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    display: block;
+}
+
+    .qldh-btnCapNhat:hover {
+        color: #0094ff;
+    }
+
+.qldh-btnHuy {
+    color: tomato;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    font-size: 14px;
+}
+
+    .qldh-btnHuy:hover {
+        color: #f62d2d;
+    }
+
+.x-icon {
+    color: #666666;
+}
+
+.v-icon {
+    color: #0094ff;
+}
+
+.dh-notLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 60px
+}
+
+    .dh-notLogin a {
+        display: block;
+        background: #e77f67;
+        padding: 10px 25px;
+        margin-top: 20px;
+        color: white;
+        border-radius: 5px;
+    }
+
+.qldh-btnXem {
+    color: cornflowerblue;
+    font-weight: bold;
+}

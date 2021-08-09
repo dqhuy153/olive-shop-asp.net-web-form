@@ -15,174 +15,201 @@ namespace fashionShop.Admin
     {
 
         /// <summary>
-        /// HyperLink2 control.
+        /// hplPreviousOrderPage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
+        protected global::System.Web.UI.WebControls.HyperLink hplPreviousOrderPage;
 
         /// <summary>
-        /// rptSP control.
+        /// orderDetailContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSP;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl orderDetailContainer;
 
         /// <summary>
-        /// lblTong control.
+        /// rptOrderDetail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTong;
+        protected global::System.Web.UI.WebControls.Repeater rptOrderDetail;
 
         /// <summary>
-        /// trTT control.
+        /// lbFullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trTT;
+        protected global::System.Web.UI.WebControls.Label lbFullName;
 
         /// <summary>
-        /// Table2 control.
+        /// lbPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table2;
+        protected global::System.Web.UI.WebControls.Label lbPhone;
 
         /// <summary>
-        /// txtTen control.
+        /// lbStreet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTen;
+        protected global::System.Web.UI.WebControls.Label lbStreet;
 
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// lbAddressDetail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.Label lbAddressDetail;
 
         /// <summary>
-        /// txtEmail control.
+        /// lbSubtotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.Label lbSubtotal;
 
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// lbShippingFee control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.Label lbShippingFee;
 
         /// <summary>
-        /// txtSDT control.
+        /// lbTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSDT;
+        protected global::System.Web.UI.WebControls.Label lbTotal;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// lbIdOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.Label lbIdOrder;
 
         /// <summary>
-        /// txtDiaChi control.
+        /// lbDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiaChi;
+        protected global::System.Web.UI.WebControls.Label lbDate;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// lbNote control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.Label lbNote;
 
         /// <summary>
-        /// trHuy control.
+        /// lbStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trHuy;
+        protected global::System.Web.UI.WebControls.Label lbStatus;
 
         /// <summary>
-        /// btnHuy control.
+        /// btnApprovePendingOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHuy;
+        protected global::System.Web.UI.WebControls.Button btnApprovePendingOrder;
 
         /// <summary>
-        /// btnHuySangCho control.
+        /// btnCancelPendingOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHuySangCho;
+        protected global::System.Web.UI.WebControls.Button btnCancelPendingOrder;
 
         /// <summary>
-        /// btnDuyetSangCho control.
+        /// btnRependingCenceledOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDuyetSangCho;
+        protected global::System.Web.UI.WebControls.Button btnRependingCenceledOrder;
 
         /// <summary>
-        /// btnDuyet control.
+        /// btnSuccessedDeliveryOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDuyet;
+        protected global::System.Web.UI.WebControls.Button btnSuccessedDeliveryOrder;
 
         /// <summary>
-        /// lbDaGiao control.
+        /// btnCancelFailDeliveryOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDaGiao;
+        protected global::System.Web.UI.WebControls.Button btnCancelFailDeliveryOrder;
+
+        /// <summary>
+        /// btnRependingFailDeliveryOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRependingFailDeliveryOrder;
+
+        /// <summary>
+        /// btnViewAnalytics control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnViewAnalytics;
+
+        /// <summary>
+        /// btnCancelSuccessedOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelSuccessedOrder;
     }
 }

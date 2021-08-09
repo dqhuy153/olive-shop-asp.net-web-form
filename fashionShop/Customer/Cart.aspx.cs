@@ -13,18 +13,8 @@ namespace fashionShop.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //cart empty
             if (!IsPostBack)
-            {
-                if (Session["username"] == null && Session["cart"] == null)
-                {
-                    lbEmptyCart.Text = "Cart's empty";
-                }
-                else if (Cache[$"{Session["username"]}-cart"] == null)
-                {
-                    lbEmptyCart.Text = "Cart's empty";
-                }
-
+            {              
                 DtDetailCart();
             }
         }
@@ -33,38 +23,48 @@ namespace fashionShop.Customer
         protected void DtDetailCart()
         {
             DataTable dtDetailCart = CartStorage.getDetailCart();
-
-            rptProducts.DataSource = dtDetailCart;
-            rptProducts.DataBind();
-            rptProducts.Visible = true;
-
-            this.Master.CartQuantity = $"({dtDetailCart.Rows.Count})";
-
-            Decimal totalCart = 0;
-
-            foreach (DataRow dataRow in dtDetailCart.Rows)
+            if (dtDetailCart.Rows.Count == 0)
             {
-                foreach (RepeaterItem item in rptProducts.Items)
-                {
-                    Label lbID = (Label)item.FindControl("lbID");
-                    Label lbSize = (Label)item.FindControl("lbSize");
+                lbEmptyCart.Visible = true;
+                lbEmptyCart.Text = "Your cart is empty.";
+                cartBody.Visible = false;
+            }
+            else
+            {
+                lbEmptyCart.Visible = false;
 
-                    if (!String.IsNullOrEmpty(lbID.Text))
+                rptProducts.DataSource = dtDetailCart;
+                rptProducts.DataBind();
+                rptProducts.Visible = true;
+
+                this.Master.CartQuantity = $"({dtDetailCart.Rows.Count})";
+
+                Decimal totalCart = 0;
+
+                foreach (DataRow dataRow in dtDetailCart.Rows)
+                {
+                    foreach (RepeaterItem item in rptProducts.Items)
                     {
-                        continue;
+                        Label lbID = (Label)item.FindControl("lbID");
+                        Label lbSize = (Label)item.FindControl("lbSize");
+
+                        if (!String.IsNullOrEmpty(lbID.Text))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            lbID.Text = dataRow["ID_PRODUCT"].ToString();
+                            lbSize.Text = dataRow["SIZE"].ToString();
+                            break;
+                        }
                     }
-                    else
-                    {
-                        lbID.Text = dataRow["ID_PRODUCT"].ToString();
-                        lbSize.Text = dataRow["SIZE"].ToString();
-                        break;
-                    }
+
+                    totalCart += (Decimal.Parse(dataRow["PRICE"].ToString()) * int.Parse(dataRow["QUANTITY"].ToString()));
                 }
 
-                totalCart += (Decimal.Parse(dataRow["PRICE"].ToString()) * int.Parse(dataRow["QUANTITY"].ToString()));
+                lbTotalCart.Text = String.Format("{0:n2}", Decimal.Parse(totalCart.ToString()));
             }
-
-            lbTotalCart.Text = String.Format("{0:n2}", Decimal.Parse(totalCart.ToString()));
         }
 
         protected void btnIncrease_Click(object sender, EventArgs e)

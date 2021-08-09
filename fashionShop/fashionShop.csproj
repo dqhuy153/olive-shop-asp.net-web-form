@@ -77,7 +77,7 @@
     <Content Include="Admin\ADMNCustomerAccount.aspx" />
     <Content Include="Admin\ADMNAdminAccount.aspx" />
     <Content Include="Admin\ADOrderDetail.aspx" />
-    <Content Include="Admin\ADPendingOrders.aspx" />
+    <Content Include="Admin\ADMNOrders.aspx" />
     <Content Include="Admin\ADRegister.aspx" />
     <Content Include="Admin\ADSuccessedOrders.aspx" />
     <Content Include="Admin\ADUpdateAccount.aspx" />
@@ -87,14 +87,36 @@
       <DependentUpon>FashionShop.mdf</DependentUpon>
     </Content>
     <Content Include="Admin\ADMNProduct.aspx" />
+    <Content Include="Assets\css\Admin\ADHome.css" />
+    <Content Include="Assets\css\Admin\ADMasterPage.css" />
+    <Content Include="Assets\css\Admin\ADMNOrders.css" />
+    <Content Include="Assets\css\Admin\ADOrderDetail.css" />
+    <Content Include="Assets\css\Admin\ADUpdateAccount.css" />
+    <Content Include="Assets\css\Admin\ADMNProduct.css" />
+    <Content Include="Assets\css\Admin\ADUpdateProduct.css" />
+    <Content Include="Assets\css\Admin\navRoute.css" />
+    <Content Include="Assets\css\Admin\table.css" />
+    <Content Include="Assets\css\automicCss.css" />
     <Content Include="Assets\css\base.css" />
-    <Content Include="Assets\css\Customer\ChiTiet.css" />
-    <Content Include="Assets\css\Customer\GioHang.css" />
+    <Content Include="Assets\css\baseOld.css" />
+    <Content Include="Assets\css\Customer\AccountSetting.css" />
+    <Content Include="Assets\css\Customer\AddAddress.css" />
+    <Content Include="Assets\css\Customer\AddressBook.css" />
+    <Content Include="Assets\css\Customer\cart.css" />
+    <Content Include="Assets\css\Customer\checkout.css" />
+    <Content Include="Assets\css\Customer\CustomerMasterPage.css" />
+    <Content Include="Assets\css\Customer\Home.css" />
+    <Content Include="Assets\css\Customer\navRoute.css" />
+    <Content Include="Assets\css\Customer\OrderDetail.css" />
+    <Content Include="Assets\css\Customer\OrderLists.css" />
+    <Content Include="Assets\css\Customer\ProductDetail.css" />
+    <Content Include="Assets\css\Customer\Products.css" />
+    <Content Include="Assets\css\Customer\Register.css" />
+    <Content Include="Assets\css\Customer\SignIn.css" />
+    <Content Include="Assets\css\Customer\UpdateAddress.css" />
+    <Content Include="Assets\css\Customer\wishList.css" />
     <Content Include="Assets\css\reset.css" />
-    <Content Include="Assets\css\responsive.css" />
     <Content Include="Assets\css\style.css" />
-    <Content Include="Assets\css\Customer\TrangChu.css" />
-    <Content Include="Assets\css\Customer\TrangSanPham.css" />
     <Content Include="Assets\fonts\fontawesome-free-5.15.3-web\attribution.js" />
     <Content Include="Assets\fonts\fontawesome-free-5.15.3-web\css\all.css" />
     <Content Include="Assets\fonts\fontawesome-free-5.15.3-web\css\all.min.css" />
@@ -2102,8 +2124,16 @@
     <Content Include="Assets\fonts\themify-icons\SVG\zoom-in.svg" />
     <Content Include="Assets\fonts\themify-icons\SVG\zoom-out.svg" />
     <Content Include="Assets\fonts\themify-icons\themify-icons.css" />
-    <Content Include="Assets\js\Customer\ChiTiet.js" />
-    <Content Include="Assets\js\Customer\GioHang.js" />
+    <Content Include="Assets\js\Admin\ADOrderDetail.js" />
+    <Content Include="Assets\js\bootbox\bootbox.all.min.js" />
+    <Content Include="Assets\js\Customer\AddAddress.js" />
+    <Content Include="Assets\js\Customer\Checkout.js" />
+    <Content Include="Assets\js\Customer\ProductDetail.js" />
+    <Content Include="Assets\js\Customer\Cart.js" />
+    <Content Include="Assets\js\Customer\MasterPage.js" />
+    <Content Include="Assets\js\Customer\Products.js" />
+    <Content Include="Assets\js\Customer\Register.js" />
+    <Content Include="Assets\js\Customer\SignIn.js" />
     <Content Include="Assets\owl-carousel\owl.carousel.min.css" />
     <Content Include="Assets\owl-carousel\owl.carousel.min.js" />
     <Content Include="Assets\owl-carousel\owl.theme.default.min.css" />
@@ -2120,9 +2150,18 @@
     <Content Include="Customer\SignIn.aspx" />
     <Content Include="Customer\Home.aspx" />
     <Content Include="Customer\UpdateAddress.aspx" />
+    <Content Include="Customer\OrderDetail.aspx" />
     <Content Include="Customer\WishLists.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\discover.png" />
+    <Content Include="Images\home.jpg" />
+    <Content Include="Images\homeBGMB.jpg" />
+    <Content Include="Images\homeBGMB1.jpg" />
+    <Content Include="Images\mastercard.png" />
+    <Content Include="Images\visa.png" />
     <Content Include="Images\homeBackground.jpeg" />
+    <Content Include="Images\sl_1__97970.jpg" />
+    <Content Include="Images\sl_2__81936.jpg" />
     <Content Include="temp.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -2211,12 +2250,12 @@
     <Compile Include="Admin\ADOrderDetail.aspx.designer.cs">
       <DependentUpon>ADOrderDetail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ADPendingOrders.aspx.cs">
-      <DependentUpon>ADPendingOrders.aspx</DependentUpon>
+    <Compile Include="Admin\ADMNOrders.aspx.cs">
+      <DependentUpon>ADMNOrders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ADPendingOrders.aspx.designer.cs">
-      <DependentUpon>ADPendingOrders.aspx</DependentUpon>
+    <Compile Include="Admin\ADMNOrders.aspx.designer.cs">
+      <DependentUpon>ADMNOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ADRegister.aspx.cs">
       <DependentUpon>ADRegister.aspx</DependentUpon>
@@ -2337,6 +2376,13 @@
     </Compile>
     <Compile Include="Customer\UpdateAddress.aspx.designer.cs">
       <DependentUpon>UpdateAddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\OrderDetail.aspx.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\OrderDetail.aspx.designer.cs">
+      <DependentUpon>OrderDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\WishLists.aspx.cs">
       <DependentUpon>WishLists.aspx</DependentUpon>

@@ -105,6 +105,15 @@ namespace fashionShop
         protected global::System.Web.UI.WebControls.LinkButton btnSearch;
 
         /// <summary>
+        /// btnSignIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnSignIn;
+
+        /// <summary>
         /// btnSignOut control.
         /// </summary>
         /// <remarks>
@@ -114,6 +123,24 @@ namespace fashionShop
         protected global::System.Web.UI.WebControls.LinkButton btnSignOut;
 
         /// <summary>
+        /// btnAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnAccount;
+
+        /// <summary>
+        /// cartQuantityLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cartQuantityLink;
+
+        /// <summary>
         /// lbCartQuantity control.
         /// </summary>
         /// <remarks>
@@ -121,6 +148,33 @@ namespace fashionShop
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCartQuantity;
+
+        /// <summary>
+        /// cartReviewEmpty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cartReviewEmpty;
+
+        /// <summary>
+        /// cartReview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cartReview;
+
+        /// <summary>
+        /// rptCartPreview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCartPreview;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

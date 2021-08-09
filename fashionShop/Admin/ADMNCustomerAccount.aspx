@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="ADMNCustomerAccount.aspx.cs" Inherits="fashionShop.Admin.ADMNAccountCustomer" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../Assets/css/Admin/table.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Assets/css/Admin/navRoute.css" />
+
     <style>
         .qltk-container{
             margin: 0 0px;
@@ -8,19 +11,15 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            margin-top: 4rem;
            
         }
-        .qltk-container h4 {
-            margin: 0 auto;
-            font-size: 30px;
-            font-weight: bold; 
-            color: #262626;
-        }
+
         .qltk-header {
              display: flex;
              justify-content: center;
              align-items: center;
-             margin: 40px 0;
+             margin: 1rem;
         }
         .qltk-btnThemMoi-container {
             position: absolute;
@@ -28,9 +27,10 @@
             background: #031a43;
             padding: 11px 13px;
             border-radius: 5px;
+                top: 10rem;
         }
         .qltk-btnThemMoi-container:hover {
-            background: #155e98;
+            background: var(--color-primary);
             transition : all 0.2s ease-in;
         }
         .qltk-btnThemMoi-container a {
@@ -54,39 +54,7 @@
             width: 80%;
             margin: 0 auto;
         }
-        .table,
-        .table-th,
-        .table-tr,
-        .table-item {
-            border: 1px solid #adc9fa;  
-            text-align: left;
-            line-height: 1.3;
-            color: #333333;
-        }
-    
-        .table-th{
-           padding: 10px;
-           text-align: center;
-           vertical-align: middle;
-           font-weight: bold;
-           background: #ffe4da
-        }
-        .table-item {
-            padding: 10px;
-            text-align: center;
-        }
        
-        .table-tr:nth-child(even){
-            background: #fff9f9;
-        }
-        #table-item-tensp a {
-            font-weight: bold;
-            color: #031a43
-        }
-        #table-item-tensp a:hover{
-            color: #0654a9;
-            transition : all 0.1s ease-in;
-        }
         .qltk-btnCapNhat {
             color: #0654a9;
             font-weight: bold;
@@ -113,10 +81,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="qltk-container">
+        <div class="account__map">
+            <a href="ADHome.aspx">Home</a>
+            <span class="account__map--separate">|</span>
+
+            <span>Customers List</span>
+        </div>
+        <p class="account__title">Customer Account Management</p>
        <div class="qltk-header">
-               <h4>Customer Account Management</h4>
+
+               <%--<h4>Customer Account Management</h4>--%>
             <div class="qltk-btnThemMoi-container">
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/KH/KHDangKi.aspx" Target="_blank">
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Customer/Register.aspx" Target="_blank">
                     <i class="fas fa-user-plus"></i>
                     <span>Register new Customer</span>
                 </asp:HyperLink>

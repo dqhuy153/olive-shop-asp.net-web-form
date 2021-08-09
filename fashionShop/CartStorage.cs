@@ -43,7 +43,7 @@ namespace fashionShop
             return userCart;
         }
 
-        //cart for vistor
+        //cart for visitor
         public static DataTable CreateOrGetSessionCart()
         {
             DataTable cart = new DataTable();
@@ -89,7 +89,7 @@ namespace fashionShop
 
         }
 
-        //for cart quantity and display cart
+        //for cart quantity and display detail cart
         public static DataTable getDetailCart()
         {
             DataTable dtCart = getCurrentCart();
@@ -125,5 +125,20 @@ namespace fashionShop
 
             return dtDetailCart;
         }
+
+        public static void resetCart()
+        {
+            if (HttpContext.Current.Session["username"] == null)
+            {
+                HttpContext.Current.Session["cart"] = null;
+
+            }
+            else
+            {
+                HttpContext.Current.Cache.Remove($"{HttpContext.Current.Session["username"]}-cart");
+            }
+            getCurrentCart();
+        }
+
     }
 }

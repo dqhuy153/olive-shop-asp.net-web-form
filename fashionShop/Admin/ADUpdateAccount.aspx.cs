@@ -17,9 +17,26 @@ namespace fashionShop.Admin
 
             if (!IsPostBack)
             {
-                //Lay id kh tu duoi website
-                string idAcc = Request.QueryString.Get("idAcc");
+                string idAcc = "";
+                if(Request.QueryString["idAcc"] != null){
+                    idAcc = Request.QueryString.Get("idAcc");
+                }
+                else if (Request.QueryString["user"] != null)
+                {
+                    string usernameAD = Session["usernameAD"].ToString();
+                    DataAccess dataAccess = new DataAccess();
+                    dataAccess.MoKetNoiCSDL();
 
+                    string sqlAcc = "SELECT ID_ACCOUNT FROM ACCOUNT WHERE USERNAME = '" + usernameAD + "'";
+
+                    DataTable dtAcc = dataAccess.LayBangDuLieu(sqlAcc);
+
+                    idAcc = dtAcc.Rows[0]["ID_ACCOUNT"].ToString();
+                }
+                else
+                {
+                    return;
+                }
 
                 DataAccess data = new DataAccess();
                 data.MoKetNoiCSDL();
@@ -70,27 +87,39 @@ namespace fashionShop.Admin
             string sql = "SELECT * FROM ACCOUNT WHERE ID_ACCOUNT =" + idAcc;
             DataTable dt = dataAccess.LayBangDuLieu(sql);
 
+            dataAccess.DongKetNoiCSDL();
+
             string loaiTK = dt.Rows[0]["ID_ACCOUNT_TYPE"].ToString();
 
             SqlCommand cmd;
 
             if (String.IsNullOrEmpty(oldPassword) && String.IsNullOrEmpty(newPassword))
             {
+                dataAccess.MoKetNoiCSDL();
+
                 cmd = new SqlCommand();
                 cmd.CommandText = "UPDATE ACCOUNT " +
-                    "SET FIRST_NAME=N'" + firstName + "'," +
-                    "LAST_NAME=N'" + lastName + "'," +
-                    "EMAIL= N'" + email + "'," +
-                    "AD_ADDRESS = N'" + address + "'," +
-                    "PHONE = '" + phoneNumber + "', " +
-                    "STATUS = '" + rblStatus.SelectedValue + "' " +
+                    "SET FIRST_NAME= @FIRST_NAME, " +
+                    "LAST_NAME= @LAST_NAME, " +
+                    "EMAIL= @EMAIL," +
+                    "AD_ADDRESS = @ADDRESS," +
+                    "PHONE = @PHONE, " +
+                    "STATUS = @STATUS " +
                     "WHERE ID_ACCOUNT =" + idAcc;
                 cmd.Connection = dataAccess.getConnection();
+
+                cmd.Parameters.AddWithValue("@FIRST_NAME", txtFirstName.Text);
+                cmd.Parameters.AddWithValue("@LAST_NAME", txtLastName.Text);
+                cmd.Parameters.AddWithValue("@EMAIL", txtEmail.Text);
+                cmd.Parameters.AddWithValue("@ADDRESS", txtDiaChi.Text);
+                cmd.Parameters.AddWithValue("@PHONE", txtSDT.Text);
+                cmd.Parameters.AddWithValue("@STATUS", rblStatus.SelectedValue);
 
                 cmd.ExecuteNonQuery();
                 lbThongBao.Text = "Successfully updated";
 
                 dataAccess.DongKetNoiCSDL();
+
                 if (int.Parse(loaiTK) == 1)
                 {
                     Response.Redirect("ADMNAdminAccount.aspx");
@@ -141,6 +170,8 @@ namespace fashionShop.Admin
                 }
                 else
                 {
+                    dataAccess.MoKetNoiCSDL();
+
                     cmd = new SqlCommand("UPDATE_ACCOUNT_CHANGE_PASSWORD", dataAccess.getConnection());
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -157,9 +188,10 @@ namespace fashionShop.Admin
                     cmd.Parameters.Add("@ERROR", SqlDbType.NVarChar, 500);
                     cmd.Parameters["@ERROR"].Direction = ParameterDirection.Output;
 
+                    int a = cmd.ExecuteNonQuery();
+                    
                     dataAccess.DongKetNoiCSDL();
 
-                    int a = cmd.ExecuteNonQuery();
 
                     if (a > 0)
                     {

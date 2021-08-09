@@ -24,13 +24,22 @@ namespace fashionShop.Admin
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl qldh;
 
         /// <summary>
-        /// HyperLink1 control.
+        /// lbOrderStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.Label lbOrderStatus;
+
+        /// <summary>
+        /// lbOrderStatusTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbOrderStatusTitle;
 
         /// <summary>
         /// Panel1 control.

@@ -1,0 +1,172 @@
+﻿:root {
+    --display-flex: flex;
+    --justify-content-center: center;
+    --align-items--center: center;
+    --font-family-ubuntu: 'Ubuntu', sans-serif;
+    --color-black: #000;
+    --color-white: #fff;
+    --margin-center: 0 auto;
+    --display-none: none;
+    --text-algin-center: center;
+}
+
+#body{ 
+    margin: 0 !important;
+}
+.banner {
+    display: none !important
+}
+.header {
+    transition: all 0.2s linear;
+    background: none;
+}
+.header__scroll {
+    background-color: #fff;
+    transition: all 0.2s linear;
+}
+
+#slider--main {
+    position: relative;
+    padding-top: 60%;
+    background: url("../../../Images/home.jpg") top center / cover no-repeat;
+}
+
+.slider__mobile {
+    display: var(--display-none);
+}
+
+#slider {
+    margin-top: 2rem;
+   
+}
+
+    #slider .text-content {
+        bottom: 3rem;
+        color: var(--color-black);
+        text-align: var(--text-algin-center);
+        right: 0;
+        left: 0;
+    }
+
+    #slider .text-heading {
+        font-weight: 300;
+        font-size: 1.2rem;
+        letter-spacing: 5px;
+        word-spacing: 2px;
+        padding-top: 1.5rem;
+    }
+
+    #slider .text-decription {
+        font-size: var(--font-family-ubuntu);
+        margin-top: 25px;
+        text-shadow: 0 0 1px var(--color-white);
+        font-size: var(--font-size);
+        font-family: Spectral, sans-serif, Arial;
+        font-size: 1.2rem;
+        font-style: italic;
+        word-spacing: 2px;
+    }
+
+.section-name {
+    margin-top: 2rem;
+}
+
+.place-list {
+    display: var(--display-flex);
+    font-size: var(--font-family-ubuntu);
+    font-size: var(--font-size);
+    justify-content: space-between;
+    padding: 2rem 5rem;
+    max-width: 100rem;
+    margin: 0 auto;
+}
+
+.place-item {
+    height: 5.3125rem;
+    width: 30%;
+    border: 0.3px solid rgba(0, 0, 0, 0.05);
+    display: var(--display-flex);
+    justify-content: var(--justify-content-center);
+    align-items: var(--align-items--center);
+    text-align: var(--text-algin-center);   
+    padding: 5rem 0;
+}
+
+.place-time {
+    margin: 1.2rem 0;
+    letter-spacing: 5px;
+    word-spacing: 2px;
+    font-size: .9rem;
+    font-weight: 400;
+}
+.place-item:hover {
+    /*background: #eee;*/
+    background: #e9e9e9;
+}
+.place-decription {
+    font-family: Spectral, sans-serif, Arial;
+    font-size: 1.1rem;
+    font-style: italic;
+    word-spacing: 1px;
+}
+/* mobile */
+@media (max-width:1024px) {
+    .container {
+        font-size: 50%;
+    }
+
+    #slider--main {
+        display: var(--display-none);
+    }
+
+    .slider__mobile {
+        display: block;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        margin-top: 6rem;
+    }
+
+    .mySlides {
+        display: var(--display-none);
+        width: 100%;
+        object-fit: cover;
+    }
+
+
+    .img--main {
+        height: auto;
+        vertical-align: middle;
+        max-width: 100%;
+        max-height: 100%;
+        border: 0;
+    }
+
+    #slider .text-heading {
+        font-size: .9rem;
+    }
+
+    #slider .text-decription {
+        display: none;
+    }
+
+    .section-name,
+    .content-section,
+    .place-list {
+        display: block;
+    }
+
+    .place-time,
+    .place-decription {
+        display: var(--display-flex);
+        justify-content: var(--justify-content-center);
+        padding: 0.25rem 0;
+        font-family: var(--font-family-ubuntu);
+    }
+
+    .place-item {
+        margin: 0.5rem 0;
+        width: 100% !important;
+    }
+}

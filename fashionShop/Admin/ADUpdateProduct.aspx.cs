@@ -51,17 +51,13 @@ namespace fashionShop.Admin
                     DataTable dtGender = dataAccess.LayBangDuLieu(sqlCategory);
 
                     int idGender = int.Parse(dtGender.Rows[0]["ID_GENDER"].ToString());
-                    if (idGender == 1)
+
+                    String sqlGender = "SELECT * FROM GENDER WHERE ID_GENDER = " + idGender;
+                    DataTable dtgd = dataAccess.LayBangDuLieu(sqlGender);
+
+                    if (dtgd != null && dtgd.Rows.Count > 0)
                     {
-                        lblGender.Text = "Woman";
-                    }
-                    else if (idGender == 2)
-                    {
-                        lblGender.Text = "Man";
-                    }
-                    else if (idGender == 3)
-                    {
-                        lblGender.Text = "Unisex";
+                        lblGender.Text = dtgd.Rows[0]["GENDER_NAME"].ToString();
                     }
 
                     //Bind dl tu dtb vao dropdownlist
@@ -75,7 +71,7 @@ namespace fashionShop.Admin
                     //Xet du lieu nhan vao tu QueryString
                     ddlCategories.Items.FindByValue(dtSP.Rows[0]["ID_CATEGORY"].ToString()).Selected = true;
 
-                    string price = (decimal.Parse(dtSP.Rows[0]["PRICE"].ToString()).ToString("0.##")).ToString();
+                    string price = dtSP.Rows[0]["PRICE"].ToString().Replace(',','.');
 
                     //fill text tu dtb vao cac textarea
                     txtTenSP.Text = dtSP.Rows[0]["PRODUCT_NAME"].ToString();
@@ -130,35 +126,31 @@ namespace fashionShop.Admin
                 fileNamesToDtb.Trim().TrimEnd('|');
             }
             
-            string imgSql = (fileNamesToDtb.Trim() != "") ? "IMAGES = N'" + fileNamesToDtb.Trim().TrimEnd('|') + "'," : "";
+            string imgParams = (fileNamesToDtb.Trim() != "") ? fileNamesToDtb.Trim().TrimEnd('|') : "";
 
-            SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd = new SqlCommand("UPDATE_PRODUCT", dataAccess.getConnection());
 
+            cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.CommandText = "UPDATE PRODUCT " +
-            "SET PRODUCT_NAME = N'" + txtTenSP.Text.Trim() + "'," +
-            "ID_CATEGORY = " + int.Parse(ddlCategories.SelectedValue) + "," +
-            "INFORMATION = N'" + txtInfo.Text.Trim() + "'," +
-            "S = N'" + txtS.Text.Trim() + "'," +
-            "M = N'" + txtM.Text.Trim() + "'," +
-            "L = N'" + txtL.Text.Trim() + "'," +
-            "XL = N'" + txtXL.Text.Trim() + "'," +
-            "XXL = N'" + txtXXL.Text.Trim() + "'," +
-            "OVERSIZE = N'" + txtOversize.Text.Trim() + "'," +
-            imgSql +
-            "PRICE = " + int.Parse(txtGia.Text) + "," +
-            "SOLD_QUANTITY = '" + int.Parse(txtSLDaBan.Text) + "'," +
-            "PRODUCT_STATUS = " + rblTinhTrang.SelectedValue + " " +
-            "WHERE ID_PRODUCT = " + int.Parse(idSP);
-
-            cmd.Connection = dataAccess.getConnection();
-
+            cmd.Parameters.AddWithValue("@ID_PRODUCT", int.Parse(idSP));
+            cmd.Parameters.AddWithValue("@ID_CATEGORY", int.Parse(ddlCategories.SelectedValue));
+            cmd.Parameters.AddWithValue("@PRODUCT_NAME", txtTenSP.Text.Trim());
+            cmd.Parameters.AddWithValue("@INFORMATION", txtInfo.Text.Trim());
+            cmd.Parameters.AddWithValue("@S", txtS.Text.Trim());
+            cmd.Parameters.AddWithValue("@M", txtM.Text.Trim());
+            cmd.Parameters.AddWithValue("@L", txtL.Text.Trim());
+            cmd.Parameters.AddWithValue("@XL", txtXL.Text.Trim());
+            cmd.Parameters.AddWithValue("@XXL", txtXXL.Text.Trim());
+            cmd.Parameters.AddWithValue("@OVERSIZE", txtOversize.Text.Trim());
+            cmd.Parameters.AddWithValue("@IMAGES", imgParams);
+            cmd.Parameters.AddWithValue("@PRICE", txtGia.Text.Trim());
+            cmd.Parameters.AddWithValue("@SOLD_QUANTITY", int.Parse(txtSLDaBan.Text));
+            cmd.Parameters.AddWithValue("@PRODUCT_STATUS", rblTinhTrang.SelectedValue);
+           
             cmd.ExecuteNonQuery();
             dataAccess.DongKetNoiCSDL();
 
-            Response.Redirect("ADMNProduct.aspx");
-            
-            
+            Response.Redirect("ADMNProduct.aspx");                     
             
         }
         protected void btnCancel_Click(object sender, EventArgs e)

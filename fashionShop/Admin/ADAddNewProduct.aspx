@@ -1,7 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="ADAddNewProduct.aspx.cs" Inherits="fashionShop.Admin.AddNewProduct" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../Assets/css/Admin/navRoute.css" />
     <style>
+        .header-text {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #262626;
+            margin: 5rem 0 3rem;
+        }
+
         .tmsp-container {
             display: flex;
             flex-direction: column;
@@ -31,6 +40,7 @@
                         width: 25%;
                         min-width: 150px;
                         font-weight: bold;
+                        font-size: 1.3rem;
                     }
 
                     table.tmsp-table tbody tr td:last-child:not(.tmsp-rblTrangThai tbody tr td:last-child) {
@@ -69,7 +79,8 @@
                     }
 
                     table.tmsp-table tbody tr select {
-                        width: 104%
+                        width: 96%;
+                        font-size: 1.2rem;
                     }
 
         .tmsp-error {
@@ -165,20 +176,22 @@
             display: flex !important;
             justify-content: space-between;
         }
+
         .size__box {
             display: flex;
             justify-content: flex-start;
             width: 44%;
-            align-items:center;
+            align-items: center;
         }
-        .size__box p {
-            width: 30%;
-            text-align: right;
-            margin: 0 15px 0 0;
-            font-weight: bold;
-        }
-        
-        
+
+            .size__box p {
+                width: 30%;
+                text-align: right;
+                margin: 0 15px 0 0;
+                font-weight: bold;
+            }
+
+
         .gender-text {
             display: block;
             width: 100%;
@@ -190,7 +203,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="tmsp-container">
-        <h3 style="text-align: center; font-size: 30px; font-weight: bold; color: #262626; margin-bottom: 20px">Add new product</h3>
+        <div class="account__map">
+            <a href="ADHome.aspx">Home</a>
+            <span class="account__map--separate">|</span>
+            <a href="ADMNProduct.aspx">Products list</a>
+            <span class="account__map--separate">|</span>
+            <span>Add new product</span>
+        </div>
+        <p class="account__title">Add new product</p>
+        <%--<h3 class="header-text">Add new product</h3>--%>
         <asp:Table ID="Table1" runat="server" CssClass="tmsp-table">
             <asp:TableRow runat="server">
                 <asp:TableCell runat="server">
@@ -240,7 +261,7 @@
                         <p>S</p>
                         <div class="size__box--input">
 
-                            <asp:TextBox ID="txtS" runat="server" ></asp:TextBox>
+                            <asp:TextBox ID="txtS" runat="server"></asp:TextBox>
                             <asp:CompareValidator ID="CompareValidator4" runat="server" ErrorMessage="Price must greater than or equal to 0." ControlToValidate="txtS" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" CssClass="tmsp-error" Display="Dynamic"></asp:CompareValidator>
                         </div>
                     </div>
@@ -248,7 +269,7 @@
                         <p>M</p>
                         <div class="size__box--input">
 
-                            <asp:TextBox ID="txtM" runat="server" ></asp:TextBox>
+                            <asp:TextBox ID="txtM" runat="server"></asp:TextBox>
                             <asp:CompareValidator ID="CompareValidator5" runat="server" ErrorMessage="Price must greater than or equal to 0." ControlToValidate="txtM" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" CssClass="tmsp-error" Display="Dynamic"></asp:CompareValidator>
                         </div>
                     </div>
@@ -265,15 +286,15 @@
                         <p>L</p>
                         <div class="size__box--input">
 
-                            <asp:TextBox ID="txtL" runat="server" ></asp:TextBox>
+                            <asp:TextBox ID="txtL" runat="server"></asp:TextBox>
                             <asp:CompareValidator ID="CompareValidator6" runat="server" ErrorMessage="Price must greater than or equal to 0." ControlToValidate="txtL" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" CssClass="tmsp-error" Display="Dynamic"></asp:CompareValidator>
                         </div>
                     </div>
-                    <div class="size__box" >
+                    <div class="size__box">
                         <p>XL</p>
                         <div class="size__box--input">
 
-                            <asp:TextBox ID="txtXL" runat="server" ></asp:TextBox>
+                            <asp:TextBox ID="txtXL" runat="server"></asp:TextBox>
                             <asp:CompareValidator ID="CompareValidator7" runat="server" ErrorMessage="Price must greater than or equal to 0." ControlToValidate="txtXL" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" CssClass="tmsp-error" Display="Dynamic"></asp:CompareValidator>
                         </div>
                     </div>
@@ -290,7 +311,7 @@
                         <p>Oversize</p>
                         <div class="size__box--input">
 
-                            <asp:TextBox ID="txtOversize" runat="server" ></asp:TextBox>
+                            <asp:TextBox ID="txtOversize" runat="server"></asp:TextBox>
                             <asp:CompareValidator ID="CompareValidator8" runat="server" ErrorMessage="Price must greater than or equal to 0." ControlToValidate="txtOversize" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" CssClass="tmsp-error" Display="Dynamic"></asp:CompareValidator>
                         </div>
                     </div>
@@ -298,7 +319,7 @@
                         <p>XXL</p>
                         <div class="size__box--input">
 
-                            <asp:TextBox ID="txtXXL" runat="server" ></asp:TextBox>
+                            <asp:TextBox ID="txtXXL" runat="server"></asp:TextBox>
                             <asp:CompareValidator ID="CompareValidator9" runat="server" ErrorMessage="Price must greater than or equal to 0." ControlToValidate="txtXXL" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" CssClass="tmsp-error" Display="Dynamic"></asp:CompareValidator>
                         </div>
                     </div>
@@ -330,9 +351,9 @@
                     Price <span class="dauSao">(*)</span>
                 </asp:TableCell>
                 <asp:TableCell runat="server">
-                    <asp:TextBox ID="txtGia" TextMode="Number" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtGia" TextMode="Number" step="0.1" min="0" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Price is required" ControlToValidate="txtGia" CssClass="tmsp-error" Display="Dynamic"></asp:RequiredFieldValidator>
-                    <asp:CompareValidator ID="CompareValidator2" runat="server" ErrorMessage="Price must greater than or equal to 0." ControlToValidate="txtGia" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" CssClass="tmsp-error" Display="Dynamic"></asp:CompareValidator>
+
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow runat="server">

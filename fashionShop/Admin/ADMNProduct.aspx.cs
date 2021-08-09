@@ -37,10 +37,10 @@ namespace fashionShop.Customer
                     sb.Append("<tr class=\"table-tr\">");
 
                     sb.Append("<td class=\"table-td\">" + dr["ID_PRODUCT"] + "</td>");
-                    sb.Append("<td class=\"table-td\"><a href=\"/Customer/CTMProductDetail.aspx?idSP=" + dr["ID_PRODUCT"] + "\">" + dr["PRODUCT_NAME"] + "</td>");
+                    sb.Append("<td class=\"table-td table-td-address\"><a href=\"/Customer/ProductDetail.aspx?idSP=" + dr["ID_PRODUCT"] + "\">" + dr["PRODUCT_NAME"] + "</td>");
                     sb.Append("<td class=\"table-td\">" + dr["CATEGORY_NAME"] + "</td>");
                     sb.Append("<td class=\"table-td\">" + dr["GENDER_NAME"] + "</td>");
-                    sb.Append("<td class=\"table-td\">" + dr["PRICE"] + "</td>");
+                    sb.Append("<td class=\"table-td\"$>" + dr["PRICE"] + "</td>");
                     sb.Append("<td class=\"table-td\">" + dr["OVERSIZE"] + "</td>");
                     sb.Append("<td class=\"table-td\">" + dr["S"] + "</td>");
                     sb.Append("<td class=\"table-td\">" + dr["M"] + "</td>");
@@ -50,8 +50,8 @@ namespace fashionShop.Customer
                     sb.Append("<td class=\"table-td\">" + dr["QUANTITY"] + "</td>");
                     sb.Append("<td class=\"table-td\">" + dr["SOLD_QUANTITY"] + "</td>");
                     sb.Append("<td class=\"table-td\">" + dr["STATUS"] + "</td>");
-                    sb.Append("<td class=\"table-td\"><a href=\"/Admin/ADUpdateProduct.aspx?idProduct=" + dr["ID_PRODUCT"] + "\" class=\"qlsp-btnCapNhat\">Edit</a> </td>");
-                    sb.Append("<td class=\"table-td\"><a href=\"/Admin/ADDeleteProduct.aspx?idProduct=" + dr["ID_PRODUCT"] + "\" class=\"qlsp-btnXoa\">Delete</a> </td>");
+                    sb.Append("<td class=\"table-td\"><a href=\"/Admin/ADUpdateProduct.aspx?idProduct=" + dr["ID_PRODUCT"] + "\" class=\"btnDetail\">Edit</a> </td>");
+                    sb.Append("<td class=\"table-td\"><a href=\"/Admin/ADDeleteProduct.aspx?idProduct=" + dr["ID_PRODUCT"] + "\" class=\"btnCancel\"><i class=\"far fa-trash-alt\"></i></a> </td>");
 
                     sb.Append("</tr>");
                 }

@@ -1,10 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.Master" AutoEventWireup="true" CodeBehind="ADAddressDetail.aspx.cs" Inherits="fashionShop.Admin.ADAddressDetail" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../Assets/css/Admin/navRoute.css" />
+
     <style>
+        .body {
+            margin-top: 5rem;
+        }
         .address__items {
             display: flex;
-            justify-content: flex-start;
             flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
         }
 
         .address__item {
@@ -37,12 +44,12 @@
 
         .address__item--btn {
             background: #1d1919;
-            padding: 1.1rem 2.2rem;
+            padding: 1rem 1.5rem;
             border: none;
             text-transform: uppercase;
             font-weight: 100;
             letter-spacing: 0.2rem;
-            color: white;           
+            color: white;
             font-size: 1.1rem;
             cursor: pointer;
             border-radius: 0.4rem;
@@ -65,6 +72,7 @@
             border: 1px solid #ccc;
             font-weight: 400;
         }
+
         .address__item--btn-first {
             padding: 1.1rem 2.2rem;
             text-transform: uppercase;
@@ -81,6 +89,7 @@
             font-family: "Ubuntu", sans-serif;
             font-weight: 400;
         }
+
         .address__addNew {
             min-height: 25rem;
             display: flex;
@@ -112,6 +121,7 @@
                 confirm_value.value = "Yes";
             } else {
                 confirm_value.value = "No";
+                return false;
             }
 
             //gan hiden iput vao trang
@@ -120,7 +130,19 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="account__content addresses__content">
+    <div class="body">
+
+
+        <div class="account__map">
+            <a href="ADHome.aspx">Home</a>
+            <span class="account__map--separate">|</span>
+            <a href="ADMNCustomerAccount.aspx">Customers list</a>
+            <span class="account__map--separate">|</span>
+            <span>Customer addresses</span>
+        </div>
+        <p class="account__title">Customer Addresses</p>
+        <%--<h2>Customer Addresses</h2>--%>
+        <div class="account__content addresses__content">
             <div class="address__items">
                 <asp:Repeater ID="rptAddress" runat="server">
                     <ItemTemplate>
@@ -133,9 +155,9 @@
                                 <span>Phone: </span><%# Eval("PHONE") %>
                             </p>
                             <p style="display: none" id="idAddress" runat="server"><%# Eval("ID_ADDRESS") %></p>
-                            <div class="address__item--btns">                                
+                            <div class="address__item--btns">
                                 <a href="UpdateAddress.aspx?idAddress=<%# Eval("ID_ADDRESS") %>" class="address__item--btn edit">Edit</a>
-                                <asp:Button ID="btnDelete" runat="server" Text="Delete" class="address__item--btn delete" OnClick="btnDelete_Click" OnClientClick = "Confirm()"/>                     
+                                <asp:Button ID="btnDelete" runat="server" Text="Delete" class="address__item--btn delete" OnClick="btnDelete_Click" OnClientClick="return Confirm()" />
                             </div>
                         </div>
                     </ItemTemplate>
@@ -147,4 +169,5 @@
                 </a>
             </div>
         </div>
+    </div>
 </asp:Content>

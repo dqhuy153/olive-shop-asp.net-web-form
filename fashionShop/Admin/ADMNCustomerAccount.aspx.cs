@@ -31,15 +31,15 @@ namespace fashionShop.Admin
                 {
                     table.Append("<tr class=\"table-tr\">");
 
-                    table.Append("<td class=\"table-td table-item\">" + dr["ID_ACCOUNT"] + "</td>");
-                    table.Append("<td class=\"table-td table-item\">" + dr["USERNAME"] + "</td>");
-                    table.Append("<td class=\"table-td table-item\">" + dr["PASSWORD"] + "</td>");
-                    table.Append("<td class=\"table-td table-item\">" + dr["FULLNAME"] + "</td>");
-                    table.Append("<td class=\"table-td table-item\">" + dr["EMAIL"] + "</td>");
-                    table.Append("<td class=\"table-td table-item\">" + dr["PHONE"] + "</td>");
-                    table.Append("<td class=\"table-td table-item\"><a href=\"/Admin/ADAddressDetail.aspx?idAcc=" + dr["ID_ACCOUNT"] + "\" class=\"qltk-btnCapNhat\">Detail</a></td>");
-                    table.Append("<td class=\"table-td table-item\">" + dr["STATUS"] + "</td>");
-                    table.Append("<td class=\"table-td\" style=\"border: 1px solid #adc9fa\"><a href=\"/Admin/ADUpdateAccount.aspx?idAcc=" + dr["ID_ACCOUNT"] + "\" class=\"qltk-btnCapNhat\">Edit</a> </td>");
+                    table.Append("<td class=\"table-td \">" + dr["ID_ACCOUNT"] + "</td>");
+                    table.Append("<td class=\"table-td \">" + dr["USERNAME"] + "</td>");
+                    table.Append("<td class=\"table-td \">" + dr["PASSWORD"] + "</td>");
+                    table.Append("<td class=\"table-td \">" + dr["FULLNAME"] + "</td>");
+                    table.Append("<td class=\"table-td \">" + dr["EMAIL"] + "</td>");
+                    table.Append("<td class=\"table-td \">" + dr["PHONE"] + "</td>");
+                    table.Append("<td class=\"table-td \"><a href=\"/Admin/ADAddressDetail.aspx?idAcc=" + dr["ID_ACCOUNT"] + "\" class=\"qltk-btnCapNhat\">Detail</a></td>");
+                    table.Append("<td class=\"table-td \">" + dr["STATUS"] + "</td>");
+                    table.Append("<td class=\"table-td\" ><a href=\"/Admin/ADUpdateAccount.aspx?idAcc=" + dr["ID_ACCOUNT"] + "\" class=\"qltk-btnCapNhat\">Edit</a> </td>");
                     table.Append("<td class=\"table-td\"><a href=\"/Admin/ADDeleteAccount.aspx?idAcc=" + dr["ID_ACCOUNT"] + "\" class=\"qltk-btnXoa\">Delete</a> </td>");
 
                     table.Append("</tr>");

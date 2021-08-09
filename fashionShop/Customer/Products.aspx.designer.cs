@@ -78,6 +78,24 @@ namespace fashionShop.Customer
         protected global::System.Web.UI.WebControls.HyperLink hplinkCategory;
 
         /// <summary>
+        /// lbNotiyFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbNotiyFilter;
+
+        /// <summary>
+        /// hplClearFeatured control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hplClearFeatured;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -130,6 +148,15 @@ namespace fashionShop.Customer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox cbInStock;
+
+        /// <summary>
+        /// hlpClearSize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlpClearSize;
 
         /// <summary>
         /// Label3 control.
@@ -303,33 +330,6 @@ namespace fashionShop.Customer
         protected global::System.Web.UI.WebControls.Label lbSort;
 
         /// <summary>
-        /// Label9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
-
-        /// <summary>
-        /// hplOrderFeatured control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hplOrderFeatured;
-
-        /// <summary>
-        /// cbOrderFeatured control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton cbOrderFeatured;
-
-        /// <summary>
         /// Label10 control.
         /// </summary>
         /// <remarks>
@@ -355,6 +355,33 @@ namespace fashionShop.Customer
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton cbNewest;
+
+        /// <summary>
+        /// Label9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
+
+        /// <summary>
+        /// hplOrderFeatured control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hplOrderFeatured;
+
+        /// <summary>
+        /// cbOrderFeatured control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton cbOrderFeatured;
 
         /// <summary>
         /// Label11 control.

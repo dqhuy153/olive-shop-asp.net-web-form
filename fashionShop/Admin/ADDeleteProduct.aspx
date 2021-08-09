@@ -6,14 +6,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 70vh;
+            height: auto;
             padding: 35px 0;
         }
         .xoasp-header {
-            font-size: 22px;
-            color: tomato;
+            font-size: 2rem !important;
+            color: #bd5151;
             font-weight: bold;
-            margin-bottom: 40px;
+            margin: 6rem 0;
         }
         .xoasp-content-container {
             display: flex;
@@ -36,12 +36,13 @@
         }
             .xoasp-content span {
                 font-weight: normal;
+                font-size: var(--font-size-content)
             }
         .xoasp-tensp {
             display: block;
-            font-size: 20px;
+            font-size: 1.4rem !important;
             font-weight: bold;
-            color: #0a368b;
+            color: #333;
             max-width: 300px;
             text-align: center;
             line-height: 1.3;
@@ -51,18 +52,19 @@
             font-weight: bold;
             margin: 5px 0;
             width: 100px;
+            font-size: var(--font-size-content)
         }
         .xoasp-content-item {
             display: flex;
             align-items: center;
         }
         #xoasp-goiy {
-            font-size: 14px;
+            font-size: 1.2rem;
             font-weight: normal;
             color: #313131;
             width: 200px;
             line-height: 1.2;
-            margin-top: 10px;   
+            margin-top: 2rem;   
         }
         .xoasp-btn {
             padding: 10px 15px;
@@ -70,32 +72,38 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 500;
             
         }
         .xoasp-btn-xoa {
-            background: tomato;
-            color: white;
+            background: none;
+            border: 1px solid #333;
+            color: #333;
             margin-right: 10px;
         }
         .xoasp-btn-xoa:hover{
-            background: #cc330d;
+            border: 1px solid #d94848;
+            color: #d94848;
             transition: all 0.2s ease-in;
         }
         .xoasp-btn-huy {
             background: #726f6f;
+            border: 1px solid #333;
             color: white;
         }
         .xoasp-btn-huy:hover{
-            background: #1a1a1a;
+            background: none;
+            color: #333;
             transition: all 0.2s ease-in;
         }
         .xoasp-btn-dong {
-            background: #2768c3;
+            background: var(--color-primary);
             color: white;
+            border: 1px solid #333;
         }
         .xoasp-btn-dong:hover{
-            background: #0c2876;
+            background: #fff;
+            color: #333;
             transition: all 0.2s ease-in;
         }
         .xoasp-btns {

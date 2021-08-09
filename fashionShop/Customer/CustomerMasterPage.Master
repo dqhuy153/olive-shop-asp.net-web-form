@@ -8,617 +8,420 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Setting all of css about pages -->
-    <%--<link rel="stylesheet" href="./assets/css/main.css" />--%>
     <link rel="stylesheet" href="../Assets/css/style.css" />
+
     <!-- Reset css -->
     <link rel="stylesheet" href="../Assets/css/reset.css" />
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="../Assets/css/responsive.css" />
+    <!-- automic css -->
+    <link rel="stylesheet" href="../Assets/css/automicCss.css" />
+    <!-- css masterpage -->
+    <link rel="stylesheet" href="../Assets/css/Customer/CustomerMasterPage.css" />
     <link
         rel="stylesheet"
         href="../Assets/fonts/fontawesome-free-5.15.3-web/css/all.css" />
     <link
         rel="stylesheet"
-        href="../Assests/fonts/themify-icons-font/themify-icons/themify-icons.css" />
+        href="../Assets/fonts/themify-icons/themify-icons.css" />
+    <!-- font google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@1,300&display=swap"
+        rel="stylesheet" />
+    <!-- font ubuntu -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
         href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
         rel="stylesheet" />
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
-    <style>
-        a,
-        p,
-        span,
-        label,
-        button,
-        select,
-        input {
-            font-family: "Ubuntu", sans-serif;
-            color: #555;
-            font-size: 1.4rem;
-        }
+    <script src="../Assets/js/Customer/MasterPage.js" defer></script>
 
-        html {
-            font-size: 62.5%;
-        }
-
-        .body {
-            min-height: 60vh;
-        }
-        /*header*/
-
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1;
-            display: inline-block;
-            font-family: 'Ubuntu', sans-serif;
-            letter-spacing: 1px;
-            font-size: 9px;
-        }
-
-            .header:hover {
-                background-color: #fff;
-            }
-        /* cho cac thuoc tinh li nam tren mot hang */
-
-        .header__menu > li {
-            display: inline-block;
-            position: relative;
-        }
-
-        .header__menu--items > a {
-            /* chi tac dong len thuoc tinh the a cap 1 */
-            color: #000;
-            text-transform: uppercase;
-        }
-
-        .header__menu .header__menu--items a {
-            text-decoration: none;
-            line-height: 52px;
-            padding: 0 26px;
-            display: block;
-        }
-
-        .header__menu li a {
-            text-decoration: none;
-            display: block;
-        }
-
-        .header__menu li:hover .subnav {
-            display: block;
-            animation: headerNotifyGrowth ease-in 0.4s;
-            transform-origin: top center;
-        }
-
-        .header__menu,
-        .subnav,
-        .subnav--child {
-            list-style-type: none;
-        }
-        /* block con */
-
-        .subnav--child {
-            display: none;
-            overflow: hidden;
-            max-height: 0;
-            -webkit-transition: max-height 500ms ease;
-            -moz-transition: max-height 500ms ease;
-            -o-transition: max-height 500ms ease;
-            transition: max-height 500ms ease;
-        }
-        /* xu li hover sau block  */
-
-        .navPage-subMenu-item-child:hover .subnav--child {
-            display: block;
-            float: right;
-            position: absolute;
-            margin-left: 160px;
-            margin-top: -40px;
-            background-color: #fff;
-            min-width: 200px;
-            max-height: 500px; /* ALTER  */
-            animation: headerNotifyGrowth ease-in 0.4s;
-            transform-origin: top left;
-        }
-
-        .header__menu li {
-            /* ap dung the cha, doi voi subnav */
-            position: relative;
-        }
-        /* tach hai truong hop */
-
-        .header__menu > li > a {
-            /* chi tac dong len thuoc tinh the a cap 1 */
-            color: #000;
-            text-transform: uppercase;
-        }
-        /* tat ca thuoc tinh a cua li cua id .header__menu se bi anh huong thuoc tinh tren */
-
-        @keyframes headerNotifyGrowth {
-            from {
-                opacity: 0;
-                transform: scale(0);
-                height: 0;
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-                height: inherit;
-            }
-        }
-
-        @keyframes rollIn {
-            0% {
-                opacity: 0;
-                transform: translateX(-100%) rotate(-120deg);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateX(0px) rotate(0deg);
-            }
-        }
-        /* chi tac dong len the cap 1 */
-
-        .header__menu > li:hover > a {
-            color: #000;
-            /* background-color: #fff; */
-        }
-
-        .header__menu .subnav li:hover {
-            /* css rieng cho cap 2 */
-            color: #000;
-            background-color: #f4f4f4f4;
-        }
-
-        .header__menu .subnav {
-            min-width: 160px;
-            display: none;
-            top: 100%;
-            left: 0;
-            /* bang dung kich thuoc cua the cha */
-            position: absolute;
-            background-color: #fff;
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
-        }
-
-            .header__menu .subnav a {
-                color: #000;
-                padding: 0 12px;
-                line-height: 38px;
-            }
-
-        .header__menu .nav-arrow-down {
-            font-size: 14px;
-        }
-
-        .main-logos {
-            width: 80px;
-            height: 52px;
-        }
-
-        .form-input {
-            border: none;
-            background-color: rgba(0, 0, 0, 0);
-            font-family: 'Ubuntu', sans-serif;
-            color: black;
-        }
-
-            .form-input:focus {
-                background-color: none;
-                outline: none;
-                border-bottom: #000 1px solid;
-                font-family: 'Ubuntu', sans-serif;
-                font-size: 12px;
-                color: black;
-            }
-
-        ::placeholder {
-            font-size: 12px;
-            font-family: 'Ubuntu', sans-serif;
-            color: black;
-            font-weight: normal;
-        }
-
-        :-ms-input-placeholder {
-            /* Internet Explorer 10-11 */
-            font-size: 12px;
-            font-family: 'Ubuntu', sans-serif;
-            color: black;
-            font-weight: normal;
-        }
-
-        ::-ms-input-placeholder {
-            /* Microsoft Edge */
-            font-size: 12px;
-            font-family: 'Ubuntu', sans-serif;
-            color: black;
-            font-weight: normal;
-        }
-        /* end: header */
-        /*footer*/
-
-        #footer {
-            margin-top: 32px;
-            padding: 32px 16px;
-            text-align: center;
-        }
-
-        form > input {
-            height: 42px;
-            width: 321px;
-            text-align: center;
-            border: 1px solid rgba(0, 0, 0, 0.3);
-        }
-
-            form > input:focus {
-                outline: none;
-            }
-
-        form > button {
-            height: 42px;
-            width: 134px;
-            border: none;
-            background-color: #000;
-            color: #fff;
-            cursor: pointer;
-        }
-
-            form > button:hover {
-                color: #000;
-                background-color: #fff;
-            }
-
-        #footer .social-list {
-            font-size: 24px;
-        }
-
-            #footer .social-list a {
-                color: rgba(0, 0, 0, 0.6);
-                text-decoration: none;
-            }
-
-                #footer .copy-right a:hover,
-                #footer .social-list a :hover {
-                    color: rgba(0, 0, 0, 0.4);
-                }
-
-        #footer .copy-right {
-            margin-top: 15px;
-            color: rgba(0, 0, 0, 0.6);
-        }
-
-            #footer .copy-right a {
-                color: rgba(0, 0, 0, 0.6);
-            }
-
-        .more--info {
-            display: flex
-        }
-
-        .more--info__items {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .more--info__items--bottom {
-            padding-right: 8px;
-            padding-left: 8px;
-        }
-
-            .more--info__items--bottom > a {
-                color: rgba(0, 0, 0, 0.5);
-                font-size: 14px;
-            }
-
-        .question--mark {
-            display: block;
-            background-color: rgba(0, 0, 0, 0.3);
-            height: 32px;
-            width: 32px;
-            float: right;
-            z-index: 1;
-            cursor: pointer;
-        }
-
-            .question--mark > p {
-                align-items: center;
-                font-size: 18px !important;
-                background-color: gray;
-                border-radius: 50%;
-                line-height: 32px;
-                color: white;
-            }
-
-        /* ALTER */
-        .find {
-            display: flex;
-        }
-    </style>
-    <script>
-        //xử lí header
-        document.addEventListener('scroll', e => {
-            if (window.scrollY > 0) {
-                document.getElementById("header").style.backgroundColor = "#fff";
-            }
-        });
-    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
+
 <body>
     <form id="form1" runat="server">
-        <div class="container">
-            <div class="header" id="header">
+        <div class="cotainer grid">
+            <!-- begin: header -->
+            <header id="header" class="header">
+                <div id="headerMobile" class="header__left ">
+                    <!-- begin: menu icon -->
+                    <button id="btnToggleMenu" class="mobile__menu--btn">
+                        <div id="menuIcon" onclick="return menuAnimate()">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </button>
 
-                <ul class="header__menu">
-                    <li class="header__menu--items main--logo margin-left-64">
-                        <a href="Home.aspx">olive
-                        </a>
-                    </li>
-                    <li class="header__menu--items margin-left-32">
-                        <a href="Products.aspx">new <i class="fas fa-chevron-down"></i></a>
-                        <ul class="subnav">
-                            <li class="navPage-subMenu-item-parent">
-                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx">All New</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women">Women</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=men">Men</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="header__menu--items ">
-                        <a href="Products.aspx?mc=clothes&g=women">woman <i class="fas fa-chevron-down"></i></a>
-                        <ul class="subnav">
-                            <li class="navPage-subMenu-item-parent">
-                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=women">All
-                                Women</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="Products.aspx?mc=clothes&g=women&c=tops">Tops
-                                <i class="fas fa-chevron-right"></i>
-                                </a>
-                                <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-14" aria-hidden="true" tabindex="-1">
-                                    <ul class="navPage-subMenu-list subnav--child">
-                                        <li class="navPage-subMenu-item-parent">
-                                            <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=women&c=tops">tops</a>
-                                        </li>
-                                        <li class="navPage-subMenu-item-child">
-                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Basics">Basics</a>
-                                        </li>
-                                        <li class="navPage-subMenu-item-child">
-                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Blouses">Blouses</a>
-                                        </li>
-                                        <li class="navPage-subMenu-item-child">
-                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Sweatshirts">Sweatshirts</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Dresses">Dresses</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Knitwear">Knitwear</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Coats and Jackets">Coats &amp; Jackets</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child ">
-                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="Products.aspx?mc=clothes&g=women&c=Skirts and shorts">Skirts &amp; Shorts
-                                <i class="fas fa-chevron-right"></i>
-                                </a>
-                                <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-16" aria-hidden="true" tabindex="-1">
-                                    <ul class="navPage-subMenu-list subnav--child">
-                                        <li class="navPage-subMenu-item-parent">
-                                            <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=women&c=Skirts and shorts">Skirts &amp; Shorts</a>
-                                        </li>
-                                        <li class="navPage-subMenu-item-child">
-                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=skirts">Skirts</a>
-                                        </li>
-                                        <li class="navPage-subMenu-item-child">
-                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=shorts">Shorts</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="navPage-subMenu-item-child ">
-                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="Products.aspx?mc=clothes&g=women&c=Legwear">Legwear
-                                <i class="fas fa-chevron-right"></i>
-                                </a>
-                                <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-15" aria-hidden="true" tabindex="-1">
-                                    <ul class="navPage-subMenu-list subnav--child">
-                                        <li class="navPage-subMenu-item-parent">
-                                            <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=women&c=Legwear">Legwear</a>
-                                        </li>
-                                        <li class="navPage-subMenu-item-child">
-                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Jeans">Jeans</a>
-                                        </li>
-                                        <li class="navPage-subMenu-item-child">
-                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Trousers">Trousers</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Dungarees">Dungarees</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Loungewear">Loungewear</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Embroidery">Embroidery</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Stripes">Stripes</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Utility">Utility</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Daisy Series">Daisy Series 🌼</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Relax">Relax</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="header__menu--items">
-                        <a href="#">man <i class="fas fa-chevron-down"></i></a>
-                        <ul class="subnav">
-                            <li class="navPage-subMenu-item-parent">
-                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=men">All
-                                Men</a>
-                            </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=men">New</a>
-                            </li>
-                            <asp:Repeater ID="rptMenClothes" runat="server">
-                                <ItemTemplate>
-                                    <li class="navPage-subMenu-item-child">
-                                        <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=men&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
+                    <!-- end: menu icon -->
+                    <div class="header__menu">
+                        <div class="header__logo">
+                            <a href="Home.aspx">OLIVE</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="modalMobileWrap" class="header__menu--container modalMobileWrap">
+                    <div class="header__center">
+                        <ul class="header__menu header__menu--center">
+                            <li class="
+                                    header__menu--items
+                                    header__menu--items-center
+                                ">
+                                <a class="header__menu--items-title" href="Products.aspx">New <i
+                                    class="ti-angle-down"></i></a>
+                                <ul class="subnav">
+                                    <li class="">
+                                        <a href="Products.aspx">All New</a>
                                     </li>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </ul>
-                    </li>
-                    <li class="header__menu--items">
-                        <a href="Products.aspx?mc=accessories">Accessories <i class="fas fa-chevron-down"></i></a>
-                        <ul class="subnav">
-                            <li class="navPage-subMenu-item-parent">
-                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=accessories">All
-                                Accessories</a>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women">Women</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=men">Men</a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="navPage-subMenu-item-child">
-                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="Products.aspx?mc=accessories&g=women">Women
-                                    <i class=" fas fa-chevron-right "></i>
+                            <li class="
+                                    header__menu--items
+                                    header__menu--items-center
+                                ">
+                                <a class="header__menu--items-title" href="Products.aspx?mc=clothes&g=women">Women <i
+                                    class="ti-angle-down"></i>
                                 </a>
-                                <div class=" navPage-subMenu navPage-subMenu-horizontal " id=" navPages-371 " aria-hidden=" true " tabindex=" -1 ">
-                                    <ul class=" navPage-subMenu-list subnav--child ">
-                                        <asp:Repeater ID="rptWomenAccessories" runat="server">
-                                            <ItemTemplate>
-                                                <li class=" navPage-subMenu-item-child ">
-                                                    <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&g=women&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
+                                <ul class="subnav">
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women">All Women</a>
+                                    </li>
+                                    <li class="navPage-subMenu-item-child">
+                                        <a class="navPage-subMenu-items-title"
+                                            href="Products.aspx?mc=clothes&g=women&c=tops">Tops <i class="ti-angle-right"></i>
+                                        </a>
+                                        <div class="">
+                                            <ul class="subnav--child">
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=tops">tops</a>
                                                 </li>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </ul>
-                                </div>
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=Basics">Basics</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=Blouses">Blouses</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=Sweatshirts">Sweatshirts</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Dresses">Dresses</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Knitwear">Knitwear</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Coats and Jackets">Coats &amp;
+                                        Jackets</a>
+                                    </li>
+                                    <li class="navPage-subMenu-item-child">
+                                        <a class="navPage-subMenu-items-title"
+                                            href="Products.aspx?mc=clothes&g=women&c=Skirts and shorts">Skirts &amp; Shorts
+                                        <i class="ti-angle-right"></i>
+                                        </a>
+                                        <div class="">
+                                            <ul class="subnav--child">
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=Skirts and shorts">Skirts
+                                                    &amp; Shorts</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=skirts">skirts</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=shorts">shorts</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="navPage-subMenu-item-child">
+                                        <a class="navPage-subMenu-items-title"
+                                            href="Products.aspx?mc=clothes&g=women&c=Legwear">Legwear
+                                        <i class="ti-angle-right"></i>
+                                        </a>
+                                        <div class="">
+                                            <ul class="subnav--child">
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=Legwear">Legwear</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=Jeans">Jeans</a>
+                                                </li>
+                                                <li class="">
+                                                    <a href="Products.aspx?mc=clothes&g=women&c=Trousers">Trousers</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Dungarees">Dungarees</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Loungewear">Loungewear</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Embroidery">Embroidery</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Stripes">Stripes</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Utility">Utility</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Daisy Series">Daisy Series 🌼</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=women&c=Relax">Relax</a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class=" navPage-subMenu-item-child ">
-                                <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&g=men">Men</a>
-                            </li>
-                            <li class=" navPage-subMenu-item-child ">
-                                <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&c=Apothecary">Apothecary</a>
-                            </li>
-                            <li class=" navPage-subMenu-item-child ">
-                                <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&c=Home">Home</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class=" header__menu--items ">
-                        <a href="Products.aspx?mc=jewllery">Jewellery <i class=" fas fa-chevron-down "></i></a>
-                        <ul class=" subnav ">
-                            <li class=" navPage-subMenu-item-parent ">
-                                <a class=" navPage-subMenu-action navPages-action navPages-action-depth-max " href="Products.aspx?mc=jewellery">All Jewellery</a>
-                            </li>
-                            <li class=" navPage-subMenu-item-child ">
-                                <a class=" navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu " href="Products.aspx?mc=jewellery&g=women">Women
-                            <i class="fas fa-chevron-right "></i>
+                            <li class="
+                                    header__menu--items
+                                    header__menu--items-center
+                                ">
+                                <a class="header__menu--items-title" href="Products.aspx?mc=clothes&g=men">Men <i class="ti-angle-down"></i>
                                 </a>
-                                <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-383" aria-hidden="true" tabindex="-1">
-                                    <ul class="navPage-subMenu-list subnav--child">
-                                        <asp:Repeater ID="rptWomenJewellery" runat="server">
-                                            <ItemTemplate>
-                                                <li class=" navPage-subMenu-item-child ">
-                                                    <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=jewellery&g=women&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
-                                                </li>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </ul>
-                                </div>
+                                <ul class="subnav">
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=men">All Men</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=clothes&g=men">New</a>
+                                    </li>
+                                    <asp:Repeater ID="rptMenClothes" runat="server">
+                                        <ItemTemplate>
+                                            <li class="navPage-subMenu-item-child">
+                                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=men&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ul>
+                            </li>
+                            <li class="
+                                    header__menu--items
+                                    header__menu--items-center
+                                ">
+                                <a class="header__menu--items-title" href="Products.aspx?mc=accessories">Accessories
+                                <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="subnav">
+                                    <li class="">
+                                        <a href="Products.aspx?mc=accessories">All Accessories</a>
+                                    </li>
+                                    <li class="navPage-subMenu-item-child">
+                                        <a class="navPage-subMenu-items-title" href="Products.aspx?mc=accessories&g=women">Women
+                                        <i class="ti-angle-right"></i></a>
+                                        <div class="">
+                                            <ul class="subnav--child">
+                                                <asp:Repeater ID="rptWomenAccessories" runat="server">
+                                                    <ItemTemplate>
+                                                        <li class=" navPage-subMenu-item-child ">
+                                                            <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&g=women&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=accessories&g=men">Men</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=accessories&c=Apothecary">Apothecary</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="Products.aspx?mc=accessories&c=Home">Home</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="
+                                    header__menu--items
+                                    header__menu--items-center
+                                ">
+                                <a class="header__menu--items-title" href="Products.aspx?mc=jewllery">Jewellery
+                                <i class="ti-angle-down"></i></a>
+                                <ul class="subnav">
+                                    <li class="">
+                                        <a href="Products.aspx?mc=jewellery">All Jewellery</a>
+                                    </li>
+                                    <li class="navPage-subMenu-item-child">
+                                        <a class="navPage-subMenu-items-title" href="Products.aspx?mc=jewellery&g=women">Women
+                                        <i class="ti-angle-right"></i>
+                                        </a>
+                                        <div>
+                                            <ul class="subnav--child">
+                                                <asp:Repeater ID="rptWomenJewellery" runat="server">
+                                                    <ItemTemplate>
+                                                        <li class=" navPage-subMenu-item-child ">
+                                                            <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=jewellery&g=women&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
-                    </li>
+                    </div>
+                    <div class="header__right">
+                        <div class="header__menu s-col-full" id="headerRightPC">
+                            <div class="
+                                    header__menu--items
+                                    search
+                                    dis-none-mobile
+                                ">
+                                <%--<input class="form-input" placeholder="SEARCH" id="searchInput" />--%>
+                                <asp:Panel ID="panelSearch" runat="server" DefaultButton="btnSearch">
+                                    <asp:ScriptManager ID="ScriptManager1" runat="server">
+                                    </asp:ScriptManager>
+                                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" class="find">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" class="form-input"></asp:TextBox>
+                                            <asp:LinkButton runat="server" ID="btnSearch" CausesValidation="false" ToolTip="Search" CssClass="find-icon" Style="display: none" Text='<i class="fas fa-search"></i>' OnClick="btnSearch_OnClick" />
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </asp:Panel>
+                            </div>
+                            <div class="header__menu--items">
+                                <a id="btnSignIn" runat="server" href="SignIn.aspx">Sign in</a>
+                            </div>
+                            <div class="header__menu--items">
+                                <asp:LinkButton ID="btnSignOut" runat="server" CausesValidation="false" OnClick="btnSignOut_Click">Sign out</asp:LinkButton>
+                            </div>
+                            <div class="header__menu--items">
+                                <a id="btnAccount" runat="server" href="OrderLists.aspx">Account</a>
+                            </div>
+                            <div id="cartQuantity" class="header__menu--items dis-none-mobile">
+                                <a role="button" id="cartQuantityLink" runat="server">
+                                    <span class="navUser-item-cartLabel">My Cart</span>
+                                    <asp:Label ID="lbCartQuantity" runat="server" OnLoad="Page_Load" Text="0" class="cart-quantity"></asp:Label>
+                                </a>
+                                <div class="cart-popup">
+                                    <div class="cart__empty" id="cartReviewEmpty" runat="server">
+                                        <p>Your cart is empty.</p>
+                                    </div>
+                                    <div runat="server" id="cartReview">
+                                        <ul class="cart__product">
+                                            <asp:Repeater ID="rptCartPreview" runat="server">
+                                                <ItemTemplate>
+                                                    <li class="productItem">
+                                                        <div class="productItem-img">
+                                                            <img src="../Uploads/<%# Eval("IMAGE") %>" alt="">
+                                                        </div>
+                                                        <div class="productItem-info">
+                                                            <a href="ProductDetail.aspx?id=<%# Eval("ID_PRODUCT") %>"><%# Eval("PRODUCT_NAME") %></a>
+                                                            <span>x <%# Eval("QUANTITY") %></span>
+                                                            <div class="productItem-info-content">
+                                                                <p>Size: <%# Eval("SIZE") %></p>
+                                                                <span>$<span class="item--price"><%# String.Format("{0:n2}",(Decimal.Parse(Eval("PRICE").ToString()) * int.Parse(Eval("QUANTITY").ToString()))) %></span></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </ul>
+                                        <div class="cart__footer">
+                                            <a href="Checkout.aspx" class="checkout-btn btn">checkout
+                                            </a>
+                                            <a href="Cart.aspx" class="viewCart-btn btn">View Cart
+                                            </a>
+                                        </div>
+                                    </div>
 
-                    <li class="header__menu--items search">
-                        <asp:Panel ID="panelSearch" runat="server" DefaultButton="btnSearch">
-                            <asp:ScriptManager ID="ScriptManager1" runat="server">
-                            </asp:ScriptManager>
-                            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" class="find">
-                                <ContentTemplate>
-                                    <asp:TextBox ID="txtSearch" runat="server" placeholder="SEARCH" class="form-input"></asp:TextBox>
-                                    <asp:LinkButton runat="server" ID="btnSearch" ToolTip="Search" CssClass="find-icon" Text='<i class="fas fa-search"></i>' OnClick="btnSearch_OnClick" />
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </asp:Panel>
-                    </li>
-
-                    <li class="header__menu--items">
-                        <a href="SignIn.aspx">sign in</a>
-                    </li>
-                    <li class="header__menu--items ">
-                        <a href="OrderLists.aspx">Account</a>
-                    </li>
-                    <li class="header__menu--items">
-                        <asp:LinkButton ID="btnSignOut" runat="server" CausesValidation="false" OnClick="btnSignOut_Click">Sign out</asp:LinkButton>
-                    </li>
-                    <li class="header__menu--items ">
-
-                        <a href="Cart.aspx">
-                            <span class="navUser-item-cartLabel">My Cart</span>
-                            <asp:Label ID="lbCartQuantity" runat="server" OnLoad="Page_Load" Text="(0)" class="cart-quantity"></asp:Label>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner">
+                    <i class="ti-shopping-cart-full"></i>
+                    <p>FREE UK SHIPPING FOR ORDERS OF £95 OR MORE. ADD £36.00 TO YOUR ORDER TO QUALIFY FOR FREE SHIPPING WITHIN THE UK.</p>
+                </div>
+            </header>
+            <!-- end: header -->
+            <!-- Begin: body -->
+            <div id="body">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
-            <div id="footer" class="footer">
-                <div class="form--support">
-                    <asp:TextBox ID="txtEmail" runat="server" placeholder="SUBSCRIBE TO OUR NEWSLETTER"></asp:TextBox>
-                    <asp:Button ID="btnSubcribe" runat="server" Text="SUBSCRIBE" OnClick="btnSubcribe_Click" />
+            <!-- End: body -->
+            <!--begin:  footer -->
+            <div id="footer">
+                <div class="form--support s-col-full">
+                    <asp:TextBox class="s-col-full" ID="txtEmail" ClientIDMode="Static" runat="server" placeholder="SUBSCRIBE TO OUR NEWSLETTER"></asp:TextBox>
+                    <asp:Button class="btn s-col-full" ID="btnSubcribe" runat="server" Text="SUBSCRIBE" OnClick="btnSubcribe_Click" />
+                    <%--<input class="s-col-full" type="text" placeholder="SUBSCRIBE TO OUR NEWSLETTER" />
+                        <button class="btn s-col-full">SUBSCRIBE</button>--%>
                 </div>
-                <div class="social-list">
-                    <a href="#"><i class="ti-facebook"></i></a>
-                    <a href="#"><i class="ti-instagram"></i></a>
-                    <a href="#"><i class="ti-youtube"></i></a>
-                    <a href="#"><i class="ti-skype"></i></a>
-                    <a href="#"><i class="ti-twitter"></i></a>
-                    <a href="#"><i class="ti-vimeo-alt"></i></a>
-                </div>
+                <ul class="socialList">
+                    <li class="socialItem">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li class="socialItem">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li class="socialItem">
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </li>
+                    <li class="socialItem">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                </ul>
                 <p class="copy-right">
-                    Powered by
-                <a href="https://github.com/DoVuDung">Andy Do</a> & <a href="https://github.com/dqhuy153">Dang Quang
-                    Huy</a>
+                    Powered by <a href="https://github.com/DoVuDung">Andy Do</a>
+                    & <a href="https://github.com/dqhuy153">Dang Quang Huy</a> &
+                <a href="https://github.com/Duonglam44">Lam</a>
                 </p>
                 <br />
                 <div class="more--info">
                     <ul class="more--info__items">
-                        <li class="more--info__items--bottom"><a href="#">About Us</a></li>
-                        <li class="more--info__items--bottom"><a href="#">Corporate Concience</a></li>
-                        <li class="more--info__items--bottom"><a href="#">Delivery</a></li>
-                        <li class="more--info__items--bottom"><a href="#">Returns</a></li>
-                        <li class="more--info__items--bottom"><a href="#">Size</a></li>
-                        <li class="more--info__items--bottom"><a href="#">Privacy</a></li>
-                        <li class="more--info__items--bottom"><a href="#">Legal</a></li>
-                        <li class="more--info__items--bottom"><a href="#">Gift Certificate</a></li>
-                        <li class="more--info__items--bottom"><a href="#">Recruitment</a></li>
+                        <li class="more--info__items--bottom">
+                            <a href="#">About Us</a>
+                        </li>
+                        <li class="more--info__items--bottom">
+                            <a href="#">Corporate Concience</a>
+                        </li>
+                        <li class="more--info__items--bottom">
+                            <a href="#">Delivery</a>
+                        </li>
+                        <li class="more--info__items--bottom">
+                            <a href="#">Returns</a>
+                        </li>
+                        <li class="more--info__items--bottom">
+                            <a href="#">Size</a>
+                        </li>
+                        <li class="more--info__items--bottom">
+                            <a href="#">Privacy</a>
+                        </li>
+                        <li class="more--info__items--bottom">
+                            <a href="#">Legal</a>
+                        </li>
+                        <li class="more--info__items--bottom">
+                            <a href="#">Gift Certificate</a>
+                        </li>
+                        <li class="more--info__items--bottom">
+                            <a href="#">Recruitment</a>
+                        </li>
                     </ul>
                 </div>
+                <!-- Thay thằng em bằng messager facebook -->
                 <div class="question--mark">
                     <p>?</p>
                 </div>
             </div>
+            <!-- end: header -->
         </div>
     </form>
 </body>

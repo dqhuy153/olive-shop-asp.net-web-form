@@ -133,7 +133,7 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" defaultbutton="btnDangNhap">
         <div>
             <div class="adlogin-container">
             <!--<p style="text-align: center; font-size: 30px; font-weight: bold; color: #262626; margin-bottom: 20px">Đăng nhập dành cho Admin</p>
@@ -141,7 +141,15 @@
             <div class="content-container">
                 <div class="content-header">
                     <p>Login</p>
-                    <asp:Button ID="btnDangKi" runat="server" Text="Register" OnClick="btnDangKi_Click" ToolTip="You are not allowed to register as an administrator. To register, please log in as an administrator, then go to the admin account manager to continue" />
+                    <asp:Button
+                        ID="btnDangKi"
+                        runat="server"
+                        Text="Register"
+                        OnClick="btnDangKi_Click"
+                        OnClientClick="alert('You are not allowed to register as an administrator. To register, please log in as an administrator, then go to the admin account manager to continue'); return false;"
+                        ToolTip="You are not allowed to register as an administrator. To register, please log in as an administrator, then go to the admin account manager to continue" 
+                        CausesValidation="false"
+                        />
                 </div>
                 <div class="content-body">
                     <div class="content-body-header">

@@ -2,225 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Olive - Register</title>
-    <style>
-        a,
-        p,
-        span,
-        label,
-        button,
-        select,
-        input {
-            font-family: "Ubuntu", sans-serif;
-            color: #555;
-            font-size: 1.4rem;
-        }
-
-        html {
-            font-size: 62.5%;
-        }
-
-        .body {
-            max-width: 108rem;
-            width: 90%;
-            margin: 3rem auto;
-            padding: 3rem;
-        }
-
-        .register__nav {
-            font-size: 1.4rem;
-            text-transform: uppercase;
-        }
-
-            .register__nav a {
-                color: #bbb;
-            }
-
-                .register__nav a:hover {
-                    color: #555;
-                    transition: all 0.2s linear;
-                }
-
-            .register__nav span:first-of-type {
-                margin: 0.5rem;
-            }
-
-        .register__title {
-            text-align: center;
-            font-size: 1.7rem;
-            font-weight: 100;
-            text-transform: uppercase;
-            letter-spacing: 0.7rem;
-            word-spacing: 0.3rem;
-            margin: 2rem 0 4rem;
-        }
-
-        .register__content {
-            width: 80%;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .register__content--item {
-            width: 48%;
-            margin: 1.5rem 0;
-        }
-
-        .item__header--last {
-            margin-bottom: 1rem;
-        }
-
-        .register__content--item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-            .register__content--item-header p:last-of-type {
-                text-transform: uppercase;
-                font-size: 0.95rem;
-                color: #ccc;
-            }
-
-        .register__content--item input,
-        .register__content--item select {
-            width: 100%;
-            padding: 1rem;
-            margin: 1.2rem 0;
-            border: 1px solid #bbb;
-            border-radius: 0.3rem;
-            color: #111;
-        }
-
-        .register__content--radioList {
-            margin-top: 0.7rem;
-        }
-
-        .register__content--radio {
-            display: flex;
-            align-items: center;
-        }
-
-            .register__content--radio input {
-                width: 10% !important;
-                height: 2rem;
-                margin-right: 0.5rem;
-            }
-
-        .content--radio-last input {
-            width: 5% !important;
-        }
-
-        .content--item-confirmLetter {
-            width: 100%;
-        }
-
-        .content-checkbox {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            height: 1.5rem;
-            margin-top: 2.4rem;
-             margin-bottom: 3rem;
-             margin-left: 1rem;
-        }
-
-            .content-checkbox input {
-                width: 2rem !important;
-                height: 2rem;
-                margin-right: 1.4rem;
-                
-            }
-
-            .content-checkbox p {
-                font-size: 1.5rem;
-            }
-
-        .content--lbNotify {
-            font-size: 1.3rem;
-            color: #F19797;
-            word-spacing: 0.2rem;
-            margin-bottom: 1.5rem;
-            display: block !important;
-        }
-
-        .txt__error {
-            font-size: 1.3rem;
-            color: #F19797;
-            word-spacing: 0.2rem;
-        }
-        /* .txt__error[style*="inline"] {
-            font-size: 1.3rem;
-            color: #F19797;
-            word-spacing: 0.2rem;
-            margin-bottom: 1.5rem;
-            display: block !important;
-        }
-        */
-        .register__footer {
-            display: flex;
-            width: 80%;
-            margin: 5rem auto;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .register__btn {
-            background: #1D1919;
-            padding: 1.3rem 3.2rem;
-            border: none;
-            text-transform: uppercase;
-            font-weight: 100;
-            letter-spacing: 0.2rem;
-            color: white;
-            letter-spacing: 0.3rem;
-            font-size: 1.3rem;
-            cursor: pointer;
-            border-radius: 0.4rem;
-        }
-
-            .register__btn:hover {
-                border: 1px solid #858282;
-                color: #383838;
-                background: none;
-                transition: all 0.2s linear;
-            }
-
-        .register__footer p {
-            font-size: 1.3rem;
-            position: relative;
-            left: 9rem;
-        }
-
-        .register__footer i {
-            margin-left: 0.6rem;
-        }
-
-        @media screen and (max-width: 1080px) {
-            .register__content {
-                width: 100%;
-            }
-
-            .register__footer {
-                width: 100%;
-            }
-
-                .register__footer p {
-                    position: initial;
-                }
-        }
-
-        @media screen and (max-width: 768px) {
-            .register__content--item {
-                width: 100%;
-            }
-
-            .register__title {
-                margin-top: 4rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../Assets/css/Customer/Register.css" />
+    <script src="../Assets/js/Customer/Register.js" defer></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="body">
@@ -231,10 +14,11 @@
         </div>
         <p class="register__title">New account</p>
         <div class="register__content">
-            <div class="register__content--item">
+            <div class="register__content--item require">
                 <div class="register__content--item-header">
-                    <p>Username</p>
+                    <p>Email Address</p>
                     <p>Required</p>
+
                 </div>
                 <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
@@ -243,35 +27,39 @@
                     Display="Dynamic"
                     CssClass="txt__error">
                 </asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="valPassword" runat="server"
+
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
                     ControlToValidate="txtUsername"
-                    ErrorMessage='<i class="fas fa-times"></i> Minimum username length is 3'
-                    ValidationExpression=".{3}.*"
-                    Display="Dynamic"
-                    CssClass="txt__error" />
+                    ErrorMessage='<i class="fas fa-times"></i> You must enter a valid email.'
+                    ValidationExpression="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"
+                    CssClass="txt__error"
+                    Display="Dynamic">
+                </asp:RegularExpressionValidator>
+                <span class="warning"><i class="fas fa-times"></i> You must enter a valid email.</span>
                 <asp:Label ID="lbNotify" runat="server" Text="" CssClass="content--lbNotify"></asp:Label>
             </div>
 
-            <div class="register__content--item">
+            <div class="register__content--item require">
                 <div class="register__content--item-header">
                     <p>Password</p>
                     <p>Required</p>
                 </div>
                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                    ErrorMessage='<i class="fas fa-times"></i> You have to enter a password'
+                    ErrorMessage='<i class="fas fa-times"></i> You must enter a password.'
                     ControlToValidate="txtPassword"
                     Display="Dynamic"
                     CssClass="txt__error">
                 </asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
                     ControlToValidate="txtPassword"
-                    ErrorMessage='<i class="fas fa-times"></i> Minimum password length is 3'
-                    ValidationExpression=".{3}.*"
+                    ErrorMessage='<i class="fas fa-times"></i> Minimum password length is 6'
+                    ValidationExpression=".{6}.*"
                     Display="Dynamic"
                     CssClass="txt__error" />
+                <span class="warning"><i class="fas fa-times"></i> You must enter a password.</span>
             </div>
-            <div class="register__content--item">
+            <div class="register__content--item require">
                 <div class="register__content--item-header">
                     <p>Confirm Password</p>
                     <p>Required</p>
@@ -283,14 +71,15 @@
                     ControlToValidate="txtConfirmPassword"
                     Display="Dynamic" CssClass="txt__error">
                 </asp:CompareValidator>
+                <span class="warning"><i class="fas fa-times"></i> You must enter a password.</span>
             </div>
-            <div class="register__content--item">
+            <div class="register__content--item require">
                 <p>Collection Preference</p>
                 <div class="register__content--radioList">
                     <div class="register__content--radio">
                         <input
                             type="radio"
-                            id="Womanswear"
+   
                             name="collection"
                             value="womenswear" />
                         <label for="male">Womenswear</label><br />
@@ -298,7 +87,7 @@
                     <div class="register__content--radio">
                         <input
                             type="radio"
-                            id="Womanswear"
+ 
                             name="collection"
                             value="menswear" />
                         <label for="male">Menswear</label><br />
@@ -306,7 +95,7 @@
                     <div class="register__content--radio">
                         <input
                             type="radio"
-                            id="Womanswear"
+        
                             name="collection"
                             value="both"
                             class="register__content--radio" />
@@ -314,32 +103,34 @@
                     </div>
                 </div>
             </div>
-            <div class="register__content--item">
+            <div class="register__content--item require">
                 <div class="register__content--item-header">
                     <p>First Name</p>
                     <p>Required</p>
                 </div>
                 <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                    ErrorMessage='<i class="fas fa-times"></i> You have to enter your first name'
+                    ErrorMessage='<i class="fas fa-times"></i> The "First Name" field cannot be blank.'
                     ControlToValidate="txtFirstName"
                     Display="Dynamic"
                     CssClass="txt__error">
                 </asp:RequiredFieldValidator>
+                <span class="warning"><i class="fas fa-times"></i> The "First Name" field cannot be blank.</span>
             </div>
 
-            <div class="register__content--item">
+            <div class="register__content--item require">
                 <div class="register__content--item-header">
                     <p>Last Name</p>
                     <p>Required</p>
                 </div>
                 <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
-                    ErrorMessage='<i class="fas fa-times"></i> You have to enter your last name'
+                    ErrorMessage='<i class="fas fa-times"></i> The "Last Name" field cannot be blank.'
                     ControlToValidate="txtLastName"
                     Display="Dynamic"
                     CssClass="txt__error">
                 </asp:RequiredFieldValidator>
+                <span class="warning"><i class="fas fa-times"></i> The "Last Name" field cannot be blank.</span>
             </div>
             <div class="register__content--item">
                 <div class="register__content--item-header">
@@ -357,47 +148,56 @@
                         Display="Dynamic">
                     </asp:RequiredFieldValidator>
             </div>
-            <div class="register__content--item">
+            <div class="register__content--item require">
                 <div class="register__content--item-header">
                     <p>Address</p>
                     <p>Required</p>
                 </div>
                 <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
-                    ErrorMessage='<i class="fas fa-times"></i> You have to enter your address'
+                    ErrorMessage='<i class="fas fa-times"></i> The "Address" field cannot be blank'
                     ControlToValidate="txtAddress"
                     Display="Dynamic"
                     CssClass="txt__error">
                 </asp:RequiredFieldValidator>
+                <span class="warning"><i class="fas fa-times"></i> The "Address" field cannot be blank.</span>
             </div>
-            <div class="register__content--item">
+            <div class="register__content--item require">
                 <div class="register__content--item-header">
                     <p>City & State</p>
                     <p>Required</p>
                 </div>
                 <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
-                    ErrorMessage='<i class="fas fa-times"></i> You have to enter your city & state'
+                    ErrorMessage='<i class="fas fa-times"></i> The "City & State" field cannot be blank.'
                     ControlToValidate="txtCity"
                     Display="Dynamic"
                     CssClass="txt__error">
                 </asp:RequiredFieldValidator>
+                <span class="warning"><i class="fas fa-times"></i> The "City & State" field cannot be blank.</span>
             </div>
 
-            <div class="register__content--item">
+            <div class="register__content--item require">
                 <div class="register__content--item-header">
-                    <p>Zip/Postcode</p>
+                    <p>Zip / Postcode</p>
                     <p>Required</p>
                 </div>
                 <asp:TextBox ID="txtZipCode" runat="server" TextMode="Number"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
-                    ErrorMessage='<i class="fas fa-times"></i> You have to enter your zip code'
+                    ErrorMessage='<i class="fas fa-times"></i> The "Zip / Postcode" field cannot be blank.'
                     ControlToValidate="txtZipCode"
                     Display="Dynamic"
                     CssClass="txt__error">
                 </asp:RequiredFieldValidator>
+                <span class="warning"><i class="fas fa-times"></i> The "Zip / Postcosde" field cannot be blank.</span>
             </div>
             <div class="register__content--item">
+                <div class="register__content--item-header">
+                    <span style="font-size: 1.2rem;">Company name / House name</span>         
+                </div>
+                <asp:TextBox ID="txtHouseName" runat="server"></asp:TextBox> 
+            </div>
+            <%--<div class="register__content--item">
                 <div class="register__content--item-header">
                     <p>Email</p>
                     <p>Required</p>
@@ -416,19 +216,20 @@
                     CssClass="txt__error"
                     Display="Dynamic">
                 </asp:RegularExpressionValidator>
-            </div>
-            <div class="register__content--item">
+            </div>--%>
+            <div class="register__content--item require">
                 <div class="register__content--item-header">
                     <p>Phone Number</p>
                     <p>Required</p>
                 </div>
                 <asp:TextBox ID="txtPhoneNumber" runat="server" TextMode="Number"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server"
-                    ErrorMessage='<i class="fas fa-times"></i> You have to enter your phone number'
+                    ErrorMessage='<i class="fas fa-times"></i> The "Phone Number" field cannot be blank.'
                     ControlToValidate="txtFirstName"
                     Display="Dynamic"
                     CssClass="txt__error">
                 </asp:RequiredFieldValidator>
+                <span class="warning"><i class="fas fa-times"></i> The "Phone Number" field cannot be blank.</span>
             </div>
             <div class="register__content--item content--item-confirmLetter">
                 <div class="register__content--item-header item__header--last">

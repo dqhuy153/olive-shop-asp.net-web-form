@@ -50,7 +50,6 @@ namespace fashionShop.Admin
 
                 ShowAddressList();
             }
-
         }
 
         protected void ShowAddressList()

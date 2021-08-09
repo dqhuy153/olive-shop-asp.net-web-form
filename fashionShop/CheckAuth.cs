@@ -58,5 +58,18 @@ namespace fashionShop
             }
             #endregion
         }
+
+        public static DataTable GetInfoAccount(bool isAdmin)
+        {
+            string sessionName = isAdmin ? "usernameAD" : "username";
+            string username = System.Web.HttpContext.Current.Session[sessionName].ToString();
+            DataAccess dataAccess = new DataAccess();
+            dataAccess.MoKetNoiCSDL();
+
+            string sqlAccount = "SELECT * FROM ACCOUNT WHERE USERNAME = N'" + username + "'";
+            DataTable dtAccount = dataAccess.LayBangDuLieu(sqlAccount);
+
+            return dtAccount;
+        }
     }
 }

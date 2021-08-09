@@ -39,29 +39,36 @@ namespace fashionShop
 
             //cart quantity
             DataTable cart = CartStorage.getDetailCart();
-            lbCartQuantity.Text = $"({cart.Rows.Count})";
+            lbCartQuantity.Text = $"{cart.Rows.Count}";
 
-            //for user not login
-            //if(Session["username"] == null)
-            //{
-            //    if (Session["cart"] != null)
-            //    {
-            //        DataTable cart = Session["cart"] as DataTable;
-            //        lbCartQuantity.Text = $"({cart.Rows.Count})";
-            //    }
-            //}
-            //for user logged in
-            //else
-            //{
-            //    //string sqlCart = "SELECT COUNT(*) AS NUMBER_IN_CART FROM CART_DETAIL CD, ACCOUNT A WHERE CD.ID_ACCOUNT = A.ID_ACCOUNT AND USERNAME = N'" + Session["username"].ToString() + "'";
-            //    //DataTable dtCart = dataAccess.LayBangDuLieu(sqlCart);
-            //    if(Cache[$"{Session["username"].ToString()}-cart"] != null)
-            //    {
-            //        DataTable cart = Cache[$"{Session["username"].ToString()}-cart"] as DataTable;
-            //        lbCartQuantity.Text = $"({cart.Rows.Count})";
+            //cart review item
+            if(cart.Rows.Count > 0)
+            {
+                cartReviewEmpty.Visible = false;
+                cartReview.Visible = true;
 
-            //    }
-            //}
+                rptCartPreview.DataSource = cart;
+                rptCartPreview.DataBind();
+            }
+            else
+            {
+                cartReviewEmpty.Visible = true;
+                cartReview.Visible = false;
+            }
+
+            //show login logout btn
+            if (Session["username"] == null)
+            {
+                btnSignOut.Visible = false;
+                btnAccount.Visible = false;
+            }
+            else
+            {
+                btnSignIn.Visible = false;
+                DataTable dtAccount = CheckAuth.GetInfoAccount(false);
+                txtEmail.Text = dtAccount.Rows[0]["EMAIL"].ToString();
+            }
+
             dataAccess.DongKetNoiCSDL();
           
         }
@@ -78,7 +85,7 @@ namespace fashionShop
             //Response.Cookies.Clear();
             //Response.Cache.SetNoStore();
             //Response.CacheControl = "no-cache";
-            Response.Redirect("Home.aspx");
+            Response.Redirect("SignIn.aspx?action=logout");
         }
 
         protected void btnSubcribe_Click(object sender, EventArgs e)
@@ -99,5 +106,12 @@ namespace fashionShop
                 lbCartQuantity.Text = value;
             }
         }
+
+        public string CartQuantityHref
+        {
+            get { return cartQuantityLink.HRef; }
+            set { cartQuantityLink.HRef = value; }
+        }
+        
     }
 }

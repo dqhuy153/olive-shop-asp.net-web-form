@@ -1,0 +1,300 @@
+﻿.body {
+    max-width: 125rem;
+    width: 90%;
+    margin: 3rem auto;
+    padding: 3rem;
+    font-family: "Ubuntu", sans-serif;
+    color: #555;
+    font-size: var(--font-size-content);
+}
+
+.body input {
+    font-size: var(--font-size-content)
+}
+
+/*.account__map {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+    .account__nav a,
+    .account__map a,
+    .account__map--separate {
+        color: #bbb;
+    }
+
+        .account__nav a:hover,
+        .account__map a:hover {
+            color: #555;
+            transition: all 0.2s linear;
+        }
+
+.account__map--separate {
+    margin: 0 0.8rem;
+}
+
+.account__nav span:first-of-type {
+    margin: 0.5rem;
+}
+
+.account__title {
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 0.7rem;
+    word-spacing: 0.3rem;
+    margin: 2rem 0 4rem;
+    margin-top: 4rem;
+}
+
+.account__nav {
+    width: 50%;
+    min-width: 55rem;
+    margin: 2rem auto;
+}
+
+.account__nav--items {
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.5px;
+}
+
+.account__item-selected a {
+    color: #555;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #555;
+}
+
+.account__content {
+    width: 100%;
+    margin: 2rem auto;
+}
+*/
+
+.updateAccount__content {
+    width: 80%;
+    margin: 5rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.updateAccount__content--item {
+    width: 48%;
+    margin: 1.5rem 0;
+}
+
+.updateAccount__content--item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+    .updateAccount__content--item-header p:last-of-type {
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        color: #ccc;
+    }
+
+.updateAccount__content--item input {
+    width: 100%;
+    padding: 1rem;
+    margin: 1.2rem 0;
+    border: 1px solid #bbb;
+    border-radius: 0.3rem;
+}
+
+.updateAccount__content--radioList {
+    margin-top: 0.7rem;
+}
+
+.content--radio-last {
+    margin-top: 1rem;
+}
+
+    .content--radio-last input {
+        width: 3%;
+    }
+
+.updateAccount__content--radio {
+    display: flex;
+    align-items: center;
+}
+
+    .updateAccount__content--radio input {
+        width: 7% !important;
+        height: 2rem;
+        margin-right: 0.5rem;
+    }
+
+.updateAccount__error {
+    font-size: 1.3rem;
+    color: rgb(241, 151, 151);
+    word-spacing: 0.2rem;
+}
+
+.updateAccount__footer {
+    display: flex;
+    width: 80%;
+    margin: 5rem auto;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.updateAccount__btn {
+    background: rgb(29, 25, 25);
+    padding: 1.3rem 3.2rem;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 100;
+    letter-spacing: 0.2rem;
+    color: white;
+    letter-spacing: 0.3rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    border-radius: 0.4rem;
+}
+
+    .updateAccount__btn:hover {
+        border: 1px solid rgb(133, 130, 130);
+        color: rgb(56, 56, 56);
+        background: none;
+        transition: all 0.2s linear;
+    }
+
+.updateAccount__footer p {
+    font-size: 1.3rem;
+    position: relative;
+    left: 9rem;
+}
+
+.updatePassword {
+    width: 100%;
+    margin: 4.5rem 0 5rem;
+}
+
+    .updatePassword p {
+        font-size: 1.6rem;
+        font-family: "Spectral", sans-serif;
+        font-style: italic;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .updatePassword hr {
+        border: 1px solid #eee;
+    }
+
+.updateAccount__error {
+    font-size: 1.3rem;
+    color: rgb(241, 151, 151);
+    word-spacing: 0.2rem;
+}
+
+.updateAccount__footer i {
+    margin-left: 0.6rem;
+}
+
+.content--lbNotify {
+    font-size: 1.4rem;
+    color: #F19797;
+    word-spacing: 0.2rem;
+    margin-bottom: 1.5rem;
+    display: block !important;
+}
+
+.txt__error {
+    font-size: var(--font-size-content);
+    color: #F19797;
+    word-spacing: 0.2rem;
+    margin-bottom: 1.5rem;
+}
+@media screen and (max-width: 1080px) {
+    .body{
+        padding: 2rem 2rem 0rem;
+        width: 95%;
+    }
+    .update__content {
+        width: 100%;
+    }
+
+    .updateAccount__content{
+        width: 100%;
+        
+    }
+
+    .updateAccount__footer {
+        width: 100%;
+    }
+
+        .updateAccount__footer p {
+            position: initial;
+        }
+}
+
+@media screen and (max-width: 768px) {
+    .body {
+        padding: 1rem 2rem 0rem;
+        width: 100%;
+    }
+
+    /*.account__nav--items {
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .account__nav {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .account__nav--item {
+        padding: 1rem;
+    }*/
+
+    .updateAccount__content{
+        flex-direction: column;
+        margin-bottom: 0rem;
+    }
+    .updateAccount__content--item{
+        width: 100%;
+    }
+    .updateAccount__title {
+        margin-top: 4rem;
+    }
+
+    .updateAccount__footer {
+        flex-direction: column;
+        margin: 2rem 0;
+    }
+
+    .updateAccount__btn {
+        width: 100%;
+        margin-bottom: 5rem;
+    }
+}
+
+@media screen and (max-width: 414px) {
+    .body {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 0;
+    }
+
+    .update__footer div {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .update__btn {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .cancel__btn {
+        width: 100%;
+    }
+}

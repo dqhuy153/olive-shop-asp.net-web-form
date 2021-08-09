@@ -1,0 +1,462 @@
+﻿#lbEmptyCart {
+    font-size: 1.2rem !important;
+    padding: 2rem 0rem;
+    display: block;
+    
+}
+
+.cart__wrapper {
+    width: 120rem;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1rem 2rem 4rem;
+}
+
+    .cart__wrapper .cart__header .breadcrumbs {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+        .cart__wrapper .cart__header .breadcrumbs .breadcrumb {
+            font-size: 1.1rem;
+            font-weight: 400;
+            padding-right: 1rem;
+            text-align: center;
+        }
+            .cart__wrapper .cart__header .breadcrumbs .breadcrumb > a {
+                color: #ccc;
+                display: block;
+                line-height: 1.3;
+                text-transform: uppercase;
+            }
+            .cart__wrapper .cart__header .breadcrumbs .breadcrumb:last-child > a {
+                border-left: 1px solid #ccc;
+                padding-left: 1rem;
+                color: #333 !important;
+            }
+
+    .cart__wrapper .cart__main {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-top: 2rem;
+    }
+
+        .cart__wrapper .cart__main .cartContent {
+            width: 100%;
+            margin-right: 1rem;
+        }
+
+            .cart__wrapper .cart__main .cartContent table {
+                width: 100%;
+            }
+
+                .cart__wrapper .cart__main .cartContent table thead,
+                .cart__wrapper .cart__main .cartContent table tbody {
+                    width: 100%;
+                }
+                    .cart__wrapper .cart__main .cartContent table thead tr th{
+                        font-weight: 500 !important;
+                    }
+                    .cart__wrapper .cart__main .cartContent table thead tr,
+                    .cart__wrapper .cart__main .cartContent table tbody tr {
+                        border-bottom: 1px solid #cacaca;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .cart__wrapper .cart__main .cartContent table thead th,
+                    .cart__wrapper .cart__main .cartContent table thead td,
+                    .cart__wrapper .cart__main .cartContent table tbody th,
+                    .cart__wrapper .cart__main .cartContent table tbody td {
+                        text-align: center;
+                    }
+
+                .cart__wrapper .cart__main .cartContent table .cart__head {
+                    padding: 0 1rem;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                }
+
+                .cart__wrapper .cart__main .cartContent table .item__img {
+                    padding: 1rem 0;
+                }
+                    .cart__wrapper .cart__main .cartContent table .item__img img {
+                        max-width: 100%;
+                        max-height: 100%;
+                    }
+                    .cart__wrapper .cart__main .cartContent table .item__info {
+                        width: 40%;
+                        text-align: left;
+                        padding: 0 2rem;
+                    }
+
+                    
+                    .cart__wrapper .cart__main .cartContent table .item__info p {
+                        font-size: 1.15rem;
+                        padding-top: 2rem;
+                    }
+                        .cart__wrapper .cart__main .cartContent table .item__info a {
+                            text-transform: uppercase;
+                            font-size: 1.3rem;
+                        }
+                        .cart__wrapper .cart__main .cartContent table .item__img,
+                        .cart__wrapper .cart__main .cartContent table .item__price,
+                        .cart__wrapper .cart__main .cartContent table .item__amount,
+                        .cart__wrapper .cart__main .cartContent table .item__total {
+                            width: 15%;
+                            font-size: 1.2rem;
+                            font-weight: 400;
+                        }
+                .cart__wrapper .cart__main .cartContent table .item__total span{
+                    font-weight: 500 !important;
+                    font-size: 1.4rem;
+                    margin-right: .5rem;
+                }
+                    .cart__wrapper .cart__main .cartContent table .item__amount > div > div {
+                        display: flex;
+                        /*justify-content: center;*/
+                        align-items: center;
+                    }
+
+                        .cart__wrapper .cart__main .cartContent table .item__amount > div input[type=number]::-webkit-inner-spin-button,
+                        .cart__wrapper .cart__main .cartContent table .item__amount > div input[type=number]::-webkit-outer-spin-button {
+                            -webkit-appearance: none;
+                            appearance: none;
+                        }
+
+                        .cart__wrapper .cart__main .cartContent table .item__amount > div input {
+                            width: 3rem;
+                            height: 3rem;
+                            border: none;
+                            outline: none;
+                            font-size: 1.3rem;
+                            font-weight: bold;
+                            text-align: center;
+                            margin: 0 .5rem;
+                        }
+
+                    .cart__wrapper .cart__main .cartContent table .item__amount > div a {
+                        width: 3rem;
+                        height: 3rem;
+                        outline: none;
+                        background: none;
+                        border: 1px solid #ccc;
+                        border-radius: 0.5rem;
+                        color: #202020;
+                        transition: all ease 0.3s;
+                        cursor: pointer;
+                        font-size: 1.2rem;
+                        display: block;
+                        font-size: 1rem !important;
+                        padding: .9rem;
+                        cursor: pointer;
+                    }
+
+                            .cart__wrapper .cart__main .cartContent table .item__amount > div a:hover {
+                                background-color: #000;
+                                color: #fff;
+                                border: 1px solid #000;
+                            }
+
+                    .cart__wrapper .cart__main .cartContent table .item__total i {
+                        
+                    }
+
+                        .cart__wrapper .cart__main .cartContent table .item__total i:hover {
+                            color: #ccc;
+                        }
+
+            .cart__wrapper .cart__main .cartContent ul .cart__total {
+                border-bottom: 1px solid #cccccc;
+            }
+
+            .cart__wrapper .cart__main .cartContent ul .cart__total-head {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+                .cart__wrapper .cart__main .cartContent ul .cart__total-head .cart__total-label,
+                .cart__wrapper .cart__main .cartContent ul .cart__total-head .cart__total-value {
+                    text-align: right;
+                    padding: 1.5rem 0;
+                }
+
+                    .cart__wrapper .cart__main .cartContent ul .cart__total-head .cart__total-label p,
+                    .cart__wrapper .cart__main .cartContent ul .cart__total-head .cart__total-value p {
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                    }
+
+                .cart__wrapper .cart__main .cartContent ul .cart__total-head .cart__total-label {
+                    width: 80%;
+                    padding-right: 1rem;
+                }
+
+                .cart__wrapper .cart__main .cartContent ul .cart__total-head .cart__total-value span {
+                    text-decoration: underline;
+                    font-size: 1.3rem;
+                    cursor: pointer;
+                }
+                #lbTotalCart {
+                    text-decoration: none !important;
+                }
+
+            .cart__wrapper .cart__main .cartContent ul .cart__total .cart__total-form {
+                width: 100%;
+                padding-bottom: 1.5rem;
+            }
+
+                .cart__wrapper .cart__main .cartContent ul .cart__total .cart__total-form input {
+                    width: 75%;
+                    height: 3rem;
+                    outline: none;
+                    padding-left: 0.5rem;
+                    color: #202020;
+                    border: 1px solid #ccc;
+                    border-radius: 0.3rem;
+                }
+
+                .cart__wrapper .cart__main .cartContent ul .cart__total .cart__total-form button {
+                    width: 22%;
+                    height: 3rem;
+                    margin-left: 2%;
+                    text-align: center;
+                    background-color: #000;
+                    color: #fff;
+                    border: 1px solid #000;
+                    border-radius: 0.3rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.2rem;
+                    transition: all ease 0.2s;
+                }
+
+                    .cart__wrapper .cart__main .cartContent ul .cart__total .cart__total-form button:hover {
+                        color: #000;
+                        background-color: #fff;
+                    }
+
+            .cart__wrapper .cart__main .cartContent ul .cart__checkout {
+                padding: 1.5rem 0;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+                .cart__wrapper .cart__main .cartContent ul .cart__checkout .cartHome-btn {
+                    padding: 1.3rem 2rem;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    letter-spacing: 0.2rem;
+                    text-transform: uppercase;
+                    border: 1px solid #000;
+                    color: #202020;
+                    background-color: #fff;
+                    border-radius: 0.5rem;
+                }
+
+                .cart__wrapper .cart__main .cartContent ul .cart__checkout .checkout-btn {
+                    padding: 1.3rem 3rem;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    letter-spacing: 0.2rem;
+                    text-transform: uppercase;
+                    border: 1px solid #000;
+                    color: #fff;
+                    background-color: #000;
+                    border-radius: 0.5rem;
+                    transition: all ease 0.2s;
+                    cursor: pointer;
+                }
+
+                    .cart__wrapper .cart__main .cartContent ul .cart__checkout .checkout-btn:hover {
+                        color: #000;
+                        background-color: #fff;
+                    }
+
+        .cart__wrapper .cart__main .cartAbout__wrapper {
+            width: 25%;
+        }
+
+            .cart__wrapper .cart__main .cartAbout__wrapper h4 {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0 3rem 0;
+                position: relative;
+                font-size: 1.3rem;
+                letter-spacing: 0.1rem;
+            }
+
+                .cart__wrapper .cart__main .cartAbout__wrapper h4::after {
+                    content: "";
+                    width: 40%;
+                    height: 0.1rem;
+                    background-color: #000;
+                    position: absolute;
+                    bottom: 1rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+            .cart__wrapper .cart__main .cartAbout__wrapper .cartAbout {
+                border: 1px solid #f4f4f4;
+                border-top: none;
+            }
+
+                .cart__wrapper .cart__main .cartAbout__wrapper .cartAbout .aboutBox h5 {
+                    padding: 1rem 0 1rem 2rem;
+                    text-decoration: underline;
+                    background-color: #f4f4f4;
+                    font-size: 1.3rem;
+                    cursor: pointer;
+                }
+
+                .cart__wrapper .cart__main .cartAbout__wrapper .cartAbout .aboutBox .aboutBox-content {
+                    padding: 1rem;
+                    overflow: hidden;
+                }
+
+                    .cart__wrapper .cart__main .cartAbout__wrapper .cartAbout .aboutBox .aboutBox-content p {
+                        font-size: 1.2rem;
+                        font-weight: 400;
+                        line-height: 2rem;
+                    }
+
+@media only screen and (max-width: 830px) {
+    .cart__wrapper .cart__main {
+        flex-direction: column;
+    }
+
+        .cart__wrapper .cart__main .cartContent {
+            width: 100%;
+            margin: 0;
+        }
+
+        .cart__wrapper .cart__main .cartAbout__wrapper {
+            display: none;
+            margin: 0;
+        }
+}
+
+@media only screen and (max-width: 650px) {
+    .cart__wrapper .cart__main .cartContent {
+        border-top: 1px solid #ccc;
+    }
+
+        .cart__wrapper .cart__main .cartContent thead {
+            display: none;
+        }
+
+        .cart__wrapper .cart__main .cartContent tr {
+            /*flex-direction: column;*/
+            display: grid !important;
+            grid-template-areas:
+                'image info'
+                'image info'
+                'lbItemPrice price'
+                'lbQuantity amount'
+                'lbTotal total';
+            /*grid-template-rows: 50% auto;*/
+            grid-template-columns: 30% 70%;
+            height: auto;
+            padding-bottom: 2rem;           
+        }
+
+            /*.cart__wrapper .cart__main .cartContent tr td {
+                width: 100% !important;
+                padding: 1rem;
+            }*/
+    .cart__wrapper .cart__main .cartContent .item__img {
+        width: 60% !important;
+        grid-area: image;
+        justify-self: end;
+        padding: 2rem 0 !important;
+    }
+    #quantity-label,
+    #item-price-label,
+    #total-label {
+        display: block !important;
+        justify-self: end;
+        
+    }
+        #quantity-label p,
+        #item-price-label p,
+        #total-label p{
+            font-size: 1.1rem;
+            color: #aaa;
+
+        }
+        #quantity-label {
+            grid-area: lbQuantity;
+        }
+    #item-price-label {
+        grid-area: lbItemPrice;
+    }
+    #total-label {
+        grid-area: lbTotal;
+    }
+        .cart__wrapper .cart__main .cartContent .item__info {
+            grid-area: info;
+            width: 100% !important;
+            line-height: 1.3;
+            padding-right: 0 !important;
+
+        }
+            .cart__wrapper .cart__main .cartContent .item__info p {
+                padding-top: 1rem !important;
+            }
+            .cart__wrapper .cart__main .cartContent .item__price {
+                grid-area: price;
+            }
+        .cart__wrapper .cart__main .cartContent .item__amount{
+            grid-area: amount;
+        }
+            .cart__wrapper .cart__main .cartContent .item__total{
+                grid-area: total;
+                display: flex;
+                justify-content: space-between;
+                width: 100% !important;
+            }
+                .cart__wrapper .cart__main .cartContent .item__total i {
+                    font-size: 1.8rem;
+                }
+                .cart__wrapper .cart__main .cartContent .item__price,
+                .cart__wrapper .cart__main .cartContent .item__amount,
+                .cart__wrapper .cart__main .cartContent .item__total {
+                    padding: 1rem 2rem;
+                    text-align: left;
+                }
+        .cart__wrapper .cart__main .cartContent .item__price span,
+        .cart__wrapper .cart__main .cartContent .item__amount input,
+        .cart__wrapper .cart__main .cartContent .item__total span {
+            letter-spacing: 0 !important;
+        }
+
+        .cart__wrapper .cart__main .cartContent .item__amount > div {
+            display: block !important;
+        }
+                    .cart__wrapper .cart__main .cartContent .item__total span {
+                        font-weight: bold;
+                        font-size: 1.5rem !important;
+                    }
+
+                    .cart__wrapper .cart__main .cartContent .cart__checkout {
+                        flex-direction: column;
+                    }
+
+            .cart__wrapper .cart__main .cartContent .cart__checkout .checkout-btn,
+            .cart__wrapper .cart__main .cartContent .cart__checkout .cartHome-btn {
+                width: 100%;
+                text-align: center;
+                margin-top: 2rem;
+            }
+    .cart__wrapper .cart__main .cartContent ul .cart__total-head .cart__total-label {
+        width: 70% !important;
+    }
+}
+
+/*# sourceMappingURL=cart.css.map */

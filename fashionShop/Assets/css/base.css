@@ -1,21 +1,77 @@
 :root {
-    --white-color: #fff;
-    --black-color: #000;
-    --text-color: #333;
+    --font-size: 1.1rem;
+    --font-size-content: 1.2rem;
+    --display-flex: flex;
+    --justify-content-center: center;
+    --align-items--center: center;
+    --font-family-ubuntu: 'Ubuntu', sans-serif;
+    --color-black: #333;
+    --color-white: #fff;
+    --margin-center: 0 auto;
+    --display-none: none;
 }
 
 html {
-    /* 16px = 1 rem*/
     font-size: 62.5%;
     line-height: 1.6rem;
-    /*  chung chu khong co chan*/
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif !important;
     scroll-behavior: smooth;
 }
 
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.c-70 {
+    width: 100%;
+    /* width: 1200px; */
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+.c-80 {
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.c-90 {
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.p5 {
+    padding: 5rem 0;
+}
+
+.p3 {
+    padding: 3rem 0;
+}
+
+.p1 {
+    padding: 1rem 0;
+}
+
+
+/* Dùng cho grid, kích thước 1200 px - width */
 .grid {
-    width: 1200px;
+    width: 1300px;
     max-width: 100%;
     margin: 0 auto;
 }

@@ -75,7 +75,7 @@ namespace fashionShop.Customer
             }
             else if (currentPassword != "" && newPassword == "")
             {
-                if(currentPassword.Length < 3)
+                if(currentPassword.Length < 6)
                 {
                     lbNotify.Text = "Current password is invalid";
                     Response.Write("<script>alert(\"Current password is invalid\")</script>");
@@ -88,7 +88,7 @@ namespace fashionShop.Customer
             }
             else if (currentPassword == "" && newPassword != "")
             {
-                if (newPassword.Length < 3)
+                if (newPassword.Length < 6)
                 {
                     lbNotify.Text = "New password is invalid";
                     Response.Write("<script>alert(\"New password is invalid\")</script>");
@@ -99,7 +99,7 @@ namespace fashionShop.Customer
                     Response.Write("<script>alert(\"Current password is required\")</script>");
                 }
             }
-            else if (currentPassword.Length < 3)
+            else if (currentPassword.Length < 6)
             {
                 lbNotify.Text = "Current password is invalid";
                 Response.Write("<script>alert(\"Current password is invalid\")</script>");
@@ -107,10 +107,10 @@ namespace fashionShop.Customer
 
             else
             {
-                if (newPassword.Length < 3)
+                if (newPassword.Length < 6)
                 {
-                    lbNotify.Text = "Minimum password length is 3";
-                    Response.Write("<script>alert(\"Minimum password length is 3\")</script>");
+                    lbNotify.Text = "Minimum password length is 6";
+                    Response.Write("<script>alert(\"Minimum password length is 6\")</script>");
                 }
                 else
                 {

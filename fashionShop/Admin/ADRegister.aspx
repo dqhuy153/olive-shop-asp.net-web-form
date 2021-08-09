@@ -29,6 +29,7 @@
                 text-align: center;
                 margin: 0;
                 padding: 15px 0;
+                font-size: 1.8rem;
             }
             .content-header a {
                 display: block;
@@ -39,7 +40,9 @@
                 height: 100%;
                 text-align: center;
                 padding: 15px 0;
-                color: #171717;
+                color: #aaa;
+                font-size: 1.8rem;
+                cursor: not-allowed
             }
         .content-body {
             padding: 25px;
@@ -132,10 +135,10 @@
                 background: tomato;
                 transition: all 0.2s ease-in;
             }
-        .txterror {
+        .txterror[style*="inline"] {
             color: tomato;
-            display: block;
-            margin-top: 5px;
+            display: block !important;
+            margin-top: 1rem;
         }
         .lbThongBao {
             text-align: center;
@@ -174,7 +177,12 @@
                         <div>
                             <asp:TextBox ID="txtMatKhau" runat="server" placeholder="Password (*)" TextMode="Password"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Password is required" ControlToValidate="txtMatKhau" CssClass="txterror" Display="Dynamic"></asp:RequiredFieldValidator>
-
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
+                    ControlToValidate="txtMatKhau"
+                    ErrorMessage='Minimum password length is 6'
+                    ValidationExpression=".{6}.*"
+                    Display="Dynamic"
+                    CssClass="txterror" />
                         </div>
                     </div>
                     <div class="content-item content-txt">

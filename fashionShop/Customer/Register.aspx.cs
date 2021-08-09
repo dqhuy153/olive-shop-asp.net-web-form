@@ -46,7 +46,7 @@ namespace fashionShop.Customer
             cmd.Parameters.AddWithValue("@PASSWORD", txtPassword.Text);
             cmd.Parameters.AddWithValue("@FIRST_NAME", txtFirstName.Text.Trim());
             cmd.Parameters.AddWithValue("@LAST_NAME", txtLastName.Text.Trim());
-            cmd.Parameters.AddWithValue("@EMAIL", txtEmail.Text.Trim());
+            cmd.Parameters.AddWithValue("@EMAIL", txtUsername.Text.Trim());
             cmd.Parameters.AddWithValue("@PHONE", txtPhoneNumber.Text.Trim());
             cmd.Parameters.AddWithValue("@STREET", txtAddress.Text.Trim());
             cmd.Parameters.AddWithValue("@CITY", txtCity.Text.Trim());

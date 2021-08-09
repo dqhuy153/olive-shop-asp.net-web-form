@@ -189,3 +189,276 @@ namespace fashionShop.Admin
 
     }
 }
+
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <div class="header" id="header">
+                <ul class="header__menu">
+                    <li class="header__menu--items main--logo margin-left-64">
+                        <a href="Home.aspx">olive
+                        </a>
+                    </li>
+                    <li class="header__menu--items margin-left-32">
+                        <a href="Products.aspx">new <i class="fas fa-chevron-down"></i></a>
+                        <ul class="subnav">
+                            <li class="navPage-subMenu-item-parent">
+                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx">All New</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women">Women</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=men">Men</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="header__menu--items ">
+                        <a href="Products.aspx?mc=clothes&g=women">woman <i class="fas fa-chevron-down"></i></a>
+                        <ul class="subnav">
+                            <li class="navPage-subMenu-item-parent">
+                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=women">All
+                                Women</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="Products.aspx?mc=clothes&g=women&c=tops">Tops
+                                <i class="fas fa-chevron-right"></i>
+                                </a>
+                                <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-14" aria-hidden="true" tabindex="-1">
+                                    <ul class="navPage-subMenu-list subnav--child">
+                                        <li class="navPage-subMenu-item-parent">
+                                            <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=women&c=tops">tops</a>
+                                        </li>
+                                        <li class="navPage-subMenu-item-child">
+                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Basics">Basics</a>
+                                        </li>
+                                        <li class="navPage-subMenu-item-child">
+                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Blouses">Blouses</a>
+                                        </li>
+                                        <li class="navPage-subMenu-item-child">
+                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Sweatshirts">Sweatshirts</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Dresses">Dresses</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Knitwear">Knitwear</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Coats and Jackets">Coats &amp; Jackets</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child ">
+                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="Products.aspx?mc=clothes&g=women&c=Skirts and shorts">Skirts &amp; Shorts
+                                <i class="fas fa-chevron-right"></i>
+                                </a>
+                                <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-16" aria-hidden="true" tabindex="-1">
+                                    <ul class="navPage-subMenu-list subnav--child">
+                                        <li class="navPage-subMenu-item-parent">
+                                            <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=women&c=Skirts and shorts">Skirts &amp; Shorts</a>
+                                        </li>
+                                        <li class="navPage-subMenu-item-child">
+                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=skirts">Skirts</a>
+                                        </li>
+                                        <li class="navPage-subMenu-item-child">
+                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=shorts">Shorts</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="navPage-subMenu-item-child ">
+                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="Products.aspx?mc=clothes&g=women&c=Legwear">Legwear
+                                <i class="fas fa-chevron-right"></i>
+                                </a>
+                                <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-15" aria-hidden="true" tabindex="-1">
+                                    <ul class="navPage-subMenu-list subnav--child">
+                                        <li class="navPage-subMenu-item-parent">
+                                            <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=women&c=Legwear">Legwear</a>
+                                        </li>
+                                        <li class="navPage-subMenu-item-child">
+                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Jeans">Jeans</a>
+                                        </li>
+                                        <li class="navPage-subMenu-item-child">
+                                            <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Trousers">Trousers</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Dungarees">Dungarees</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Loungewear">Loungewear</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Embroidery">Embroidery</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Stripes">Stripes</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Utility">Utility</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Daisy Series">Daisy Series 🌼</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=women&c=Relax">Relax</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="header__menu--items">
+                        <a href="#">man <i class="fas fa-chevron-down"></i></a>
+                        <ul class="subnav">
+                            <li class="navPage-subMenu-item-parent">
+                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=clothes&g=men">All
+                                Men</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=men">New</a>
+                            </li>
+                            <asp:Repeater ID="rptMenClothes" runat="server">
+                                <ItemTemplate>
+                                    <li class="navPage-subMenu-item-child">
+                                        <a class="navPage-subMenu-action navPages-action" href="Products.aspx?mc=clothes&g=men&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
+                                    </li>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </ul>
+                    </li>
+                    <li class="header__menu--items">
+                        <a href="Products.aspx?mc=accessories">Accessories <i class="fas fa-chevron-down"></i></a>
+                        <ul class="subnav">
+                            <li class="navPage-subMenu-item-parent">
+                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max" href="Products.aspx?mc=accessories">All
+                                Accessories</a>
+                            </li>
+                            <li class="navPage-subMenu-item-child">
+                                <a class="navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu" href="Products.aspx?mc=accessories&g=women">Women
+                                    <i class=" fas fa-chevron-right "></i>
+                                </a>
+                                <div class=" navPage-subMenu navPage-subMenu-horizontal " id=" navPages-371 " aria-hidden=" true " tabindex=" -1 ">
+                                    <ul class=" navPage-subMenu-list subnav--child ">
+                                        <asp:Repeater ID="rptWomenAccessories" runat="server">
+                                            <ItemTemplate>
+                                                <li class=" navPage-subMenu-item-child ">
+                                                    <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&g=women&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class=" navPage-subMenu-item-child ">
+                                <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&g=men">Men</a>
+                            </li>
+                            <li class=" navPage-subMenu-item-child ">
+                                <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&c=Apothecary">Apothecary</a>
+                            </li>
+                            <li class=" navPage-subMenu-item-child ">
+                                <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=accessories&c=Home">Home</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class=" header__menu--items ">
+                        <a href="Products.aspx?mc=jewllery">Jewellery <i class=" fas fa-chevron-down "></i></a>
+                        <ul class=" subnav ">
+                            <li class=" navPage-subMenu-item-parent ">
+                                <a class=" navPage-subMenu-action navPages-action navPages-action-depth-max " href="Products.aspx?mc=jewellery">All Jewellery</a>
+                            </li>
+                            <li class=" navPage-subMenu-item-child ">
+                                <a class=" navPage-subMenu-action navPages-action navPages-action-depth-max has-subMenu " href="Products.aspx?mc=jewellery&g=women">Women
+                            <i class="fas fa-chevron-right "></i>
+                                </a>
+                                <div class="navPage-subMenu navPage-subMenu-horizontal" id="navPages-383" aria-hidden="true" tabindex="-1">
+                                    <ul class="navPage-subMenu-list subnav--child">
+                                        <asp:Repeater ID="rptWomenJewellery" runat="server">
+                                            <ItemTemplate>
+                                                <li class=" navPage-subMenu-item-child ">
+                                                    <a class=" navPage-subMenu-action navPages-action" href="Products.aspx?mc=jewellery&g=women&c=<%# Eval("CATEGORY_NAME") %>"><%# Eval("CATEGORY_NAME") %></a>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="header__menu--items search">
+                        <asp:Panel ID="panelSearch" runat="server" DefaultButton="btnSearch">
+                            <asp:ScriptManager ID="ScriptManager1" runat="server">
+                            </asp:ScriptManager>
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" class="find">
+                                <ContentTemplate>
+                                    <asp:TextBox ID="txtSearch" runat="server" placeholder="SEARCH" class="form-input"></asp:TextBox>
+                                    <asp:LinkButton runat="server" ID="btnSearch" ToolTip="Search" CssClass="find-icon" Text='<i class="fas fa-search"></i>' OnClick="btnSearch_OnClick" />
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </asp:Panel>
+                    </li>
+
+                    <li class="header__menu--items">
+                        <a href="SignIn.aspx">sign in</a>
+                    </li>
+                    <li class="header__menu--items ">
+                        <a href="OrderLists.aspx">Account</a>
+                    </li>
+                    <li class="header__menu--items">
+                        <asp:LinkButton ID="btnSignOut" runat="server" CausesValidation="false" OnClick="btnSignOut_Click">Sign out</asp:LinkButton>
+                    </li>
+                    <li class="header__menu--items ">
+
+                        <a href="Cart.aspx">
+                            <span class="navUser-item-cartLabel">My Cart</span>
+                            <asp:Label ID="lbCartQuantity" runat="server" OnLoad="Page_Load" Text="(0)" class="cart-quantity"></asp:Label>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="footer" class="footer">
+                <div class="form--support">
+                    <asp:TextBox ID="txtEmail" runat="server" placeholder="SUBSCRIBE TO OUR NEWSLETTER"></asp:TextBox>
+                    <asp:Button ID="btnSubcribe" runat="server" Text="SUBSCRIBE" OnClick="btnSubcribe_Click" />
+                </div>
+                <div class="social-list">
+                    <a href="#"><i class="ti-facebook"></i></a>
+                    <a href="#"><i class="ti-instagram"></i></a>
+                    <a href="#"><i class="ti-youtube"></i></a>
+                    <a href="#"><i class="ti-skype"></i></a>
+                    <a href="#"><i class="ti-twitter"></i></a>
+                    <a href="#"><i class="ti-vimeo-alt"></i></a>
+                </div>
+                <p class="copy-right">
+                    Powered by
+                <a href="https://github.com/DoVuDung">Andy Do</a> & <a href="https://github.com/dqhuy153">Dang Quang
+                    Huy</a>
+                </p>
+                <br />
+                <div class="more--info">
+                    <ul class="more--info__items">
+                        <li class="more--info__items--bottom"><a href="#">About Us</a></li>
+                        <li class="more--info__items--bottom"><a href="#">Corporate Concience</a></li>
+                        <li class="more--info__items--bottom"><a href="#">Delivery</a></li>
+                        <li class="more--info__items--bottom"><a href="#">Returns</a></li>
+                        <li class="more--info__items--bottom"><a href="#">Size</a></li>
+                        <li class="more--info__items--bottom"><a href="#">Privacy</a></li>
+                        <li class="more--info__items--bottom"><a href="#">Legal</a></li>
+                        <li class="more--info__items--bottom"><a href="#">Gift Certificate</a></li>
+                        <li class="more--info__items--bottom"><a href="#">Recruitment</a></li>
+                    </ul>
+                </div>
+                <div class="question--mark">
+                    <p>?</p>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

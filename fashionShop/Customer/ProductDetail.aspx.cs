@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -23,15 +24,27 @@ namespace fashionShop.Customer
 
                 Server.HtmlDecode("&nbsp;");
 
+                //set link of mycart(0)
+                this.Master.CartQuantityHref = "Cart.aspx";
+
                 if (dtProduct != null && dtProduct.Rows.Count > 0)
                 {
-                    string[] arrImages = dtProduct.Rows[0]["IMAGES"].ToString().Split('|');
+                    //set page title
+                    pageTitle.InnerText = dtProduct.Rows[0]["PRODUCT_NAME"].ToString();
 
                     //show images
+                    string[] arrImages = dtProduct.Rows[0]["IMAGES"].ToString().Split('|');
+                    
+                    StringBuilder stringBuilder = new StringBuilder();
                     foreach (var img in arrImages)
                     {
-                        PanelImage.Controls.Add(new Image { ImageUrl = "~/Uploads/" + img.ToString(), CssClass = "product__view-img" });
+                        stringBuilder.Append("<div class=\"product__detail-img\">");
+                        stringBuilder.Append("<img src=\"../Uploads/" + img.ToString() + "\" alt=\"" + img.ToString() +"\">");
+                        stringBuilder.Append("</div>");
                     }
+
+                    PlaceHolderImages.Controls.Add(new Literal { Text = stringBuilder.ToString() });
+                    //PanelImage.Controls.Add(new Image { ImageUrl = "~/Uploads/" + img.ToString(), CssClass = "product__view-img" });
 
                     //show route
                     hplMainCategory.Text = dtProduct.Rows[0]["MAIN_CATEGORY_NAME"].ToString();
@@ -41,14 +54,14 @@ namespace fashionShop.Customer
                     hplGender.NavigateUrl = "Products.aspx?mc=" + dtProduct.Rows[0]["MAIN_CATEGORY_NAME"] + "&g=" + dtProduct.Rows[0]["GENDER_NAME"];
 
                     hplCategory.Text = dtProduct.Rows[0]["CATEGORY_NAME"].ToString();
-                    hplCategory.NavigateUrl = "Products.aspx?mc=" + dtProduct.Rows[0]["MAIN_CATEGORY_NAME"] + "&g=" + dtProduct.Rows[0]["GENDER_NAME"] + "&c=" + dtProduct.Rows[0]["CATEGORY_NAME"];
+                    hplCategory.NavigateUrl = "Products.aspx?mc=" + dtProduct.Rows[0]["MAIN_CATEGORY_NAME"] + "&g=" + dtProduct.Rows[0]["GENDER_NAME"] + "&c=" + dtProduct.Rows[0]["CATEGORY_NAME"].ToString().Replace(" & "," and ");
 
                     lbNameRoute.Text = dtProduct.Rows[0]["PRODUCT_NAME"].ToString();
 
                     //show product information
                     lbProductName.Text = dtProduct.Rows[0]["PRODUCT_NAME"].ToString();
                     lbPrice.Text = dtProduct.Rows[0]["PRICE"].ToString();
-                    lbProductInfo.Text = dtProduct.Rows[0]["INFORMATION"].ToString();
+                    lbProductInfo.InnerText = dtProduct.Rows[0]["INFORMATION"].ToString();
 
 
                     if (!IsPostBack)
@@ -59,7 +72,7 @@ namespace fashionShop.Customer
                         string sqlSize = "SELECT S, M, L ,XL, XXL, OVERSIZE FROM PRODUCT WHERE ID_PRODUCT = " + idProduct;
                         DataTable dtSize = dataAccess.LayBangDuLieu(sqlSize);
 
-                        ddlSize.Items.Insert(0, new ListItem("--Please Choose an Option--", "-1"));
+                        ddlSize.Items.Insert(0, new ListItem("-- Please Choose an Option --", "-1"));
                         foreach (DataColumn column in dtSize.Columns)
                         {
                             int sizeQuantiy = int.Parse(dtSize.Rows[0][column.ColumnName].ToString());
@@ -68,7 +81,7 @@ namespace fashionShop.Customer
                             {
                                 if (column.ColumnName == "OVERSIZE")
                                 {
-                                    ddlSize.Items.Add(new ListItem(String.Format("No Size \xA0\xA0 (Available: {0})", sizeQuantiy), column.ColumnName));
+                                    ddlSize.Items.Add(new ListItem(String.Format("One Size \xA0\xA0 (Available: {0})", sizeQuantiy), column.ColumnName));
                                 }
                                 else
                                 {
@@ -83,14 +96,7 @@ namespace fashionShop.Customer
                     //show info modal add to cart successful
                     imgModalAdd.ImageUrl = "~/Uploads/" + arrImages[0];
                     lbProductNameModalAdd.Text = dtProduct.Rows[0]["PRODUCT_NAME"].ToString();
-                    if(ddlSize.SelectedValue == "OVERSIZE")
-                    {
-                        lbSizeModalAdd.Text = "No size";
-                    }
-                    else
-                    {
-                        lbSizeModalAdd.Text = ddlSize.SelectedValue;
-                    }
+                    
                     lbQuantityModalAdd.Text = "1";
                     lbPriceModalAdd.Text = dtProduct.Rows[0]["PRICE"].ToString();
 
@@ -176,7 +182,7 @@ namespace fashionShop.Customer
                     Cache[$"{Session["username"]}-cart"] = cart;
                 }
 
-                this.Master.CartQuantity = $"({cart.Rows.Count})";
+                //this.Master.CartQuantity = $"({cart.Rows.Count})";
             }               
         }
 

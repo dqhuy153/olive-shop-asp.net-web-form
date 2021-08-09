@@ -1,0 +1,180 @@
+﻿
+.txt__error[style*="inline"] {
+    font-size:  var(--font-size);
+    color: #F19797;
+    word-spacing: 0.2rem;
+    margin-bottom: 1.5rem;
+    display: block !important;
+}
+.input .warning {
+    font-size: var(--font-size);
+    color: #F19797;
+    word-spacing: 0.2rem;
+    margin-bottom: 1.5rem;
+    display: none;
+}
+.warning-active {
+    display: block !important;
+}
+.body {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    margin: 20rem auto 10rem;
+    width: 68%;
+    min-width: 80rem;
+    padding: 0 1rem;
+    font-family: "Ubuntu", sans-serif;
+    color: #333;
+}
+
+    .body p {
+        font-weight: 400;
+    }
+
+.section__container {
+    width: 48%;
+}
+
+.section__header {
+    margin-bottom: 2rem;
+}
+
+    .section__header p {
+        font-weight: 600;
+        font-style: italic;
+        margin-bottom: 3rem;
+        font-size: 1.7rem;
+        font-family: "Spectral", serif !important;
+    }
+
+    .section__header hr {
+        border: 1px #eee solid;
+    }
+
+.section__content {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-size: 1.35rem;
+    word-spacing: 2px;
+}
+
+.section__newCustomer ul {
+    list-style: inside;
+    padding: 1.5rem;
+}
+
+.section__newCustomer li {
+    margin: 0.8rem;
+    font-size:  var(--font-size);
+}
+
+.section__btn {
+    background: none;
+    padding: 1.3rem 3.2rem;
+    border: 1px solid rgb(133, 130, 130);
+    text-transform: uppercase;
+    font-weight: 100;
+    letter-spacing: 0.2rem;
+    color: rgb(56, 56, 56);
+    font-size:  var(--font-size);
+    cursor: pointer;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+}
+
+    .section__btn:hover {
+        background: #1D1919;
+        color: white;
+        transition: all 0.2s linear;
+    }
+
+.section__signIn--content p {
+    font-size: 1.3rem;
+}
+
+.section__signIn--content input {
+    width: 85%;
+    padding: 0.8rem;
+    margin: 1.5rem 0;
+}
+
+.content-checkbox {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+    .content-checkbox input {
+        width: auto !important;
+        margin-right: .6rem;
+    }
+
+    .content-checkbox p {
+        font-size:  var(--font-size);
+    }
+
+.section__footer {
+    display: flex;
+    margin-top: 0.8rem;
+}
+
+.signIn__a {
+    font-size:  var(--font-size);
+    margin-left: 5rem;
+    color: #999;
+    font-style: italic;
+}
+
+    .signIn__a:hover {
+        color: #222;
+        transition: all 0.2s linear;
+    }
+
+.content--lbWarning {
+    font-size:  var(--font-size);
+    color: #F19797;
+    word-spacing: 0.2rem;
+    margin-bottom: 1.5rem;
+    display: block !important;
+}
+
+@media screen and (max-width: 768px) {
+    .body {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-width: 0rem;
+        margin: 3rem auto;
+    }
+
+    .section__container {
+        width: 85%;
+        margin: 4rem 0;
+        font-size: 1rem;
+    }
+
+    .section__newCustomer li {
+        font-size: 1.1rem;
+    }
+
+    .section__signIn--content input {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 414px){
+    .section__container{
+        width: 90%;
+    }
+    #signIn .section__footer {
+        flex-direction: column;
+    }
+    #signIn .section__footer a {
+        margin-top: 2rem;
+        margin-left: 0;
+    }
+}

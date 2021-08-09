@@ -1,123 +1,36 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer/CustomerMasterPage.Master" AutoEventWireup="true" CodeBehind="WishLists.aspx.cs" Inherits="fashionShop.Customer.WishLists" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        a,
-        p,
-        span,
-        label,
-        button {
-            font-family: "Ubuntu", sans-serif;
-            color: #555;
-            font-size: 1.4rem;
-        }
+    <title>Olive - Wish List</title>
+    <link href="../Assets/css/Customer/wishList.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../Assets/css/Customer/navRoute.css" />
+    <link href="../Assets/css/base.css" rel="stylesheet" />
+     <script type="text/javascript">
+        function Confirm() {
+            //tao hiden input
+            let confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
 
-        html {
-            font-size: 62.5%;
-        }
-
-        .body {
-            max-width: 125rem;
-            width: 90%;
-            margin: 3rem auto;
-            padding: 3rem;
-        }
-
-        .account__map {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-        }
-
-            .account__nav a,
-            .account__map a,
-            .account__map--separate {
-                color: #bbb;
+            //hien thi confirm dialog
+            if (confirm("Are you sure you want to delete this item?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+                return false;
             }
 
-                .account__nav a:hover,
-                .account__map a:hover {
-                    color: #555;
-                    transition: all 0.2s linear;
-                }
-
-        .account__map--separate {
-            margin: 0 0.8rem;
+            //gan hiden iput vao trang
+            document.forms[0].appendChild(confirm_value);
         }
-
-        .account__nav span:first-of-type {
-            margin: 0.5rem;
-        }
-
-        .account__title {
-            text-align: center;
-            font-size: 1.7rem;
-            font-weight: 100;
-            text-transform: uppercase;
-            letter-spacing: 0.7rem;
-            word-spacing: 0.3rem;
-            margin: 2rem 0 4rem;
-            margin-top: 4rem;
-        }
-
-        .account__nav {
-            width: 50%;
-            min-width: 55rem;
-            margin: 2rem auto;
-        }
-
-        .account__nav--items {
-            display: flex;
-            justify-content: space-between;
-            letter-spacing: 0.5px;
-        }
-
-        .account__item-selected a {
-            color: #555;
-            padding-bottom: 0.3rem;
-            border-bottom: 1px solid #555;
-        }
-
-        .account__content {
-            width: 80%;
-            margin: 5rem auto;
-        }
-
-        @media screen and (max-width: 1080px) {
-        }
-
-        @media screen and (max-width: 768px) {
-            .body {
-                padding: 1rem;
-            }
-
-            .account__nav--items {
-                flex-wrap: wrap;
-                width: 100%;
-                justify-content: center;
-            }
-
-            .account__nav {
-                width: 90%;
-                min-width: auto;
-            }
-
-            .account__nav--item {
-                width: 30%;
-                padding: 1rem;
-            }
-
-            .account__content {
-                width: 100%;
-            }
-        }
-    </style>
+     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="body">
         <div class="account__map">
             <a href="Home.aspx">Home</a>
             <span class="account__map--separate">|</span>
-            <a href="OrderList.aspx">Your account</a>
+            <a href="OrderLists.aspx">Your account</a>
             <span class="account__map--separate">|</span>
             <span>Wish lists</span>
         </div>
@@ -131,7 +44,7 @@
                     <a href="AddressBook.aspx">Address</a>
                 </li>
                 <li class="account__nav--item account__item-selected">
-                    <a href="WishLists.aspx">Wish Lists (0)</a>
+                    <a href="WishLists.aspx">Wish Lists <asp:Label ID="lbQuantityWishList" runat="server" Text="(0)"></asp:Label></a>
                 </li>
                 <li class="account__nav--item">
                     <a href="RecentlyViewed.aspx">Recently Viewed</a>
@@ -143,5 +56,31 @@
         </nav>
         <div class="account__content orders__content">
         </div>
+    </div>
+    <div class="product">
+        <asp:Repeater ID="rptProducts" runat="server">
+            <ItemTemplate>
+                <div class="product--show">
+                    <a href="ProductDetail.aspx?id=<%# Eval("ID_PRODUCT") %>">
+                        <div class="img--product">
+                            <img src="../Uploads/<%# Eval("IMAGES").ToString().Split('|')[0]%>" alt="">
+                            <img src="../Uploads/<%# Eval("IMAGES").ToString().Split('|').Length > 1 ? Eval("IMAGES").ToString().Split('|')[1] : Eval("IMAGES").ToString().Split('|')[0] %>" alt="">
+                        </div>
+                        <p class="name--product"><%# Eval("PRODUCT_NAME") %></p>
+                        <p class="cost--product">£<%# Eval("PRICE") %></p>
+                    </a>
+
+                    <p style="display: none" id="idProduct" runat="server"><%# Eval("ID_PRODUCT") %></p>
+                    <asp:Button
+                        ID="btnDelete"
+                        OnClick="btnDelete_Click"
+                        runat="server"
+                        CssClass="btn-delete"
+                        Text="Remove item"
+                        OnClientClick = "return Confirm()"
+                        />
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
 </asp:Content>

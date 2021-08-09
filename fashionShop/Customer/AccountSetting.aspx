@@ -1,288 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer/CustomerMasterPage.Master" AutoEventWireup="true" CodeBehind="AccountSetting.aspx.cs" Inherits="fashionShop.Customer.AccountSetting" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        a,
-        p,
-        span,
-        label,
-        button {
-            font-family: "Ubuntu", sans-serif;
-            color: #555;
-            font-size: 1.4rem;
-        }
-
-        html {
-            font-size: 62.5%;
-        }
-
-        .body {
-            max-width: 125rem;
-            width: 90%;
-            margin: 3rem auto;
-            padding: 3rem;
-        }
-
-        .account__map {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-        }
-
-            .account__nav a,
-            .account__map a,
-            .account__map--separate {
-                color: #bbb;
-            }
-
-                .account__nav a:hover,
-                .account__map a:hover {
-                    color: #555;
-                    transition: all 0.2s linear;
-                }
-
-        .account__map--separate {
-            margin: 0 0.8rem;
-        }
-
-        .account__nav span:first-of-type {
-            margin: 0.5rem;
-        }
-
-        .account__title {
-            text-align: center;
-            font-size: 1.7rem;
-            font-weight: 100;
-            text-transform: uppercase;
-            letter-spacing: 0.7rem;
-            word-spacing: 0.3rem;
-            margin: 2rem 0 4rem;
-            margin-top: 4rem;
-        }
-
-        .account__nav {
-            width: 50%;
-            min-width: 55rem;
-            margin: 2rem auto;
-        }
-
-        .account__nav--items {
-            display: flex;
-            justify-content: space-between;
-            letter-spacing: 0.5px;
-        }
-
-        .account__item-selected a {
-            color: #555;
-            padding-bottom: 0.3rem;
-            border-bottom: 1px solid #555;
-        }
-
-        .account__content {
-            width: 80%;
-            margin: 5rem auto;
-        }
-
-        .updateAccount__content {
-            width: 80%;
-            margin: 5rem auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .updateAccount__content--item {
-            width: 48%;
-            margin: 1.5rem 0;
-        }
-
-        .updateAccount__content--item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-            .updateAccount__content--item-header p:last-of-type {
-                text-transform: uppercase;
-                font-size: 0.95rem;
-                color: #ccc;
-            }
-
-        .updateAccount__content--item input {
-            width: 100%;
-            padding: 1rem;
-            margin: 1.2rem 0;
-            border: 1px solid #bbb;
-            border-radius: 0.3rem;
-        }
-
-        .updateAccount__content--radioList {
-            margin-top: 0.7rem;
-        }
-
-        .content--radio-last {
-            margin-top: 1rem;
-        }
-
-            .content--radio-last input {
-                width: 3%;
-            }
-
-        .updateAccount__content--radio {
-            display: flex;
-            align-items: center;
-        }
-
-            .updateAccount__content--radio input {
-                width: 7% !important;
-                height: 2rem;
-                margin-right: 0.5rem;
-            }
-
-        .updateAccount__error {
-            font-size: 1.3rem;
-            color: rgb(241, 151, 151);
-            word-spacing: 0.2rem;
-        }
-
-        .updateAccount__footer {
-            display: flex;
-            width: 80%;
-            margin: 5rem auto;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .updateAccount__btn {
-            background: rgb(29, 25, 25);
-            padding: 1.3rem 3.2rem;
-            border: none;
-            text-transform: uppercase;
-            font-weight: 100;
-            letter-spacing: 0.2rem;
-            color: white;
-            letter-spacing: 0.3rem;
-            font-size: 1.3rem;
-            cursor: pointer;
-            border-radius: 0.4rem;
-        }
-
-            .updateAccount__btn:hover {
-                border: 1px solid rgb(133, 130, 130);
-                color: rgb(56, 56, 56);
-                background: none;
-                transition: all 0.2s linear;
-            }
-
-        .updateAccount__footer p {
-            font-size: 1.3rem;
-            position: relative;
-            left: 9rem;
-        }
-
-        .updatePassword {
-            width: 100%;
-            margin: 4.5rem 0 5rem;
-        }
-
-            .updatePassword p {
-                font-size: 1.6rem;
-                font-family: "Spectral", sans-serif;
-                font-style: italic;
-                text-align: center;
-                margin-bottom: 2rem;
-            }
-
-            .updatePassword hr {
-                border: 1px solid #eee;
-            }
-
-        .updateAccount__error {
-            font-size: 1.3rem;
-            color: rgb(241, 151, 151);
-            word-spacing: 0.2rem;
-        }
-
-        .updateAccount__footer i {
-            margin-left: 0.6rem;
-        }
-
-        .content--lbNotify {
-            font-size: 1.4rem;
-            color: #F19797;
-            word-spacing: 0.2rem;
-            margin-bottom: 1.5rem;
-            display: block !important;
-        }
-        .txt__error {
-            font-size: 1.3rem;
-            color: #F19797;
-            word-spacing: 0.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        @media screen and (max-width: 1080px) {
-            .updateAccount__content {
-                width: 100%;
-            }
-
-            .updateAccount__footer {
-                width: 100%;
-            }
-
-                .updateAccount__footer p {
-                    position: initial;
-                }
-        }
-
-        @media screen and (max-width: 1200px) {
-            .address__items {
-                justify-content: space-between;
-            }
-
-            .address__item {
-                width: 48%;
-                margin-right: 0;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .body {
-                padding: 1rem;
-            }
-
-            .account__nav--items {
-                flex-wrap: wrap;
-                width: 100%;
-                justify-content: center;
-            }
-
-            .account__nav {
-                width: 90%;
-                min-width: auto;
-            }
-
-            .account__nav--item {
-                width: 30%;
-                padding: 1rem;
-            }
-
-            .account__content {
-                width: 100%;
-            }
-
-            .address__item {
-                width: 100%;
-            }
-
-            .updateAccount__content--item {
-                width: 100%;
-            }
-
-            .updateAccount__title {
-                margin-top: 4rem;
-            }
-        }
-    </style>
+    <title>Olive - Account Setting</title>
+    <link rel="stylesheet" href="../Assets/css/Customer/AccountSetting.css"/>
+    <link rel="stylesheet" href="../Assets/css/Customer/navRoute.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="body">
@@ -303,7 +24,7 @@
                     <a href="AddressBook.aspx">Address</a>
                 </li>
                 <li class="account__nav--item">
-                    <a href="WishLists.aspx">Wish Lists (0)</a>
+                    <a href="WishLists.aspx">Wish Lists</a>
                 </li>
                 <li class="account__nav--item">
                     <a href="RecentlyViewed.aspx">Recently Viewed</a>
@@ -346,7 +67,7 @@
                     <p>Email</p>
                     <p>Required</p>
                 </div>
-                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" Enabled="false"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
                     ErrorMessage='<i class="fas fa-times"></i> You have to enter your email'
                     ControlToValidate="txtEmail"
@@ -369,7 +90,7 @@
                 <asp:TextBox ID="txtPhoneNumber" runat="server" TextMode="Number"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server"
                     ErrorMessage='<i class="fas fa-times"></i> You have to enter your phone number'
-                    ControlToValidate="txtFirstName"
+                    ControlToValidate="txtPhoneNumber"
                     Display="Dynamic"
                     CssClass="txt__error">
                 </asp:RequiredFieldValidator>
@@ -399,6 +120,12 @@
                     <p>Required</p>
                 </div>
                 <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password"></asp:TextBox> 
+                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
+                    ControlToValidate="txtNewPassword"
+                    ErrorMessage='<i class="fas fa-times"></i> Minimum password length is 6'
+                    ValidationExpression=".{6}.*"
+                    Display="Dynamic"
+                    CssClass="txt__error" />
             </div>
             <div class="updateAccount__content--item">
                 <div class="updateAccount__content--item-header">
@@ -427,7 +154,7 @@
                     <div class="updateAccount__content--radio">
                         <input
                             type="radio"
-                            id="Womanswear"
+                            
                             name="collection"
                             value="womenswear" />
                         <label for="male">Womenswear</label><br />
@@ -435,7 +162,7 @@
                     <div class="updateAccount__content--radio">
                         <input
                             type="radio"
-                            id="Womanswear"
+
                             name="collection"
                             value="menswear" />
                         <label for="male">Menswear</label><br />
@@ -443,7 +170,7 @@
                     <div class="updateAccount__content--radio">
                         <input
                             type="radio"
-                            id="Womanswear"
+                          
                             name="collection"
                             value="both"
                             class="updateAccount__content--radio" />

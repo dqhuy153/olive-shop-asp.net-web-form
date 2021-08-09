@@ -14,28 +14,6 @@ namespace fashionShop.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //check xem nguoi dung co dang trong phien dang nhap
-            //if (Session["usernameAD"] == null)
-            //{
-            //    Response.Redirect("~/Admin/ADLogin.aspx");
-            //}
-            ////kiem tra tai khoan co bi khoa hay khong
-            //#region kiem tra tai khoan bi khoa
-            //string username = Session["usernameAD"].ToString();
-            //DataAccess dataAccess = new DataAccess();
-            //dataAccess.MoKetNoiCSDL();
-
-            //string sqlAccount = "SELECT * FROM ACCOUNT WHERE USERNAME = N'" + username + "'";
-            //DataTable dtAccount = dataAccess.LayBangDuLieu(sqlAccount);
-
-            //dataAccess.DongKetNoiCSDL();
-
-            //if (dtAccount.Rows[0]["STATUS"].ToString() == "0")
-            //{
-            //    Response.Redirect("ADLogin.aspx");
-            //}
-            //#endregion
-
             CheckAuth.CheckAdmin();
 
             if (!IsPostBack)
@@ -44,24 +22,19 @@ namespace fashionShop.Admin
                 {
                     string idGender = Request.QueryString.Get("idGender");
 
-                    if(int.Parse(idGender) == 1)
-                    {
-                        lblGender.Text = "Woman";
-                    }
-                    else if (int.Parse(idGender) == 2)
-                    {
-                        lblGender.Text = "Man";
-                    }
-                    else if (int.Parse(idGender) == 3)
-                    {
-                        lblGender.Text = "Unisex";
-                    }
-
                     DataAccess dataAccess = new DataAccess();
                     dataAccess.MoKetNoiCSDL();
 
+                    String sqlGender = "SELECT * FROM GENDER WHERE ID_GENDER = " + idGender;
+                    DataTable dtGender = dataAccess.LayBangDuLieu(sqlGender);
+
+                    if (dtGender != null && dtGender.Rows.Count > 0)
+                    {
+                        lblGender.Text = dtGender.Rows[0]["GENDER_NAME"].ToString();
+                    }
+
                     //Fill data vao dropdownlist
-                    string sqlCategory = "SELECT * FROM CATEGORY WHERE ID_GENDER ="+idGender;
+                    string sqlCategory = "SELECT * FROM CATEGORY WHERE ID_GENDER =" + idGender;
                     //string sqlSize = "SELECT * FROM SIZE";
 
                     SqlCommand cmdCategory = new SqlCommand(sqlCategory, dataAccess.getConnection());
@@ -104,47 +77,54 @@ namespace fashionShop.Admin
                     fileNamesToDtb += (fileName + "|");
                 }
                 fileNamesToDtb.Trim().TrimEnd('|');
-
-                if (String.IsNullOrEmpty(txtS.Text)
-                    && String.IsNullOrEmpty(txtM.Text)
-                    && String.IsNullOrEmpty(txtL.Text)
-                    && String.IsNullOrEmpty(txtXL.Text)
-                    && String.IsNullOrEmpty(txtXXL.Text)
-                    && String.IsNullOrEmpty(txtOversize.Text)
-                )
-                {
-                    Response.Write("<script>alert(\"You must add at least one size\")</script>");
-                }
-                else
-                {
-                    SqlCommand cmd = new SqlCommand("INSERT_PRODUCT", dataAccess.getConnection());
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@PRODUCT_NAME", txtTenSP.Text);
-                    cmd.Parameters.AddWithValue("@INFORMATION", txtInfo.Text);
-                    cmd.Parameters.AddWithValue("@IMAGES", fileNamesToDtb.Trim().TrimEnd('|'));
-                    cmd.Parameters.AddWithValue("@S", txtS.Text);
-                    cmd.Parameters.AddWithValue("@M", txtM.Text);
-                    cmd.Parameters.AddWithValue("@L", txtL.Text);
-                    cmd.Parameters.AddWithValue("@XL", txtXL.Text);
-                    cmd.Parameters.AddWithValue("@XXL", txtXXL.Text);
-                    cmd.Parameters.AddWithValue("@OVERSIZE", txtOversize.Text);
-                    cmd.Parameters.AddWithValue("@PRICE", int.Parse(txtGia.Text));
-                    cmd.Parameters.AddWithValue("@SOLD_QUANTITY", int.Parse(txtSLDaBan.Text));
-                    cmd.Parameters.AddWithValue("@PRODUCT_STATUS", int.Parse(rblTinhTrang.SelectedValue));
-                    cmd.Parameters.AddWithValue("@ID_CATEGORY", int.Parse(ddlCategories.SelectedValue));
-
-                    cmd.ExecuteNonQuery();
-                    dataAccess.DongKetNoiCSDL();
-
-                    Response.Redirect("ADMNProduct.aspx");
-                }
             }
             else
             {
                 Response.Write("<script>alert(\"You must add at least one image\")</script>");
+                return;
             }
 
+            if (String.IsNullOrEmpty(txtS.Text)
+                && String.IsNullOrEmpty(txtM.Text)
+                && String.IsNullOrEmpty(txtL.Text)
+                && String.IsNullOrEmpty(txtXL.Text)
+                && String.IsNullOrEmpty(txtXXL.Text)
+                && String.IsNullOrEmpty(txtOversize.Text)
+            )
+            {
+                Response.Write("<script>alert(\"You must add at least one size\")</script>");
+            }
+            else
+            {
+                string imgParams = (fileNamesToDtb.Trim() != "") ? fileNamesToDtb.Trim().TrimEnd('|') : "";
+
+                SqlCommand cmd = new SqlCommand("INSERT_PRODUCT", dataAccess.getConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@PRODUCT_NAME", txtTenSP.Text);
+                cmd.Parameters.AddWithValue("@INFORMATION", txtInfo.Text);
+                cmd.Parameters.AddWithValue("@IMAGES", imgParams);
+                cmd.Parameters.AddWithValue("@S", txtS.Text);
+                cmd.Parameters.AddWithValue("@M", txtM.Text);
+                cmd.Parameters.AddWithValue("@L", txtL.Text);
+                cmd.Parameters.AddWithValue("@XL", txtXL.Text);
+                cmd.Parameters.AddWithValue("@XXL", txtXXL.Text);
+                cmd.Parameters.AddWithValue("@OVERSIZE", txtOversize.Text);
+                cmd.Parameters.AddWithValue("@PRICE", double.Parse(txtGia.Text));
+                cmd.Parameters.AddWithValue("@SOLD_QUANTITY", int.Parse(txtSLDaBan.Text));
+                cmd.Parameters.AddWithValue("@PRODUCT_STATUS", int.Parse(rblTinhTrang.SelectedValue));
+                cmd.Parameters.AddWithValue("@ID_CATEGORY", int.Parse(ddlCategories.SelectedValue));
+
+                cmd.ExecuteNonQuery();
+                dataAccess.DongKetNoiCSDL();
+
+                Response.Redirect("ADMNProduct.aspx");
+            }
+
+
+
             
+
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

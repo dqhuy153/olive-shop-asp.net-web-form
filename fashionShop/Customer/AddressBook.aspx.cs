@@ -14,7 +14,7 @@ namespace fashionShop.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            CheckAuth.CheckCustomer("AddressBook");
+            CheckAuth.CheckCustomer("AddressBook.aspx");
 
             if (!IsPostBack)
             {

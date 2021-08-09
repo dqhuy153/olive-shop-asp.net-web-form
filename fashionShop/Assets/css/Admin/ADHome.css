@@ -1,0 +1,98 @@
+﻿.adtrangchu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 45px 0;
+}
+
+.section-thongKe {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem auto 5rem;
+}
+
+.adtrangchu-datHang-container {
+    width: 55%;
+    box-shadow: rgba(0,0,0,0.15) 0 2px 10px;
+    height: 50rem;
+    border-radius: 5px;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.adtrangchu-doanhThu-container {
+    width: 35%;
+    height: 50rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .adtrangchu-doanhThu-container .section-item-header {
+        background: #b19c89
+    }
+
+.section-item {
+    height: 14rem;
+    box-shadow: rgba(0,0,0,0.15) 0 2px 10px;
+    border-radius: 5px;
+}
+
+.section-item-header {
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    background: var(--color-primary);
+    padding: 1.5rem 0;
+    color: white;
+    border: 1px solid #b4b4b4;
+    border-bottom: none;
+    border-radius: .5rem .5rem 0 0;
+}
+
+.section-item-number {
+    display: flex;
+    height: 10rem;
+    justify-content: center;
+    align-items: center
+}
+
+    .section-item-number span {
+        font-size: 24px;
+        font-family: Arial, sans-serif;
+        color: #052f87;
+    }
+
+.qldh-container {
+    max-width: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 8rem;
+    overflow-y: scroll;
+}
+
+    .qldh-container h4 {
+        margin: 0 auto;
+        font-size: 3rem;
+        font-weight: bold;
+        color: #262626;
+    }
+.table {
+    width: 100%;
+    box-shadow: none;
+}
+
+.table-th {
+    background: #f1efee;
+    color: #333;
+}
+.qldh-btnXem {
+    color: #052f87;
+}
